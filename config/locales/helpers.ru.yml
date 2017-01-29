@@ -1,0 +1,8 @@
+ru:
+  helpers:
+    submit:
+      user:
+        create: 'Зарегистрироваться'
+        update: 'Сохранить'
+      company:
+        create: 'Зарегистрировать организацию'

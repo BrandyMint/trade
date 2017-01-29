@@ -1,7 +1,7 @@
 nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
   .container
     = link_to root_url, class: 'navbar-brand' do
-      = fa_icon :cube
+      = fa_icon :bank
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
       = navbar_link_to 'Товары и услуги', root_path
       = navbar_link_to 'Компании', companies_path
@@ -16,6 +16,8 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
             = link_to 'выйти', '#', class: 'dropdown-item'
     - else
       form.form-inline
+        .form-group
+          = link_to 'Зарегистрироваться', new_user_path, class: 'text-small mr-sm-2'
         = text_field_tag 'login', nil, placeholder: 'email', class: 'form-control form-control-sm mr-sm-2'
         = password_field_tag 'password', nil, placeholder: 'пароль', class: 'form-control form-control-sm mr-sm-2'
         button.btn.btn-sm.btn-outline-success.my-2.my-sm-0 type='submit'

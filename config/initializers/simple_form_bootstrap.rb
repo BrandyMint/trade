@@ -42,6 +42,15 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'form-control-hint text-muted' }
   end
 
+  config.wrappers :vertical_radio, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :label, class: 'form-control-label'
+    b.use :input, class: 'custom-control-input'
+    b.use :error, wrap_with: { tag: 'span', class: 'form-control-feedback' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'form-control-hint text-muted' }
+  end
+
   config.wrappers :vertical_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
     b.use :html5
     b.optional :readonly

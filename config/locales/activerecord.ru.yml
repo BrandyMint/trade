@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Пользователь с этим емайлом уже зарегистрирован
+            password_confirmation:
+              blank: Подвтердите пароль
+              confirmation: Пароли на совпадают
+            password:
+              blank: Укажите пароль для входа

@@ -1,0 +1,13 @@
+h1.mb-4 Регистрация в системе
+
+.row
+  .col-md-6
+    = simple_form_for @user do |f|
+      = f.input :email, label: false, as: :email
+      .row
+        .col-md-6
+          = f.input :password, label: false
+        .col-md-6
+          = f.input :password_confirmation, label: false
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Подождите..' }
+  .col-md-6

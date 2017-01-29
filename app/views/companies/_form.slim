@@ -1,0 +1,24 @@
+= simple_form_for @company do |f|
+  = f.error_notification
+  = f.object.errors.full_messages
+  .row
+    .col-md-6
+      .form-group.mb-4
+        input name="company[form]" type="hidden" value=""
+        label.custom-control.custom-radio
+          input#radio1.custom-control-input name="company[form]" type="radio" value="legal" checked=f.object.legal?
+          span.custom-control-indicator
+          span.custom-control-description ООО
+        label.custom-control.custom-radio
+          input#radio2.custom-control-input name="company[form]" type="radio" value="individual" checked=f.object.individual?
+          span.custom-control-indicator
+          span.custom-control-description Индивидуальный предприниматель
+
+      = f.input :inn, label: false, input_html: { data: 'company-inn' }
+      = f.input :name, label: false
+  .row
+    .col-md-6
+      .mt-2
+        = f.button :submit, class: 'btn btn-primary'
+
+= render 'inn_suggestion'
