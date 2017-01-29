@@ -1,17 +1,22 @@
-header.navbar.navbar-light.navbar-static-top.bg-faded.navbar-fixed-top
+nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
   .container
-    nav
-      = link_to root_url, class: 'navbar-brand' do
-        = fa_icon :cube
-    ul.nav.navbar-nav
-      = navbar_link_to 'План', root_path
-      = navbar_link_to "Заказы (#{Order.count})", orders_path
-      = navbar_link_to "Техпроцессы (#{Machine.count})", machines_path
-      = navbar_link_to "График", work_dates_path
-    ul.nav.navbar-nav.float-xs-right
-      li.nav-item.dropdown
-        = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: :dropdown } do
-          = fa_icon :user, text: current_user
-        .dropdown-menu aria-labelledby="supportedContentDropdown"
-          = link_to 'профиль', '#', class: 'dropdown-item'
-          = link_to 'выйти', '#', class: 'dropdown-item'
+    = link_to root_url, class: 'navbar-brand' do
+      = fa_icon :cube
+    ul.navbar-nav.mr-auto.mt-2.mt-md-0
+      = navbar_link_to 'Товары и услуги', root_path
+      = navbar_link_to 'Компании', companies_path
+    
+    - if current_user.present?
+      ul.navbar-nav.float-xs-right
+        li.nav-item.dropdown
+          = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: :dropdown } do
+            = fa_icon :user, text: current_user
+          .dropdown-menu aria-labelledby="supportedContentDropdown"
+            = link_to 'профиль', '#', class: 'dropdown-item'
+            = link_to 'выйти', '#', class: 'dropdown-item'
+    - else
+      form.form-inline
+        = text_field_tag 'login', nil, placeholder: 'email', class: 'form-control form-control-sm mr-sm-2'
+        = password_field_tag 'password', nil, placeholder: 'пароль', class: 'form-control form-control-sm mr-sm-2'
+        button.btn.btn-sm.btn-outline-success.my-2.my-sm-0 type='submit'
+          = fa_icon 'arrow-circle-right'

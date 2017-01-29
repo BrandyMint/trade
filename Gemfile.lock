@@ -339,7 +339,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   ancestry
-  bootstrap (~> 4.0.0.alpha5)
+  bootstrap (~> 4.0.0.alpha6)
   bootstrap-kaminari-views!
   byebug
   capistrano-rails

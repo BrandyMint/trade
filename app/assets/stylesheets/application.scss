@@ -1,0 +1,25 @@
+/*
+ *= require nprogress
+ *= require nprogress-bootstrap
+ *= require nprogress-turbolinks5
+ *= require_tree .
+ *= require_self
+ */
+
+@import 'bootstrap';
+@import "font-awesome";
+
+.text-center {
+  text-align: center;
+}
+
+#content {
+  padding-top: 5em;
+}
+
+#footer {
+  margin-top: 2em;
+  border-top: 1px solid #eee;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
