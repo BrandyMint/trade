@@ -35,14 +35,16 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
+gem 'pundit'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
 gem 'slim-rails'
 gem 'bootstrap', '~> 4.0.0.alpha5'
-gem 'semver2'
 # gem 'bugsnag'
 gem 'virtus'
 gem 'hashie'
+gem 'sorcery'
+gem 'ancestry'
 
 gem 'ranked-model'
 gem 'enumerize'
@@ -71,7 +73,6 @@ source 'https://rails-assets.org' do
 end
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
 gem 'nprogress-rails'
 
 group :development, :test do
