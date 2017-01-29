@@ -1,0 +1,17 @@
+header.navbar.navbar-light.navbar-static-top.bg-faded.navbar-fixed-top
+  .container
+    nav
+      = link_to root_url, class: 'navbar-brand' do
+        = fa_icon :cube
+    ul.nav.navbar-nav
+      = navbar_link_to 'План', root_path
+      = navbar_link_to "Заказы (#{Order.count})", orders_path
+      = navbar_link_to "Техпроцессы (#{Machine.count})", machines_path
+      = navbar_link_to "График", work_dates_path
+    ul.nav.navbar-nav.float-xs-right
+      li.nav-item.dropdown
+        = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: :dropdown } do
+          = fa_icon :user, text: current_user
+        .dropdown-menu aria-labelledby="supportedContentDropdown"
+          = link_to 'профиль', '#', class: 'dropdown-item'
+          = link_to 'выйти', '#', class: 'dropdown-item'
