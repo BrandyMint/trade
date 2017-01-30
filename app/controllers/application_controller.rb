@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def current_company
+    current_user.company
+  end
+
   def not_authenticated
     raise NoAuthentication
   end

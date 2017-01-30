@@ -38,12 +38,14 @@ ru:
     hints:
       defaults:
         row_order_position: Позиция, начиная с 0
-        color: Цвет
+      search_form:
+        q: Товар или услуга для поиска
     placeholders:
       defaults:
         title: Название
       company:
         inn: ИНН
+        ogrn: ОГРН
         name: Наименование
       user_session:
         email: email для входа
@@ -51,6 +53,12 @@ ru:
         remember: Запомнить
       password_reset:
         email: email для восстановления
+      search_form:
+        q: Трактор
+      good:
+        title: Название товара или услуги
+        price: Цена в рублях
+        details: Подробное описание
       user:
         email: email
         password: Пароль

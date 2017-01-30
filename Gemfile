@@ -61,9 +61,15 @@ gem 'cocoon'
 
 gem 'semver2'
 # gem 'gravatarify'
+# gem 'file_validators'
+gem 'validates'
+# gem 'valid_email', require: 'valid_email/validate_email'
 
 gem 'responders'
+gem 'mini_magick'
+gem 'carrierwave'
 
+gem 'dropzonejs-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
   gem 'rails-assets-better-dom'

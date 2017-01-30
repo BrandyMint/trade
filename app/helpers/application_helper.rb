@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def humanized_money(amount)
+    "#{amount} руб."
+  end
+
   def application_title
     'OnlineTrade'
   end
@@ -13,11 +17,13 @@ module ApplicationHelper
       class: 'btn btn-outline-danger'
   end
 
-  def navbar_link_to(title, href, active: nil)
+  def navbar_link_to(title, href, count: nil, active: nil)
     active = is_active_link? href, :inclusive if active.nil?
     active_class = active ? 'active' : ''
+
+    title << content_tag(:small, " (#{count})", class: 'text-muted') if count.present?
     content_tag :li, class: "nav-item #{active_class}" do
-      link_to title, href, class: 'nav-link'
+      link_to title.html_safe, href, class: 'nav-link'
     end
   end
 end

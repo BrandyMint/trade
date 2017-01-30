@@ -1,5 +1,8 @@
 ru:
   helpers:
+    company_forms:
+      legal: ООО
+      individual: ИП
     submit:
       user:
         create: 'Зарегистрироваться'
@@ -7,6 +10,11 @@ ru:
       user_session:
         create: 'Войти'
       company:
-        create: 'Зарегистрировать организацию'
+        create: 'Зарегистрировать' 
       password_reset:
         create: Напомнить пароль
+      search_form:
+        create: Найти
+      good:
+        update: Изменить товар
+        create: Добавить товар

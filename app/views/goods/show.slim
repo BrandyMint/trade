@@ -1,0 +1,14 @@
+h1.mb-4 
+  | Товар 
+  = link_to "##{@good.id}", good_path(@good)
+
+.row
+  .col-md-4
+    = image_tag @good.image.thumb.url
+  .col-md-8
+    h2= @good.title
+    p= humanized_money @good.price
+    p
+      | Продавец: 
+      = link_to @good.company, company_path(@good.company)
+    = simple_format @good.details

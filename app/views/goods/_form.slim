@@ -1,0 +1,17 @@
+= simple_form_for @good do |f|
+  = f.error_notification
+  .row
+    .col-md-4
+      - if @good.image.present?
+        = image_tag @good.image.url 
+        = f.input :remove_image, as: :checkbox
+      = f.input :image
+      -# = f.input :image_url
+      = f.input :image_cache, as: :hidden
+    .col-md-8
+      = f.association :category, label: false, include_blank: false
+      = f.input :title, label: false
+      = f.input :price, label: false
+      = f.input :details, label: false
+      .mt-4.pull-right
+        = f.button :submit, class: 'btn btn-primary'

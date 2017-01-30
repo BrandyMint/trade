@@ -1,5 +1,5 @@
 module CompaniesHelper
-  def company_forms_collection
-    %w(company person)
+  def humanized_form(form)
+    I18n.t form, scope: [:helpers, :company_forms]
   end
 end

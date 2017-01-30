@@ -1,3 +1,16 @@
-h1 Companies#index
-p Find me in app/views/companies/index.html.slim
-= link_to 'new', new_company_path
+.pull-right= link_to 'Добавить свою', new_company_path, class: 'btn btn-outline-success'
+h1 Органиации (#{Company.count})
+
+table.table
+  thead
+    tr
+      th Наименование
+      th Форма
+      th ИНН
+      th ОГРН
+  - @companies.each do |c|
+    tr
+      td= link_to c.name, company_path(c)
+      td= humanized_form c.form
+      td= c.inn
+      td= c.ogrn

@@ -1,1 +1,11 @@
-p test
+
+.pull-right
+  = link_to 'Разместить товар', new_good_path, class: 'btn btn-outline-success'
+h1 Товары и услуги
+
+.clearfix
+.mt-4
+  = render 'search_form', search_form: search_form
+
+.mt-4
+  = render 'goods/list', goods: goods

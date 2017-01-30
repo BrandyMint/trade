@@ -1,6 +1,9 @@
 ru:
   activerecord:
     errors:
+      messages:
+        blank: Поле не должно быть пустым
+        taken: В базе уже есть запись с таким значением
       models:
         user:
           attributes:

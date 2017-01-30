@@ -1,0 +1,14 @@
+table.table
+  thead
+    th Изображение
+    th Товар
+    th Стоимость
+    th Описание
+
+  - goods.each do |good|
+    tr
+      td= image_tag good.image.thumb.url
+      td
+        = link_to good.title, good_path(good)
+      td= humanized_money good.price
+      td= simple_format good.details
