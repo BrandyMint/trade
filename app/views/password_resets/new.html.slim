@@ -1,0 +1,12 @@
+h1.mb-4 Восстановление пароля
+
+= simple_form_for password_reset, method: :post do |f|
+  = f.input :email, label: false
+  .row
+    .col-md-6
+      = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+    .col-md-6
+      .pull-right
+        .mt-2
+          small
+            = link_to 'Я вспомнил пароль! Войти..', signin_path

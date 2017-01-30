@@ -45,6 +45,12 @@ ru:
       company:
         inn: ИНН
         name: Наименование
+      user_session:
+        email: email для входа
+        password: пароль
+        remember: Запомнить
+      password_reset:
+        email: email для восстановления
       user:
         email: email
         password: Пароль

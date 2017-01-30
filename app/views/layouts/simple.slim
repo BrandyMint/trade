@@ -7,4 +7,18 @@ html
   body
     = render 'layouts/messages'
     main#content.container
-      = yield
+      .row.justify-content-center
+        .col.col-md-2
+        .col-12.col-md-auto
+          .mb-5
+            = link_to root_url, class: 'navbar-brand' do
+              .text-center
+                = fa_icon 'bank lg'
+              br
+              = application_title
+        .col.col-md-2
+      .row.justify-content-center
+        .col.col-md-2
+        .col-12.col-md-auto
+          = yield
+        .col.col-md-2

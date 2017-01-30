@@ -1,7 +1,11 @@
 footer#footer.bg-faded
   .container
-    small.text-muted
-      = "#{application_title} #{AppVersion}"
-    small.text-muted.pull-right
-      | Сделано в 
-      = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'
+    .row
+      .col-md-6
+        small.text-muted
+          = "#{application_title} #{AppVersion}"
+          p.mt-1 = link_to 'Зарегистрироваться', new_user_path, class: 'text-small mr-sm-2'
+      .col-md-6
+        small.text-muted.pull-right
+          | Сделано в 
+          = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'

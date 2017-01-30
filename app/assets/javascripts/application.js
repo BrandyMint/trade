@@ -9,5 +9,9 @@
 //= require better-popover-plugin
 //= require better-form-validation
 //= require better-form-validation/i18n/better-form-validation.ru
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
+DOM.set("lang", "ru");

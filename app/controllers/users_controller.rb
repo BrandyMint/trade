@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   respond_to :html
 
+
   def new
     @user = User.new
     respond_with @user
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create user_params
+    auto_login @user if @user.persisted?
     respond_with @user, location: -> { new_company_path }
   end
 
@@ -20,6 +22,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params[:user].permit(:email, :password, :password_confirmation)
+    params.require( :user ).permit(:email, :password, :password_confirmation)
   end
 end

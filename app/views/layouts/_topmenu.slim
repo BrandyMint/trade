@@ -13,12 +13,10 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
             = fa_icon :user, text: current_user
           .dropdown-menu aria-labelledby="supportedContentDropdown"
             = link_to 'профиль', '#', class: 'dropdown-item'
-            = link_to 'выйти', '#', class: 'dropdown-item'
+            = link_to 'выйти', signout_path, method: :delete, class: 'dropdown-item'
     - else
-      form.form-inline
-        .form-group
-          = link_to 'Зарегистрироваться', new_user_path, class: 'text-small mr-sm-2'
-        = text_field_tag 'login', nil, placeholder: 'email', class: 'form-control form-control-sm mr-sm-2'
-        = password_field_tag 'password', nil, placeholder: 'пароль', class: 'form-control form-control-sm mr-sm-2'
+      = simple_form_for UserSession.new, method: :post, html: { class: 'form-inline' } do |f|
+        = f.input :email, label: false, input_html: { class: 'form-control-sm mr-sm-2' }
+        = f.input :password, as: :password, label: false, input_html: { class: 'form-control-sm mr-sm-2' }
         button.btn.btn-sm.btn-outline-success.my-2.my-sm-0 type='submit'
           = fa_icon 'arrow-circle-right'

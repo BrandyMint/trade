@@ -4,5 +4,9 @@ ru:
       user:
         create: 'Зарегистрироваться'
         update: 'Сохранить'
+      user_session:
+        create: 'Войти'
       company:
         create: 'Зарегистрировать организацию'
+      password_reset:
+        create: Напомнить пароль

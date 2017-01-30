@@ -6,8 +6,10 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
   body
-    = render 'layouts/topmenu'
-    = render 'layouts/messages'
+    .mb-4
+      = render 'layouts/topmenu'
+    .container
+      = render 'layouts/messages'
     main#content.container
       = yield
     = render 'layouts/footer'
