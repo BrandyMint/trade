@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
+gem 'openbill-ruby', github: 'openbill-service/openbill-ruby'
 gem 'pundit'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'

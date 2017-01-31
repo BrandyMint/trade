@@ -5,9 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
-  email: danil@brandymint.ru
-# column: value
-#
+  name: One
+
 two:
-  email: test@brandymint.ru
-# column: value
+  name: Two

@@ -26,7 +26,7 @@ class GoodsController < ApplicationController
   private
 
   def permitted_params
-    params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :image_url, :category_id)
+    params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :remote_image_url, :category_id)
   end
 
   def search_form

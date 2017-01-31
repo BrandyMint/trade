@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user: one
   name: MyString
   form: MyString
   inn: MyString
@@ -8,8 +9,10 @@ one:
   charter: MyString
   order: MyString
   decision: MyString
+  account: one
 
 two:
+  user: two
   name: MyString
   form: MyString
   inn: MyString
@@ -17,3 +20,4 @@ two:
   charter: MyString
   order: MyString
   decision: MyString
+  account: two
