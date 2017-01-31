@@ -1,7 +1,13 @@
 require 'carrierwave/orm/activerecord'
 
 class Good < ApplicationRecord
+  include PgSearch
+
   mount_uploader :image, ImageUploader
+
+  pg_search_scope :search_by_title,
+    against: { title: 'A', details: 'B' },
+    using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
   belongs_to :company
   belongs_to :category

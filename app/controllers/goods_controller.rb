@@ -1,6 +1,8 @@
 class GoodsController < ApplicationController
   before_filter :require_login, except: :index
 
+  helper_method :search_form
+
   def new
     @good = Good.new
     respond_with @good
@@ -12,7 +14,7 @@ class GoodsController < ApplicationController
   end
 
   def index
-    @goods = Good.all
+    @goods = Good.search_by_title search_form.q
     respond_with @goods
   end
 
@@ -28,6 +30,6 @@ class GoodsController < ApplicationController
   end
 
   def search_form
-    @search_form ||= SearchForm.new params.fetch(:search_form, {})
+    @search_form ||= SearchForm.new params.fetch(:search_form, {}).permit(:q)
   end
 end
