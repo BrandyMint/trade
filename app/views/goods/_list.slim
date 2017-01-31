@@ -12,7 +12,9 @@ table.table
       td
         = link_to good.title, good_path(good)
       td= humanized_money good.price
-      td= simple_format good.details
       td
-        = link_to 'Подробнее', good_path(good), class: 'btn btn-success btn-sm'
+        = good_details good
+      td
+        .pull-right
+          = link_to 'Подробнее', good_path(good), class: 'btn btn-success btn-sm'
 
