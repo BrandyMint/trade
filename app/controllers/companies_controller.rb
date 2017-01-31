@@ -16,6 +16,11 @@ class CompaniesController < ApplicationController
     respond_with @company
   end
 
+  def show
+    @company = Company.find params[:id]
+    respond_with @company
+  end
+
   private
 
   def permitted_params

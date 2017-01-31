@@ -3,6 +3,7 @@ table.table
     th Изображение
     th Товар
     th Стоимость
+    th Организация
     th Описание
     th
 
@@ -12,6 +13,8 @@ table.table
       td
         = link_to good.title, good_path(good)
       td= humanized_money good.price
+      td
+        = link_to good.company, company_path(good.company)
       td
         = good_details good
       td

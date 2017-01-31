@@ -1,7 +1,9 @@
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
+  include Pundit
   include RescueErrors
+
   self.responder = ApplicationResponder
 
   respond_to :html

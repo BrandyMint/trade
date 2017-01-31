@@ -13,9 +13,29 @@ class GoodsController < ApplicationController
     respond_with @good, location: -> { good_path(@good) }
   end
 
+  def edit
+    @good = Good.find params[:id]
+    authorize @good
+    respond_with @good
+  end
+
+  def update
+    @good = Good.find params[:id]
+    authorize @good
+    @good.update permitted_params
+    respond_with @good, location: -> { good_path(@good) }
+  end
+
   def index
     @goods = Good.search_by_title search_form.q
     respond_with @goods
+  end
+
+  def destroy
+    @good = Good.find params[:id]
+    authorize @good
+    @good.destroy!
+    redirect_to company_goods_path, success: "Товар #{@good.title} удален"
   end
 
   def show

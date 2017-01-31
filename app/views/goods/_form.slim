@@ -3,8 +3,8 @@
   .row
     .col-md-4
       - if @good.image.present?
-        = image_tag @good.image.url 
-        = f.input :remove_image, as: :checkbox
+        = image_tag @good.image.medium.url 
+        = f.input :remove_image, as: :boolean
       = f.input :image
       -# = f.input :image_url
       = f.input :image_cache, as: :hidden
