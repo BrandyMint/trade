@@ -1,0 +1,5 @@
+.pull-right
+  = link_to 'Разместить товар', new_good_path, class: 'btn btn-outline-success'
+h1.mb-4 Товары компании "#{current_company}"
+
+= render 'goods/list', goods: goods

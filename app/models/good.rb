@@ -9,6 +9,8 @@ class Good < ApplicationRecord
     against: { title: 'A', details: 'B' },
     using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
+  scope :view_order, -> { order 'id desc' }
+
   belongs_to :company
   belongs_to :category
 

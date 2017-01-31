@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   respond_to :html
 
+  helper_method :current_company
+
   protect_from_forgery with: :exception
 
   protected
