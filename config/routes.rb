@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :users, only: [:create, :update, :new, :edit]
 
-  resource :profile
+  resource :profile, controller: :profile
   resources :companies
   resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]
