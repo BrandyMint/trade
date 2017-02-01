@@ -49,6 +49,7 @@ gem 'virtus'
 gem 'hashie'
 gem 'sorcery'
 gem 'ancestry'
+gem 'validates_russian'
 
 gem 'ranked-model'
 gem 'enumerize'

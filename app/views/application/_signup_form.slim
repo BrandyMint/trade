@@ -1,0 +1,10 @@
+= simple_form_for user do |f|
+  = f.input :email, label: false, as: :email
+  .row
+    .col-md-6
+      = f.input :password, label: false
+    .col-md-6
+      = f.input :password_confirmation, label: false
+  .row
+    .col-md-12
+      = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Подождите..' }

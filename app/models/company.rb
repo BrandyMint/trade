@@ -6,10 +6,12 @@ class Company < ApplicationRecord
 
   has_many :goods
 
-  validates :inn, presence: true, uniqueness: true
-  validates :name, presence: true
   validates :form, presence: true, inclusion: %w(legal individual)
-  validates :ogrn, presence: true, uniqueness: true
+  validates :name, presence: true
+
+  validates :inn, presence: true, inn_format: true, uniqueness: { scope: :user_id }
+  validates :ogrn, presence: true, ogrn_format: true
+  validates :kpp, presence: true, kpp_format: true
 
   before_create :create_account
 

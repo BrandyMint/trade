@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def nav_link_class(active)
+    active ? 'nav-link active' : 'nav-link'
+  end
+
   def humanized_money(amount)
     "#{amount} руб."
   end

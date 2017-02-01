@@ -32,6 +32,8 @@ ru:
         email: email
         password: Пароль
         password_confirmation: Подтверждение пароля
+      user_session:
+        remember: Запомнить
       order:
         title: 
           Название
@@ -50,7 +52,6 @@ ru:
       user_session:
         email: email для входа
         password: пароль
-        remember: Запомнить
       password_reset:
         email: email для восстановления
       search_form:
@@ -60,6 +61,6 @@ ru:
         price: Цена в рублях
         details: Подробное описание
       user:
-        email: email
+        email: Ваш email
         password: Пароль
         password_confirmation: Подтверждение пароля

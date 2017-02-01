@@ -1,1 +1,13 @@
-h1 Нет доступа
+h1.mb-4 Нет доступа
+
+ul.mb-4.nav.nav-tabs role='tablist'
+  li.nav-item
+    = link_to 'Регистрация', '#signup', data: { toggle: 'tab' }, role: 'tab', class: nav_link_class(true)
+  li.nav-item
+    = link_to 'Вход для зарегистрированных', '#signin', data: { toggle: 'tab' }, role: 'tab', class: nav_link_class(false)
+
+.tab-content
+  .tab-pane.fade.show.active id='signup' role='tabpanel'
+    = render 'signup_form', user: User.new
+  .tab-pane.fade id='signin' role='tabpanel'
+    = render 'signin_form', user_session: UserSession.new

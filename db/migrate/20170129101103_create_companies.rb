@@ -4,6 +4,7 @@ class CreateCompanies < ActiveRecord::Migration[5.0]
       t.references :user, null: false
       t.string :form, null: false, default: 'company'
       t.string :inn, null: false
+      t.string :kpp, null: false
       t.string :name, null: false
       t.string :ogrn, null: false
       t.string :charter

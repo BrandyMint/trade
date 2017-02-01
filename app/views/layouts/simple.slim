@@ -11,11 +11,11 @@ html
         .col.col-md-2
         .col-12.col-md-auto
           .mb-5
-            = link_to root_url, class: 'navbar-brand' do
+            = link_to root_url, class: 'simple-brand' do
               .text-center
-                = fa_icon 'bank lg'
-              br
-              = application_title
+                = fa_icon 'bank giant'
+              .text-center.mt-4.simple-brand-title
+                = application_title
         .col.col-md-2
       .row.justify-content-center
         .col-md-2
