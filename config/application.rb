@@ -18,9 +18,10 @@ module Trade
 
     config.autoload_paths += Dir[
       "#{Rails.root}/app/errors",
+      "#{Rails.root}/app/inputs",
     ]
-    # config.web_console.whitelisted_ips = '10.101.0.0/16, 192.168.0.0/16'
-    # config.web_console.whiny_requests = false
+    # config.web_console.whitelisted_ips = '10.101.0.0/16, 192.168.0.0/16' # , 213.88.60.17/32'
+    config.web_console.whiny_requests = false
 
     # Settings in config/environments/* take precedence over those specified here.
   end

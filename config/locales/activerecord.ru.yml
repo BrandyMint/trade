@@ -1,5 +1,37 @@
 ru:
   activerecord:
+    models:
+      openbill_category:
+        one: Категория счетов
+        other: Категории счетов
+      openbill_policy:
+        one: Правло перевода
+        other: Правила переводов
+      openbill_transaction:
+        one: Транзакция
+        other: Транзакции
+      openbill_account:
+        one: Счет
+        other: Счета
+      comment:
+        one: Комментарий
+        other: Комментарии
+      company:
+        one: Организация
+        other: Организации
+      category:
+        one: Категория
+        other: Категории
+      good:
+        one: Товар
+        other: Товары
+      user: 
+        one: Пользователь
+        other: Пользователи
+
+    attributes:
+      openbill_account:
+        category: Категория
     errors:
       messages:
         blank: Поле не должно быть пустым
