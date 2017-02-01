@@ -1,14 +1,18 @@
 class GoodsController < ApplicationController
-  before_filter :require_login, except: :index
+  # before_filter :require_login, except: [:index, :new]
 
   helper_method :search_form
+  after_action :verify_authorized
+  before_action :authorize_moderated, only: [:new, :create, :edit, :update, :destroy]
 
   def new
+    authorize Good
     @good = Good.new
     respond_with @good
   end
 
   def create
+    authorize Good
     @good = current_company.goods.create permitted_params
     respond_with @good, location: -> { good_path(@good) }
   end

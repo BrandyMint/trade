@@ -1,0 +1,2 @@
+class NoAcceptedCompany < StandardError
+end

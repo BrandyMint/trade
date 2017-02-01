@@ -1,0 +1,12 @@
+h1.mb-4 Отсутсвует принятая организация
+
+- if current_company.blank? || current_company.draft?
+  p Заполните анкету об организации
+  = link_to 'Заполнить', new_company_path, class: 'btn btn-outline-success'
+- elsif current_company.waits_review?
+  p Организация находится на проверке
+- elsif current_company.rejected?
+  p Организация не прошла проверку
+  .alert.alert-danger= company.reject_message
+- else
+  p Ошибочный вывод страницы. Обратитесь к администраторам.

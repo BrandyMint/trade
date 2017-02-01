@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  extend Enumerize
+
   attribute :form, :string, default: 'legal'
 
   belongs_to :user
@@ -15,6 +17,11 @@ class Company < ApplicationRecord
 
   before_create :create_account
 
+  enumerize :state,
+    in: %w(draft waits_review accepted rejected),
+    predicates: true,
+    default: 'draft'
+
   def legal?
     form == 'legal'
   end
@@ -25,6 +32,9 @@ class Company < ApplicationRecord
 
   def individual?
     form == 'individual'
+  end
+
+  def moderated?
   end
 
   private

@@ -5,6 +5,14 @@ class GoodPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    create?
+  end
+
+  def create?
+    user.present? && company.present? && company.accepted?
+  end
+
   def update?
     owner?
   end
@@ -18,6 +26,6 @@ class GoodPolicy < ApplicationPolicy
   delegate :company, to: :user
 
   def owner?
-    company.goods.include? record
+    user.present? && company.goods.include?(record)
   end
 end

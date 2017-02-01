@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def authorize_moderated
+    require_login
+    raise NoAcceptedCompany unless current_company.try(:accepted?)
+  end
+
   def current_company
     current_user.company
   end

@@ -1,4 +1,14 @@
 module ApplicationHelper
+  def authority_forbidden_message
+    if controller_name == 'goods' && action_name == 'new'
+      title = 'Для публикации торгового предложения необходимо быть зарегистрированным.'
+    end
+  end
+
+  def reset_password_hint(email)
+    link_to 'Вспомнить пароль', new_password_reset_path(password_reset: { email: email }), class: 'password_reset-link'
+  end
+
   def nav_link_class(active)
     active ? 'nav-link active' : 'nav-link'
   end
