@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def paginate objects, options = {}
     # https://github.com/klacointe/bootstrap-kaminari-views/tree/bootstrap4
-    options.reverse_merge!( theme: 'twitter-bootstrap-4' )
+    options.reverse_merge!( theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm' )
 
     super( objects, options )
   end

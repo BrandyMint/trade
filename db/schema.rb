@@ -17,20 +17,6 @@ ActiveRecord::Schema.define(version: 20170203113654) do
   enable_extension "hstore"
   enable_extension "uuid-ossp"
 
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.string   "author_type"
-    t.integer  "author_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "title",                   null: false
     t.integer  "parent_id"
@@ -43,17 +29,16 @@ ActiveRecord::Schema.define(version: 20170203113654) do
   create_table "companies", force: :cascade do |t|
     t.integer  "user_id",                             null: false
     t.string   "form",            default: "company", null: false
-    t.string   "inn",                                 null: false
     t.string   "name",                                null: false
     t.string   "ogrn",                                null: false
+    t.string   "inn",                                 null: false
+    t.string   "kpp"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.uuid     "account_id",                          null: false
     t.string   "state"
     t.text     "reject_message"
-    t.string   "kpp"
     t.string   "short_name"
-    t.string   "full_name"
     t.string   "management_post"
     t.string   "management_name"
     t.string   "address"
@@ -158,9 +143,9 @@ ActiveRecord::Schema.define(version: 20170203113654) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                                             null: false
     t.string   "email",                                            null: false
-    t.string   "phone"
+    t.string   "phone",                                            null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at",                                       null: false
@@ -181,7 +166,6 @@ ActiveRecord::Schema.define(version: 20170203113654) do
     t.string   "role",                            default: "user", null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
-    t.index ["phone"], name: "index_users_on_phone", unique: true, using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", using: :btree

@@ -2,7 +2,7 @@ class OpenbillAccount < OpenbillRecord
   belongs_to :category, class_name: 'OpenbillCategory'
   has_one :company, foreign_key: 'account_id'
 
-  monetize :amount_cents
+  monetize :amount_cents, as: :amount
 
   before_create :set_defaults
 

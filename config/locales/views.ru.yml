@@ -1,0 +1,13 @@
+ru:
+  views:
+    collection:
+      empty: Нет результатов удовлетворяющих запросу.
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+    orders:
+      new:
+        title: Оформление заказа

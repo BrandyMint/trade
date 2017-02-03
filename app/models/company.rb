@@ -52,6 +52,6 @@ class Company < ApplicationRecord
   private
 
   def create_account
-    self.account ||= OpenbillAccount.create category: OpenbillSettings.company_category
+    self.account ||= OpenbillAccount.create category: OpenbillCategory.companies
   end
 end

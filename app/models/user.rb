@@ -2,10 +2,10 @@ class User < ApplicationRecord
   extend Enumerize
   authenticates_with_sorcery!
 
-  has_one :company
-
   has_many :companies
 
+  validates :name,                    presence: true
+  validates :phone,                   presence: true
   validates :password,                presence: true, confirmation: true, length: { minimum: 3}
   validates :email,                   presence: true, uniqueness: true, email: true
   validates :password_confirmation,   presence: true

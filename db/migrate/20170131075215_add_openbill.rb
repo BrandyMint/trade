@@ -33,6 +33,6 @@ class AddOpenbill < ActiveRecord::Migration[5.0]
   end
 
   def sql_dir
-    Openbill.root + '/sql/'
+    './db/openbill_sql/'
   end
 end
