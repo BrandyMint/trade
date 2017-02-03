@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   root 'welcome#index'
 
   get 'signin', to: 'user_sessions#new'

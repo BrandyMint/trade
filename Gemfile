@@ -69,7 +69,7 @@ gem 'active_link_to'
 
 # For activeadmin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+# gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 gem 'cocoon'
 
