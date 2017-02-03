@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   resources :company_goods
   resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  namespace :admin do
+    root 'dashboard#index'
+    resources :companies
+  end
 end

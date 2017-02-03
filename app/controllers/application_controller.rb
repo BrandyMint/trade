@@ -9,10 +9,13 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   helper_method :current_company
+  helper_method :current_namespace
 
   protect_from_forgery with: :exception
 
   protected
+
+  attr_reader :current_namespace
 
   def authorize_moderated
     require_login

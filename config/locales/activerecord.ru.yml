@@ -33,11 +33,13 @@ ru:
       openbill_account:
         category: Категория
       company:
+        created_at: Запись создана
         name: Полное наименование
         inn: ИНН
         ogrn: ОГРН
         kpp: КПП
         form: Форма
+        form_text: Форма
         phone: Телефон
         management_name: Руководитель
         management_post: Должность руководителя

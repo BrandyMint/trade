@@ -1,0 +1,35 @@
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th Статус
+      th Полное наименование
+      th Пользователь
+      th Баланс
+      th Товарные предложения
+      th Действия
+
+  tbody
+    - companies.each do |company|
+      tr
+        td= company_state_tag company
+        td
+          = link_to company.name, admin_company_path(company)
+          |  
+          br
+          small.text-muted= company_reg_info company
+          br
+          small.text-muted
+            = company_management company
+            |  
+            = phone_to company.phone
+        td
+          = company.user.name || 'Имя не известно'
+          br
+          = mail_to company.user.email
+          = phone_to company.user.phone
+        td
+          = humanized_money_with_symbol company.amount
+        td
+          = company_goods_count company
+        td
+          = link_to 'Подробнее', admin_company_path(company), class: 'btn btn-sm btn-outline-success'

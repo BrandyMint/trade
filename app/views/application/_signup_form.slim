@@ -1,5 +1,9 @@
 = simple_form_for user do |f|
-  = f.input :email, label: false, as: :email
+  .row
+    .col-md-6
+      = f.input :email, label: false, as: :email
+    .col-md-6
+      = f.input :name, label: false
   .row
     .col-md-6
       = f.input :password, label: false

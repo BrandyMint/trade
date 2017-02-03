@@ -3,19 +3,11 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
     = link_to root_url, class: 'navbar-brand' do
       = fa_icon :bank, text: application_title
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
-      = navbar_link_to 'Товары и услуги', root_path, count: Good.count
-      = navbar_link_to 'Компании', companies_path, count: Company.count
+      = navbar_link_to 'Торговые предложения', root_path, count: Good.count
+      = navbar_link_to 'Организации', companies_path, count: Company.count
     
     - if current_user.present?
-      ul.navbar-nav.float-xs-right
-        li.nav-item.dropdown
-          = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: :dropdown } do
-            = fa_icon :user, text: current_user
-          .dropdown-menu aria-labelledby="supportedContentDropdown"
-            = link_to 'Мои товары', company_goods_path, class: 'dropdown-item'
-            = link_to 'Мой профиль', profile_path, class: 'dropdown-item'
-            .dropdown-divider
-            = link_to 'Выйти', signout_path, method: :delete, class: 'dropdown-item'
+      = render 'user_dropdown'
     - else
       = simple_form_for UserSession.new, method: :post, html: { class: 'form-inline' } do |f|
         = f.input :email, label: false, input_html: { class: 'form-control-sm mr-sm-2' }

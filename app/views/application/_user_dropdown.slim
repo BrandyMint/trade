@@ -1,0 +1,16 @@
+ul.navbar-nav.float-xs-right
+  li.nav-item.dropdown
+    = link_to '#', class: 'nav-link dropdown-toggle', data: { toggle: :dropdown } do
+      = fa_icon :user, text: current_user
+    .dropdown-menu aria-labelledby="supportedContentDropdown"
+      = link_to 'Мои товары', company_goods_path, class: 'dropdown-item'
+      = link_to 'Мой профиль', profile_path, class: 'dropdown-item'
+      - if current_user.is_admin?
+        - if current_namespace == :admin
+          = link_to 'На сайт', admin_root_path, class: 'dropdown-item text-success'
+        - else
+          = link_to 'В админку', admin_root_path, class: 'dropdown-item text-danger'
+
+
+      .dropdown-divider
+      = link_to 'Выйти', signout_path, method: :delete, class: 'dropdown-item'

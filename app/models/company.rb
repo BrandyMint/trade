@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  FORMS = %w(LEGAL INDIVIDUAL)
+
   extend Enumerize
   include ModerationState
 
@@ -14,7 +16,7 @@ class Company < ApplicationRecord
   has_many :goods
   has_many :documents, class_name: 'CompanyDocument'
 
-  validates :form, presence: true, inclusion: %w(LEGAL INDIVIDUAL)
+  validates :form, presence: true, inclusion: FORMS
   validates :name, presence: true
 
   validates :inn, presence: true, inn_format: true, uniqueness: { scope: :user_id }
@@ -22,6 +24,12 @@ class Company < ApplicationRecord
   validates :kpp, presence: true, kpp_format: true, if: :legal?
 
   before_create :create_account
+
+  enumerize :form,
+    in: FORMS,
+    predicates: true,
+    scope: true,
+    default: FORMS.first
 
   delegate :amount, to: :account
 

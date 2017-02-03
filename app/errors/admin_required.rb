@@ -1,0 +1,2 @@
+class AdminRequired < StandardError
+end

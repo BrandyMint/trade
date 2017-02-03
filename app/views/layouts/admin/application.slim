@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= application_title
+    = stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'admin/application', 'data-turbolinks-track' => 'reload'
+    = render 'layouts/dadata'
+    = csrf_meta_tags
+  body
+    = render 'layouts/admin/topmenu'
+    main#content.container
+      = render 'layouts/messages'
+      = yield

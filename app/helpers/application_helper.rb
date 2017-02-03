@@ -1,8 +1,23 @@
 module ApplicationHelper
-  def authority_forbidden_message
-    if controller_name == 'goods' && action_name == 'new'
-      title = 'Для публикации торгового предложения необходимо быть зарегистрированным.'
+  def show_field(record, attribute)
+    value = record.send attribute
+    value = I18n.l value, format: :human if value.is_a? Time
+    title = I18n.t attribute, scope: [:activerecord, :attributes, record.class.model_name.i18n_key]
+    content_tag :p do
+      "#{title}: #{value}"
     end
+  end
+
+  def paginate objects, options = {}
+    # https://github.com/klacointe/bootstrap-kaminari-views/tree/bootstrap4
+    options.reverse_merge!( theme: 'twitter-bootstrap-4' )
+
+    super( objects, options )
+  end
+
+  def phone_to(phone)
+    return unless phone.present?
+    link_to phone, "tel:#{phone}"
   end
 
   def reset_password_hint(email)
@@ -13,12 +28,12 @@ module ApplicationHelper
     active ? 'nav-link active' : 'nav-link'
   end
 
-  def humanized_money(amount)
-    "#{amount} руб."
-  end
-
   def application_title
-    'OnlineTrade'
+    if current_namespace == :admin
+      'OnlineTrade: админка'
+    else
+      'OnlineTrade'
+    end
   end
 
   def destroy_button(resource)

@@ -11,8 +11,8 @@ class Good < ApplicationRecord
 
   scope :view_order, -> { order 'id desc' }
 
-  belongs_to :company
-  belongs_to :category
+  belongs_to :company, counter_cache: true
+  belongs_to :category, counter_cache: true
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
 

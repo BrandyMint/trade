@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203091043) do
+ActiveRecord::Schema.define(version: 20170203113654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20170203091043) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "title",      null: false
+    t.string   "title",                   null: false
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "goods_count", default: 0, null: false
     t.index ["parent_id", "title"], name: "index_categories_on_parent_id_and_title", unique: true, using: :btree
   end
 
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170203091043) do
     t.string   "address"
     t.string   "phone"
     t.integer  "documents_count", default: 0,         null: false
+    t.integer  "goods_count",     default: 0,         null: false
     t.index ["account_id"], name: "index_companies_on_account_id", unique: true, using: :btree
     t.index ["user_id", "inn"], name: "index_companies_on_user_id_and_inn", unique: true, using: :btree
     t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
@@ -157,12 +159,12 @@ ActiveRecord::Schema.define(version: 20170203091043) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email",                                       null: false
+    t.string   "email",                                            null: false
     t.string   "phone"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170203091043) do
     t.integer  "failed_logins_count",             default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
+    t.string   "role",                            default: "user", null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
     t.index ["phone"], name: "index_users_on_phone", unique: true, using: :btree

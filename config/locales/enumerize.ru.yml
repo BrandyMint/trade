@@ -6,3 +6,6 @@ ru:
         waits_review: Ожидает подтверждения
         accepted: Принято
         rejected: Отвергнуто
+      form:
+        LEGAL: Юрлицо
+        INDIVIDUAL: ИП

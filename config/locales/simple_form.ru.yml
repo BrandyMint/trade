@@ -76,5 +76,6 @@ ru:
         details: Подробное описание
       user:
         email: Ваш email
+        name: Ваше имя и фамилия
         password: Пароль
         password_confirmation: Подтверждение пароля

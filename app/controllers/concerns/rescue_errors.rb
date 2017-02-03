@@ -4,6 +4,7 @@ module RescueErrors
   included do
     rescue_from Pundit::NotAuthorizedError,          with: :user_not_authorized
     rescue_from NoAuthentication,                    with: :user_not_authorized
+    rescue_from AdminRequired,                       with: :user_not_authorized
     rescue_from ActionController::MissingFile,       with: :rescue_not_found
     rescue_from ActiveRecord::RecordNotFound,        with: :rescue_not_found
     rescue_from ActionController::UnknownFormat,     with: :rescue_unknown_format
@@ -27,10 +28,30 @@ module RescueErrors
       layout: 'simple'
   end
 
-  def user_not_authorized
+  def user_not_authorized(error)
     render 'authority_forbidden',
       status: 403,
+      locals: build_error_page(error),
       layout: 'simple'
+  end
+
+  def build_error_page(error)
+    allow_signup = true
+    title = 'В доступе отказано'
+    message = 'Представьтесь системе'
+    if controller_name == 'goods' && action_name == 'new'
+      message = 'Для публикации торгового предложения необходимо быть зарегистрированным.'
+    end
+    if error.is_a? AdminRequired
+      message = 'Доступ только для администраторов'
+      allow_signup = false
+    end
+
+    return {
+      title: title,
+      allow_signup: allow_signup,
+      message: message
+    }
   end
 
   def rescue_unknown_format

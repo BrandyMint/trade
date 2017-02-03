@@ -1,0 +1,20 @@
+.row
+  .col-md-8
+    h1.mb-3 Организация ##{@company.id}
+    = company_state_tag @company
+    hr
+    - if @company.rejected?
+      .alert.alert-warning
+        = @company.rejected_message
+    - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :address, :management_post, :management_name].each do |k|
+      = show_field @company, k
+
+  .col-md-4
+    p
+      | Баланс: 
+      b= humanized_money_with_symbol @company.amount
+    hr
+    - if @company.documents.exists?
+      = render 'documents', documents: @company.documents
+    - else
+      p.lead Документы не загружены
