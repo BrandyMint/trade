@@ -7,11 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 OpenbillCategory.create name: 'Организации'
+OpenbillCategory.create name: 'Системные счета'
 
-category = Category.create(title: 'Категория')
+File.foreach('./db/categories.txt') do |line|
+  Category.create title: line.sub(/\s\(\d+\)/,'')
+end
+
 user = User.create(email: 'test@brandymint.ru', password: '123', password_confirmation: '123')
-company = user.create_company! name: 'Рога и Копыта', inn: '123123', ogrn: '123456'
+company = user.create_company! name: 'Рога и Копыта', inn: '123123', ogrn: '123456', kpp: '12321321'
 
-company.goods.create title: 'Компьютер', price: 100000, category: category, remote_image_url: 'http://geniuspc.ru/wp-content/uploads/2015/01/сам-вкл3.png'
-company.goods.create title: 'Плазморез', price: 2000000, category: category, remote_image_url: 'http://static.baza.farpost.ru/v/1378166635106_bulletin'
-company.goods.create title: 'Автомобиль', price: 2000000, category: category, remote_image_url: 'http://www.svadba-inform.ru/userfiles/foto_molodozh/cortezh/Lexus_GS.jpg'
+company.goods.create title: 'Компьютер', price: 100000, category: Category.first, remote_image_url: 'http://geniuspc.ru/wp-content/uploads/2015/01/сам-вкл3.png'
+company.goods.create title: 'Плазморез', price: 2000000, category: Category.second, remote_image_url: 'http://static.baza.farpost.ru/v/1378166635106_bulletin'
+company.goods.create title: 'Автомобиль', price: 2000000, category: Category.last, remote_image_url: 'http://www.svadba-inform.ru/userfiles/foto_molodozh/cortezh/Lexus_GS.jpg'

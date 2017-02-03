@@ -5,6 +5,11 @@ class GoodPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+    # record.company.accepted?
+  end
+
   def new?
     create?
   end

@@ -44,12 +44,16 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
 gem 'slim-rails'
 gem 'bootstrap', '~> 4.0.0.alpha6'
-# gem 'bugsnag'
+gem 'bugsnag'
 gem 'virtus'
 gem 'hashie'
 gem 'sorcery'
 gem 'ancestry'
 gem 'validates_russian'
+
+# Специально для draper
+# gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+# gem 'draper'
 
 gem 'ranked-model'
 gem 'enumerize'

@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = current_user.create_company permitted_params
+    @company = current_user.companies.create permitted_params
     respond_with @company
   end
 
@@ -21,9 +21,29 @@ class CompaniesController < ApplicationController
     respond_with @company
   end
 
+  def edit
+    @company = Company.find params[:id]
+    authorize @company
+    respond_with @company
+  end
+
+  def done
+    @company = Company.find params[:id]
+    authorize @company, :edit?
+    @company.done!
+    respond_with @company
+  end
+
+  def update
+    @company = Company.find params[:id]
+    authorize @company
+    @company.update permitted_params
+    respond_with @company
+  end
+
   private
 
   def permitted_params
-    params[:company].permit(:name, :inn, :ogrn, :form)
+    params[:company].permit(:phone, :party, :name, :inn, :ogrn, :form, :kpp, :address, :management_post, :management_name)
   end
 end

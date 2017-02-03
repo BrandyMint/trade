@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update, :new, :edit]
 
   resource :profile, controller: :profile
-  resources :companies
+  resources :companies do
+    member do
+      put :done
+    end
+    resources :company_documents
+  end
   resources :company_goods
   resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]

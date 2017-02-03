@@ -1,21 +1,7 @@
-= simple_form_for @company do |f|
-  = f.error_notification
-  .form-group.mb-4
-    input name="company[form]" type="hidden" value=""
-    span.mr-4.text-muted Юридическая форма
-    label.custom-control.custom-radio
-      input#radio1.custom-control-input name="company[form]" type="radio" value="legal" checked=f.object.legal?
-      span.custom-control-indicator
-      span.custom-control-description ООО
-    label.custom-control.custom-radio
-      input#radio2.custom-control-input name="company[form]" type="radio" value="individual" checked=f.object.individual?
-      span.custom-control-indicator
-      span.custom-control-description Индивидуальный предприниматель
+- if @company.persisted?
+  p Данные о компании
+- else
+  = render 'form_basic'
 
-  = f.input :inn, label: false, input_html: { data: 'company-inn' }
-  = f.input :ogrn, label: false, input_html: { data: 'company-inn' }
-  = f.input :name, label: false
-  .mt-4.pull-right
-    = f.button :submit, class: 'btn btn-primary'
-
--# = render 'inn_suggestion'
+- if @company.persisted?
+  = render 'form_documents'

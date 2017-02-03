@@ -3,11 +3,17 @@ class User < ApplicationRecord
 
   has_one :company
 
+  has_many :companies
+
   validates :password,                presence: true, confirmation: true, length: { minimum: 3}
   validates :email,                   presence: true, uniqueness: true, email: true
   validates :password_confirmation,   presence: true
 
   def to_s
     name.presence || email
+  end
+
+  def to_label
+    to_s
   end
 end

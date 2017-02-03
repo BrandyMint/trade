@@ -44,6 +44,7 @@ class GoodsController < ApplicationController
 
   def show
     @good = Good.find params[:id]
+    authorize @good
     respond_with @good
   end
 

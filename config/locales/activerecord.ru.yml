@@ -23,8 +23,8 @@ ru:
         one: Категория
         other: Категории
       good:
-        one: Товар
-        other: Товары
+        one: Торговое предложение
+        other: Торговые предложения
       user: 
         one: Пользователь
         other: Пользователи
@@ -32,6 +32,18 @@ ru:
     attributes:
       openbill_account:
         category: Категория
+      company:
+        name: Полное наименование
+        inn: ИНН
+        ogrn: ОГРН
+        kpp: КПП
+        form: Форма
+        phone: Телефон
+        management_name: Руководитель
+        management_post: Должность руководителя
+        state_text: Статус
+        address: Адрес
+        reject_message: Причина отклонения
     errors:
       messages:
         blank: Поле не должно быть пустым

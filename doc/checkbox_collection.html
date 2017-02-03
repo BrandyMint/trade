@@ -1,0 +1,11 @@
+.form-group.mb-4
+  input name="company[form]" type="hidden" value=""
+  span.mr-4.text-muted Юридическая форма
+  label.custom-control.custom-radio
+    input#radio1.custom-control-input name="company[form]" type="radio" value="legal" checked=f.object.legal?
+    span.custom-control-indicator
+    span.custom-control-description ООО
+  label.custom-control.custom-radio
+    input#radio2.custom-control-input name="company[form]" type="radio" value="individual" checked=f.object.individual?
+    span.custom-control-indicator
+    span.custom-control-description Индивидуальный предприниматель

@@ -71,10 +71,6 @@ class ImageUploader < BaseUploader
     ThumborService.new(self).url params
   end
 
-  def default_url
-    ActionController::Base.helpers.asset_url FALLBACK_IMAGE_PATH
-  end
-
   protected
 
   def secure_token

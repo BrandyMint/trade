@@ -5,12 +5,24 @@ table.table
   thead
     tr
       th Наименование
-      th Форма
-      th ИНН
-      th ОГРН
+      th ИНН/ОГРН
+      th Адрес
+      th Пользователь
+      th Статус
+      th Загружены документы?
   - @companies.each do |c|
     tr
-      td= link_to c.name, company_path(c)
-      td= humanized_form c.form
-      td= c.inn
-      td= c.ogrn
+      td
+        .text-nowrap
+          = company_icon c
+          |  
+          = link_to c.name, company_path(c)
+        small.text-muted= humanized_form c.form
+      td
+        = c.inn
+        | /
+        = c.ogrn
+      td= c.address
+      td= c.user
+      td= c.state
+      td= c.documents_loaded?

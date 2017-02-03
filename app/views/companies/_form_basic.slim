@@ -1,0 +1,35 @@
+= simple_form_for @company do |f|
+  = f.error_notification
+
+  h3.mb-4 Основные данные
+
+  - unless @company.persisted?
+    .mb-5
+      = f.input :party, label: false, input_html: { data: { suggestion: 'party' } }
+
+  .row
+    .col-md-4
+      = f.input :form, collection: company_form_collection, include_blank: false, label: false, input_html: { data: { suggestion: 'type' } }
+    .col-md-8
+      = f.input :name, label: false, input_html: { data: { suggestion: 'name' } }
+  .row
+    .col-md-4
+      = f.input :inn, label: false, input_html: { data: { suggestion: 'inn' } }
+    .col-md-4
+      = f.input :ogrn, label: false, input_html: { data: { suggestion: 'ogrn' } }
+    .col-md-4
+      = f.input :kpp, label: false, input_html: { data: { suggestion: 'kpp' } }
+  .row
+    .col-md-12
+      = f.input :address, label: false, input_html: { data: { suggestion: 'address' } }
+  .row
+    .col-md-6
+      = f.input :management_post, label: false, input_html: { data: { suggestion: 'management-post' } }
+    .col-md-6
+      = f.input :management_name, label: false, input_html: { data: { suggestion: 'management-name' } }
+  .row
+    .col-md-6
+      = f.input :phone, label: false
+  
+  .mt-4
+    = f.button :submit, value: 'Продолжить', class: 'btn btn-primary'

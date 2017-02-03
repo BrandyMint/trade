@@ -42,13 +42,27 @@ ru:
         row_order_position: Позиция, начиная с 0
       search_form:
         q: Товар или услуга для поиска
+      company:
+        inn: ИНН
+        ogrn: ОГРН
+        kpp: КПП
+        management_name: Имя руководителя
+        management_post: Должность руководитя
+        address: Адрес регистрации
+        name: Полное наименование
+        phone: Телефон компании
     placeholders:
       defaults:
         title: Название
       company:
-        inn: ИНН
-        ogrn: ОГРН
-        name: Наименование
+        party: 'Введите название, адрес, ИНН или ОГРН'
+        #inn: 'Например: 123112'
+        #ogrn: 'Например: 1312312312'
+        #kpp: 'Например: 1321213'
+        #management_name: Иванов Иван иванович
+        #management_post: директор
+        #address: Страна, город, улица
+        #name: 'ООО "Рога и копыта"'
       user_session:
         email: email для входа
         password: пароль

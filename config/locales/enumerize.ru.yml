@@ -1,5 +1,8 @@
 ru:
-  start_condition:
-    none: Без условий (сразу)
-    after_start: После начала работы указанного техпроцесса
-    after_finish: По окончанию работы указанного техпроцесса
+  enumerize:
+    defaults:
+      state:
+        draft: Черновик
+        waits_review: Ожидает подтверждения
+        accepted: Принято
+        rejected: Отвергнуто

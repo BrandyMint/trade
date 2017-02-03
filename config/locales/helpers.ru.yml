@@ -1,8 +1,8 @@
 ru:
   helpers:
     company_forms:
-      legal: ООО
-      individual: ИП
+      LEGAL: Юридическое лицо
+      INDIVIDUAL: Индивидуальный предприниматель
     submit:
       user:
         create: 'Зарегистрироваться'
@@ -11,6 +11,7 @@ ru:
         create: 'Войти'
       company:
         create: 'Зарегистрировать' 
+        update: 'Обновить данные'
       password_reset:
         create: Напомнить пароль
       search_form:

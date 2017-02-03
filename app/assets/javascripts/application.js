@@ -12,7 +12,7 @@
 //= require bootstrap-sprockets
 //= require dropzone
 //= require turbolinks
-//= require_tree .
-
+//= require dadata
+//= require dropzones
 
 DOM.set("lang", "ru");

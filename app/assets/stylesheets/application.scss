@@ -9,6 +9,18 @@
 @import 'bootstrap';
 @import "font-awesome";
 
+.dropzone {
+  background: #f4f4f4 !important;
+  border: none !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.form-control-hint {
+  /* Покрайней мере при регистрации копании */
+  font-size: 80%;
+}
+
 .fa-giant {
   font-size: 96px;
 }

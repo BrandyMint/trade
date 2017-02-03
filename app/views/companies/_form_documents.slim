@@ -1,0 +1,23 @@
+h3.mb-4 Уставные документы
+
+.row.mb-4
+  - @company.documents.each do |d|
+    .col-md-3.media
+      = link_to d.file.url, target: '_blank' do
+        = image_tag d.file.thumb.url, style: 'width: 64px', class: 'd-flex mr-3'
+      .media-body
+        = d.file.file.extension
+        div= number_to_human_size d.file.size
+
+= simple_form_for [@company, CompanyDocument.new], multiple: true, html: { class: 'dropzone', id: 'documents-dropzone' } do |f|
+  .dz-message data-ds-message=true
+    span Перенесите сюда скан Устава, Решения и Приказ о назначении руковоодителя в формате JPG или PDF
+
+  .row
+    .col-md-12
+      .fallback
+        = file_field_tag 'file', multiple: true
+
+
+.mt-4
+  = link_to 'Отправить на проверку', done_company_path(@company), method: :put, class: 'btn btn-primary', data: { review_button: true }

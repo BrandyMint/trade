@@ -1,40 +1,44 @@
 class Company < ApplicationRecord
   extend Enumerize
+  include ModerationState
 
-  attribute :form, :string, default: 'legal'
+  # Не сохраняемый атрибут используется в форме для dadata suggestions
+  #
+  attr_accessor :party
+
+  attribute :form, :string, default: 'LEGAL'
 
   belongs_to :user
   belongs_to :account, class_name: 'OpenbillAccount'
 
   has_many :goods
+  has_many :documents, class_name: 'CompanyDocument'
 
-  validates :form, presence: true, inclusion: %w(legal individual)
+  validates :form, presence: true, inclusion: %w(LEGAL INDIVIDUAL)
   validates :name, presence: true
 
   validates :inn, presence: true, inn_format: true, uniqueness: { scope: :user_id }
   validates :ogrn, presence: true, ogrn_format: true
-  validates :kpp, presence: true, kpp_format: true
+  validates :kpp, presence: true, kpp_format: true, if: :legal?
 
   before_create :create_account
 
-  enumerize :state,
-    in: %w(draft waits_review accepted rejected),
-    predicates: true,
-    default: 'draft'
+  delegate :amount, to: :account
+
+  def documents_loaded?
+    documents_count > 0
+  end
 
   def legal?
-    form == 'legal'
+    form == 'LEGAL'
+  end
+
+  def individual?
+    form == 'INDIVIDUAL'
   end
 
   def to_s
     name
-  end
-
-  def individual?
-    form == 'individual'
-  end
-
-  def moderated?
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201201246) do
+ActiveRecord::Schema.define(version: 20170203091043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,22 +40,36 @@ ActiveRecord::Schema.define(version: 20170201201246) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.integer  "user_id",                            null: false
-    t.string   "form",           default: "company", null: false
-    t.string   "inn",                                null: false
-    t.string   "name",                               null: false
-    t.string   "ogrn",                               null: false
-    t.string   "charter"
-    t.string   "order"
-    t.string   "decision"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.uuid     "account_id",                         null: false
+    t.integer  "user_id",                             null: false
+    t.string   "form",            default: "company", null: false
+    t.string   "inn",                                 null: false
+    t.string   "name",                                null: false
+    t.string   "ogrn",                                null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.uuid     "account_id",                          null: false
     t.string   "state"
     t.text     "reject_message"
+    t.string   "kpp"
+    t.string   "short_name"
+    t.string   "full_name"
+    t.string   "management_post"
+    t.string   "management_name"
+    t.string   "address"
+    t.string   "phone"
+    t.integer  "documents_count", default: 0,         null: false
     t.index ["account_id"], name: "index_companies_on_account_id", unique: true, using: :btree
     t.index ["user_id", "inn"], name: "index_companies_on_user_id_and_inn", unique: true, using: :btree
     t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
+  end
+
+  create_table "company_documents", force: :cascade do |t|
+    t.integer  "company_id", null: false
+    t.string   "file",       null: false
+    t.string   "state",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_documents_on_company_id", using: :btree
   end
 
   create_table "goods", force: :cascade do |t|
