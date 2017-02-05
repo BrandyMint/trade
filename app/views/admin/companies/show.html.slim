@@ -1,15 +1,19 @@
-.row
-  .col-md-8
-    h1.mb-3 Организация ##{@company.id}
-    = company_state_tag @company
-    br
+ol.breadcrumb
+  li.breadcrumb-item
+    = link_to 'Организации', admin_companies_path
+  li.breadcrumb-item.active
+    = @company
+    = " [##{@company.id}]"
 
-    .mt-4
+.row
+  .col-md-6
     - if @company.documents.exists?
       = render 'documents', documents: @company.documents
     - else
       p.lead Документы не загружены
-  .col-md-4
+  .col-md-6
+    = company_state_tag @company
+    hr
     p
       | Баланс: 
       b= humanized_money_with_symbol @company.amount
@@ -17,7 +21,12 @@
     - if @company.rejected?
       .alert.alert-warning
         = @company.rejected_message
-    - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :address, :management_post, :management_name].each do |k|
-      = show_field @company, k
+    dl
+      - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
+        = show_field @company, k
+    h4 Пользователь
+    dl
+      - [:created_at, :name, :email, :phone].each do |k|
+        = show_field @company.user, k
 
 = javascript_include_tag 'lightbox', 'data-turbolinks-track' => 'reload'

@@ -11,7 +11,9 @@ module CompaniesHelper
   end
 
   def company_management(company)
-    "#{company.management_name} (#{company.management_post})"
+    if company.management_name.present?
+      "#{company.management_name} (#{company.management_post})"
+    end
   end
 
   def company_all_documents_loaded_tag(company)

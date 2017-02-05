@@ -32,6 +32,11 @@ ru:
     attributes:
       openbill_account:
         category: Категория
+      user:
+        created_at: Зарегистрирован
+        name: Полное имя
+        phone: Телефон
+        email: Email
       company:
         created_at: Запись создана
         name: Полное наименование
@@ -41,6 +46,7 @@ ru:
         form: Форма
         form_text: Форма
         phone: Телефон
+        email: Email
         management_name: Руководитель
         management_post: Должность руководителя
         state_text: Статус

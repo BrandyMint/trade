@@ -1,6 +1,17 @@
-h1.mb-4 Организации (#{companies.total_count} из #{Company.count})
+.row
+  .col-md-8
+    h1.mb-4 Организации (#{companies.total_count} из #{Company.count})
+  .col-md-4
+    .pull-right
+      = render 'search_form', search_form: search_form
 
-= render 'search_form', search_form: search_form
-.pull-right= paginate companies
-= render 'list', companies: companies
-.pull-right= paginate companies
+- unless search_form.q.present?
+  .mb-4
+    = render 'tabs', q: q
+
+- if companies.empty?
+  .lead По запросу ничего не найдено.
+- else
+  .pull-right= paginate companies
+  = render 'list', companies: companies, q: q
+  .pull-right= paginate companies

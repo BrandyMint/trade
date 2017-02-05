@@ -1,0 +1,10 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to title_with_count('Все', Company.count), 
+      admin_companies_path(q_to_param(state_eq: nil)), 
+      class: active_class('nav-link', q_param(:state_eq).blank?)
+  - %w(waits_review accepted rejected draft).each do |state|
+    li.nav-item
+      = link_to title_with_count(I18n.t(state, scope: [:enumerize, :defaults, :state]), Company.with_state(state).count), 
+        admin_companies_path(q_to_param(state_eq: state)), 
+        class: active_class('nav-link', q_param(:state_eq) == state)

@@ -82,6 +82,7 @@ gem 'validates'
 # gem 'valid_email', require: 'valid_email/validate_email'
 
 gem 'pg_search'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
 gem 'mini_magick'
 gem 'carrierwave'

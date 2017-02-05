@@ -3,7 +3,7 @@ ru:
     defaults:
       state:
         draft: Черновик
-        waits_review: Ожидает подтверждения
+        waits_review: На проверке
         accepted: Принято
         rejected: Отвергнуто
       form:

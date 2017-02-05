@@ -1,4 +1,15 @@
 module ApplicationHelper
+
+  def q_to_param(attrs = {})
+    q = params.fetch(:q, {}).permit!.merge(attrs)
+
+    { q: q.to_h }.to_h
+  end
+
+  def q_param(key)
+    params.fetch(:q, {}).permit!.fetch key, nil
+  end
+
   def humanized_thousand_money_with_symbol(amount)
     amount = amount.to_f/1000
     amount = amount.to_i if amount.to_i == amount
@@ -9,9 +20,7 @@ module ApplicationHelper
     value = record.send attribute
     value = I18n.l value, format: :human if value.is_a? Time
     title = I18n.t attribute, scope: [:activerecord, :attributes, record.class.model_name.i18n_key]
-    content_tag :p do
-      "#{title}: #{value}"
-    end
+    render 'field', title: title, value: value
   end
 
   def paginate objects, options = {}
@@ -68,7 +77,7 @@ module ApplicationHelper
   end
 
   def title_with_count(title, count = nil)
-    if count.present?
+    if count.to_i > 0
       "#{title} (#{count})"
     else
       title
