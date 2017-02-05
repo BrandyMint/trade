@@ -1,6 +1,6 @@
 .alert.alert-success
   h4 Отличное начало!
-  p Для публикации торговых предложени зарегистрируйте организацию
+  p Для покупки необходимо зарегистрировать организацию
 
 - if company.present?
   = render 'companies/form', company: company, step: company.registration_step
@@ -10,3 +10,4 @@
     p Организация #{review_company} ожидает подтверждения.
   .mt-4
     = link_to 'Добавить еще одну организацию', new_user_company_path, class: 'btn btn-outline-success'
+

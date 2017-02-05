@@ -44,7 +44,8 @@ class Company < ApplicationRecord
   end
 
   def all_documents_loaded?
-    CompanyDocument.group(:category).count.keys.sort == document_categories.sort
+    return false unless persisted?
+    documents.group(:category).count.keys.sort == document_categories.sort
   end
 
   def legal?

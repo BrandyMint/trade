@@ -12,14 +12,14 @@ module RegistrationSteps
 
   def registration_step
     @registration_step ||=
-      if !persisted?
-        InfoStep
-      elsif !all_documents_loaded?
-        DocumentsStep
-      elsif waits_review?
-        ModerationStep
+      if persisted?
+        if waits_review? || accepted? || rejected?
+          DoneStep
+        else
+          DocumentsStep
+        end
       else
-        DoneStep
+        InfoStep
       end
   end
 end

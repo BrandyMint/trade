@@ -17,12 +17,14 @@ Rails.application.routes.draw do
     resources :company_goods
   end
 
-  namespace :user do
-    resources :goods
-  end
+  resources :user_goods
   resources :user_companies, only: [:index]
   resources :categories, only: [:show, :index]
-  resources :goods
+  resources :goods do
+    member do
+      get :buy
+    end
+  end
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   namespace :admin do

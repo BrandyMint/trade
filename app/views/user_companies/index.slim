@@ -1,4 +1,6 @@
-h1 Ваши компании
+.pull-right.mt-2
+  = link_to 'Добавить новую организацию', new_company_path, class: 'btn btn-sm btn-outline-success'
+h2.mb-3 Ваши компании
 
 table.table.table-condensed
   - companies.each do |c|

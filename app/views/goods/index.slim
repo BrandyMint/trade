@@ -1,4 +1,9 @@
-h1 Товары
+- if @company.present?
+  h1.mb-4 
+    | Товарные предложения организации 
+    = link_to @company, company_path(@company)
+- else
+  h1.mb-4 Товарные предложения
 
 = render 'search_form', search_form: search_form
 .mt-4

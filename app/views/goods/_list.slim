@@ -4,7 +4,6 @@ table.table
     th Товар
     th Стоимость
     th Организация
-    th Описание
     th
 
   - goods.each do |good|
@@ -14,13 +13,12 @@ table.table
         = link_to good.title, good_path(good)
         br
         = link_to category_path(good.category) do
-          small.text-muted= good.category
+          small.text-success= good.category
+        small.text-muted= simple_format good.details
       td= humanized_thousand_money_with_symbol good.amount
       td
         = link_to good.company, company_path(good.company)
       td
-        = good_details good
-      td
         .pull-right
-          = link_to 'Подробнее', good_path(good), class: 'btn btn-success btn-sm'
+          = link_to 'Купить', buy_good_path(good), class: 'btn btn-success'
 

@@ -9,5 +9,9 @@ html
     = render 'layouts/topmenu'
     main#content.container
       = render 'layouts/messages'
-      = yield
+      .row
+        .col-md-3
+          = render 'profile_sidebar'
+        .col-md-9
+          = yield
     = render 'layouts/footer'

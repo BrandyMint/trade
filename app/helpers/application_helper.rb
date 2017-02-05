@@ -63,6 +63,18 @@ module ApplicationHelper
     (flag ? fa_icon('check-circle-o lg') : fa_icon('circle-o lg')).html_safe
   end
 
+  def active_class(css_class, active)
+    active ? "#{css_class} active" : css_class
+  end
+
+  def title_with_count(title, count = nil)
+    if count.present?
+      "#{title} (#{count})"
+    else
+      title
+    end
+  end
+
   def navbar_link_to(title, href, count: nil, active: nil)
     active = is_active_link? href, :inclusive if active.nil?
     active_class = active ? 'active' : ''

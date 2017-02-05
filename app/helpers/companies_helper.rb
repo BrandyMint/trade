@@ -14,6 +14,14 @@ module CompaniesHelper
     "#{company.management_name} (#{company.management_post})"
   end
 
+  def company_all_documents_loaded_tag(company)
+    if company.all_documents_loaded?
+      content_tag :span, 'Документы загружены', class: 'badge badge-success'
+    else
+      content_tag :span, 'Документы отсутсвуют', class: 'badge badge-default'
+    end
+  end
+
   def company_state_tag(company)
     content_tag :span, company.state_text, class: "badge #{COMPANY_STATES_CLASSES[company.state]}"
   end

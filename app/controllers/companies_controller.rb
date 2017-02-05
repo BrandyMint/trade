@@ -14,9 +14,9 @@ class CompaniesController < ApplicationController
   def create
     @company = current_user.companies.create permitted_params
 
-    case @companies.registration_step
+    case @company.registration_step
     when RegistrationSteps::InfoStep
-      raise 'Невозможный шаг регистрации'
+      render 'new', locals: { step: @company.registration_step }, layout: 'simple'
     when RegistrationSteps::DocumentsStep
       render 'new', layout: 'simple'
     when RegistrationSteps::ModerationStep
@@ -49,7 +49,8 @@ class CompaniesController < ApplicationController
         render 'new', locals: { step: @company.registration_step }, flash: { success: 'Компания ожидает подтверждения модератором' }
       end
     else
-      render 'new', locals: { step: @company.registration_step }, flash: { success: 'Не все виды документов загружены' }
+      flash.now[:danger] = 'Загрузите сканы регистрационных документов'
+      render 'new', locals: { step: @company.registration_step }
     end
   end
 

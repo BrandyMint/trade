@@ -17,6 +17,8 @@
   hr
 
 
+= render 'layouts/messages'
+
 .mt-4
   = link_to 'Отправить на проверку', done_company_path(company), method: :put, class: 'btn btn-lg btn-primary', data: { review_button: true }
 

@@ -17,6 +17,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    require_login
+    @user = current_user
+    authorize @user
+    respond_with @user, layout: 'profile'
   end
 
   private

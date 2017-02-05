@@ -1,0 +1,4 @@
+ul.list-group
+  = link_to title_with_count('Мои предложения', current_user.goods.count), user_goods_path, class: active_class('list-group-item', controller_name == 'user_goods')
+  = link_to title_with_count('Мои организации', current_user.companies.count), user_companies_path, class: active_class('list-group-item', controller_name == 'user_companies')
+  = link_to 'Личные данные', edit_user_path(current_user.id), class: active_class('list-group-item', controller_name == 'users')

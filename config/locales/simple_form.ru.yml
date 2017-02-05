@@ -30,6 +30,7 @@ ru:
         color: Цвет
       user:
         email: email
+        phone: Телефон
         password: Пароль
         password_confirmation: Подтверждение пароля
       user_session:

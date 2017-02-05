@@ -9,7 +9,6 @@ table.table
       th Адрес
       th Пользователь
       th Статус
-      th Загружены документы?
   - @companies.each do |c|
     tr
       td
@@ -24,5 +23,4 @@ table.table
         = c.ogrn
       td= c.address
       td= c.user
-      td= c.state
-      td= c.all_documents_loaded?
+      td= company_state_tag c

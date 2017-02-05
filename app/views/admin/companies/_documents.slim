@@ -1,3 +1,3 @@
-h3 Документы (#{@company.documents_count})
-- @company.documents.find_each do |doc|
-  = doc
+- DocumentTypes.each_with_index do |doc|
+  h4= doc.title
+  = render partial: 'document', collection: @company.documents.with_category(doc.key)
