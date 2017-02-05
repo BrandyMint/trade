@@ -16,7 +16,8 @@ ol.breadcrumb
     .card.mb-4
       h3.card-header Баланс
       .card-block
-        h4.card-title #{humanized_money_with_symbol @company.amount}
+        h4.card-title #{humanized_money_with_symbol @company.account.amount}
+        h4.card-title Заблокировано #{humanized_money_with_symbol @company.locked_account.amount}
 
         = link_to 'Пополнить', admin_company_income_path(@company), class: 'btn btn-success mr-4'
         = link_to 'Списать', admin_company_outcome_path(@company), class: 'btn btn-danger mr-4'

@@ -50,6 +50,15 @@ GIT
       kaminari (>= 0.13)
       rails (>= 3.1)
 
+GIT
+  remote: https://github.com/svenfuchs/rails-i18n.git
+  revision: b2ee1bb54ed1e6ff714e4a9d95cc17c3d24d538c
+  branch: master
+  specs:
+    rails-i18n (5.0.2)
+      i18n (~> 0.7)
+      railties (~> 5.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -458,6 +467,7 @@ DEPENDENCIES
   rails-assets-better-i18n-plugin!
   rails-assets-better-popover-plugin!
   rails-assets-tether (>= 1.1.0)!
+  rails-i18n!
   ranked-model
   ransack!
   responders

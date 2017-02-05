@@ -18,7 +18,7 @@ table.table.table-condensed.table-striped
       tr
         td
           .text-nowrap
-            = I18n.l company.created_at, format: :human
+            = I18n.l company.created_at, format: :short
         td
           = link_to company.name, admin_company_path(company)
           |  

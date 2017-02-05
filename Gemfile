@@ -67,7 +67,7 @@ gem 'font-awesome-rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
 gem 'active_link_to'
-
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 
 # For activeadmin
 gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'

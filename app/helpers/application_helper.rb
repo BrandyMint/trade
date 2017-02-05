@@ -18,8 +18,8 @@ module ApplicationHelper
 
   def show_field(record, attribute)
     value = record.send attribute
-    value = I18n.l value, format: :human if value.is_a? Time
-    title = I18n.t attribute, scope: [:activerecord, :attributes, record.class.model_name.i18n_key]
+    value = l value, format: :short if value.is_a? Time
+    title = t attribute, scope: [:activerecord, :attributes, record.class.model_name.i18n_key]
     render 'field', title: title, value: value
   end
 
