@@ -1,4 +1,8 @@
-- DocumentTypes.each_with_index do |doc|
-  h4.mt-2= doc.title
-  = render partial: 'document', collection: @company.documents.with_category(doc.key)
-  hr
+.card.mb-4
+  h3.card-header Документы
+  .card-block
+    - DocumentTypes.each_with_index do |doc|
+      h4.card-title= doc.title
+      p.card-text.mb-3
+        = render partial: 'document', collection: @company.documents.with_category(doc.key)
+      hr

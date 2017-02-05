@@ -3,7 +3,8 @@ ol.breadcrumb
     = link_to 'Организации', admin_companies_path
   li.breadcrumb-item.active
     = @company
-    = " [##{@company.id}]"
+    = " [##{@company.id}] "
+    = company_state_tag @company
 
 .row
   .col-md-6
@@ -12,21 +13,31 @@ ol.breadcrumb
     - else
       p.lead Документы не загружены
   .col-md-6
-    = company_state_tag @company
-    hr
-    p
-      | Баланс: 
-      b= humanized_money_with_symbol @company.amount
-    hr
-    - if @company.rejected?
-      .alert.alert-warning
-        = @company.rejected_message
-    dl
-      - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
-        = show_field @company, k
-    h4 Пользователь
-    dl
-      - [:created_at, :name, :email, :phone].each do |k|
-        = show_field @company.user, k
+    .card.mb-4
+      h3.card-header Баланс
+      .card-block
+        h4.card-title #{humanized_money_with_symbol @company.amount}
+
+        = link_to 'Пополнить', admin_company_income_path(@company), class: 'btn btn-success mr-4'
+        = link_to 'Списать', admin_company_outcome_path(@company), class: 'btn btn-danger mr-4'
+        = link_to 'История операций', '#', class: 'card-link'
+
+    .card.mb-4
+      h3.card-header Данные компании
+      .card-block
+        p.card-text
+          - if @company.rejected?
+            .alert.alert-warning
+              = @company.rejected_message
+          dl
+            - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
+              = show_field @company, k
+    .card
+      h3.card-header Пользователь
+      .card-block
+        p.card-text
+          dl
+            - [:created_at, :name, :email, :phone].each do |k|
+              = show_field @company.user, k
 
 = javascript_include_tag 'lightbox', 'data-turbolinks-track' => 'reload'

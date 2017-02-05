@@ -29,6 +29,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    resources :companies
+    resources :companies do
+      put :income
+      put :outcome
+    end
   end
 end
