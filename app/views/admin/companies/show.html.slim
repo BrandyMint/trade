@@ -19,3 +19,5 @@
         = @company.rejected_message
     - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :address, :management_post, :management_name].each do |k|
       = show_field @company, k
+
+= javascript_include_tag 'lightbox', 'data-turbolinks-track' => 'reload'

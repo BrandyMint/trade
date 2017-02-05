@@ -87,6 +87,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'dropzonejs-rails'
+# gem 'lightbox-bootstrap-rails', '5.1.0.1'
+gem 'lightbox2-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
   gem 'rails-assets-better-dom'

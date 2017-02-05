@@ -1,3 +1,4 @@
 - DocumentTypes.each_with_index do |doc|
-  h4= doc.title
+  h4.mt-2= doc.title
   = render partial: 'document', collection: @company.documents.with_category(doc.key)
+  hr

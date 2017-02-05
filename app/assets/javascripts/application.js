@@ -13,3 +13,7 @@
 //= require turbolinks
 
 DOM.set("lang", "ru");
+
+//document.addEventListener("turbolinks:load", function() {
+  //Lightbox.enable();
+//});
