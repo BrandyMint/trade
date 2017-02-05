@@ -2,37 +2,36 @@ class GoodsController < ApplicationController
   # before_filter :require_login, except: [:index, :new]
 
   helper_method :search_form
-  after_action :verify_authorized
-  before_action :authorize_moderated, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    authorize Good
-    @good = Good.new
-    respond_with @good
-  end
+    require_login
 
-  def create
-    authorize Good
-    @good = current_company.goods.create permitted_params
-    respond_with @good, location: -> { good_path(@good) }
-  end
+    if current_user.companies.accepted.exists?
+      @good = Good.new
+      respond_with @good
+    else
 
-  def edit
-    @good = Good.find params[:id]
-    authorize @good
-    respond_with @good
-  end
+      if current_user.companies.draft.exists?
+        render 'new_unregistered', locals: { company: current_user.companies.draft.first }, layout: 'simple'
 
-  def update
-    @good = Good.find params[:id]
-    authorize @good
-    @good.update permitted_params
-    respond_with @good, location: -> { good_path(@good) }
+      elsif current_user.companies.waits_reviews.exists?
+        render 'new_unregistered', locals: { review_company: current_user.companies.waits_review.first }, layout: 'simple'
+
+      else
+        render 'new_unregistered', locals: { company: build_company }, layout: 'simple'
+      end
+    end
   end
 
   def index
-    @goods = Good.search_by_title search_form.q
+    @goods = Good.includes(:company, :category).search_by_title search_form.q
     respond_with @goods
+  end
+
+  def show
+    @good = Good.find params[:id]
+    authorize @good
+    respond_with @good
   end
 
   def destroy
@@ -40,12 +39,6 @@ class GoodsController < ApplicationController
     authorize @good
     @good.destroy!
     redirect_to company_goods_path, success: "Товар #{@good.title} удален"
-  end
-
-  def show
-    @good = Good.find params[:id]
-    authorize @good
-    respond_with @good
   end
 
   private

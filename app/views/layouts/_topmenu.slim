@@ -3,7 +3,7 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
     = link_to root_url, class: 'navbar-brand' do
       = fa_icon :bank, text: application_title
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
-      = navbar_link_to 'Торговые предложения', root_path, count: Good.count
+      = navbar_link_to 'Предложения', root_path, count: Good.count
       = navbar_link_to 'Организации', companies_path, count: Company.count
     
     - if current_user.present?

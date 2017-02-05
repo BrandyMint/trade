@@ -15,22 +15,15 @@ class GoodPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present? && company.present? && company.accepted?
+    binding.pry.
+    user.present? && record.company.present? && record.company.accepted?
   end
 
   def update?
-    owner?
+    user.present? && user.goods.include?(record)
   end
 
   def destroy?
-    owner?
-  end
-
-  private
-
-  delegate :company, to: :user
-
-  def owner?
-    user.present? && company.goods.include?(record)
+    update?
   end
 end

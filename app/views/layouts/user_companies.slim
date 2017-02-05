@@ -1,3 +1,4 @@
+doctype html
 html
   head
     title= application_title
@@ -6,10 +7,12 @@ html
     = render 'layouts/dadata'
     = csrf_meta_tags
   body
-    = render 'layouts/messages'
+    = render 'layouts/topmenu'
     main#content.container
-      nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
-        .container
-          = link_to root_url, class: 'navbar-brand' do
-            = fa_icon :bank, text: application_title
-      = yield
+      = render 'layouts/messages'
+      .row
+        .col-md-3
+          = render 'layouts/user_companies_submenu', companies: current_user.companies.ordered
+        .col-md-9
+          = yield
+    = render 'layouts/footer'

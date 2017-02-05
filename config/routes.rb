@@ -14,8 +14,14 @@ Rails.application.routes.draw do
       put :done
     end
     resources :company_documents
+    resources :company_goods
   end
-  resources :company_goods
+
+  namespace :user do
+    resources :goods
+  end
+  resources :user_companies, only: [:index]
+  resources :categories, only: [:show, :index]
   resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]
 

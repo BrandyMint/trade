@@ -14,6 +14,13 @@ GIT
       activemodel (> 4, < 5.1)
 
 GIT
+  remote: https://github.com/BrandyMint/phone.git
+  revision: 656b6de255334cfff52ba7a1d5d46f6a32de427f
+  branch: feature/russia
+  specs:
+    phone (1.3.0.beta0)
+
+GIT
   remote: https://github.com/activeadmin/inherited_resources
   revision: 3efcc730d2390b7f9c7c2bd69a638e92d8137d33
   specs:
@@ -140,11 +147,15 @@ GEM
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
+    file_validators (2.1.0)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gravatarify (3.1.1)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -397,7 +408,9 @@ DEPENDENCIES
   enumerize
   faker
   faker-russian
+  file_validators
   font-awesome-rails
+  gravatarify
   guard
   guard-ctags-bundler
   guard-minitest
@@ -413,6 +426,7 @@ DEPENDENCIES
   nprogress-rails
   pg (~> 0.18)
   pg_search
+  phone!
   pry-doc
   pry-docmore
   pry-nav

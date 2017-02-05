@@ -12,7 +12,10 @@ table.table
       td= image_tag good.image.thumb.url
       td
         = link_to good.title, good_path(good)
-      td= humanized_money good.price
+        br
+        = link_to category_path(good.category) do
+          small.text-muted= good.category
+      td= humanized_thousand_money_with_symbol good.amount
       td
         = link_to good.company, company_path(good.company)
       td

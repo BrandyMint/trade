@@ -3,6 +3,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :companies
+  has_many :goods, through: :companies
 
   validates :name,                    presence: true
   validates :phone,                   presence: true

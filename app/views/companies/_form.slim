@@ -1,7 +1,19 @@
-- if @company.persisted?
-  p Данные о компании
-- else
-  = render 'form_basic'
+#accordion role="tablist" aria-multiselectable="true"
+  = render layout: 'collapse_card', 
+    locals: { show: step==1, heading_id: 'headingOne', parent: 'accordion', content_id: 'collapseBase', title: new_company_step_one_title(company) } do
+    = render 'companies/form_basic', company: company, disabled: company.persisted?
 
-- if @company.persisted?
-  = render 'form_documents'
+  = render layout: 'collapse_card', 
+    locals: { show: step==2, heading_id: 'headingTwo', parent: 'accordion', content_id: 'collapseDocuments', title: new_company_step_two_title(company) } do
+      - if company.persisted?
+        = render 'companies/form_documents', company: company
+      - else
+        .lead Укажите сначала основные сведения об организации
+        
+  = render layout: 'collapse_card', 
+    locals: { show: step==3, heading_id: 'heading3', parent: 'accordion', content_id: 'collapseWait', title: '3. Проверка документов' } do
+    - if company.waits_review?
+      .lead Данные находятся на проверке у менеджера
+    - elsif company.draft?
+      .lead Укажите основные сведения и загрузите документы
+

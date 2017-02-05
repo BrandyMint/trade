@@ -1,0 +1,6 @@
+- image = dz_preview.file
+.dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete
+  .dz-image
+    = image_tag image.preview.url
+  .dz-details
+    .dz-size= number_to_human_size image.size

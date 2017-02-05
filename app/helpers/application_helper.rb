@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def humanized_thousand_money_with_symbol(amount)
+    amount = amount.to_f/1000
+    amount = amount.to_i if amount.to_i == amount
+    content_tag :span, "#{amount} тыс.руб.", class: 'text-nowrap'
+  end
+
   def show_field(record, attribute)
     value = record.send attribute
     value = I18n.l value, format: :human if value.is_a? Time
@@ -44,6 +50,17 @@ module ApplicationHelper
       method: :delete,
       data: { confirm: 'Удалить?' },
       class: 'btn btn-outline-danger'
+  end
+
+  def dropdown_link_to(title, href, active: nil)
+    active = is_active_link? href, :inclusive if active.nil?
+    active_class = active ? 'active' : ''
+
+    link_to title, href, class: "dropdown-item #{active_class}"
+  end
+
+  def check_circle(flag)
+    (flag ? fa_icon('check-circle-o lg') : fa_icon('circle-o lg')).html_safe
   end
 
   def navbar_link_to(title, href, count: nil, active: nil)

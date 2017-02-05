@@ -51,6 +51,7 @@ gem 'hashie'
 gem 'sorcery'
 gem 'ancestry'
 gem 'validates_russian'
+gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 
 # Специально для draper
 # gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
@@ -75,8 +76,8 @@ gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resour
 gem 'cocoon'
 
 gem 'semver2'
-# gem 'gravatarify'
-# gem 'file_validators'
+gem 'gravatarify'
+gem 'file_validators'
 gem 'validates'
 # gem 'valid_email', require: 'valid_email/validate_email'
 

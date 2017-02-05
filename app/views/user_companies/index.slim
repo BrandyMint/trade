@@ -1,0 +1,18 @@
+h1 Ваши компании
+
+table.table.table-condensed
+  - companies.each do |c|
+    tr
+      td
+        = c.name
+        br
+        small.text-muted.mt-3
+          = c.inn
+          | /
+          = c.ogrn
+      td= c.address
+      td
+        = company_state_tag c
+        - if c.draft?
+          br
+          small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c)

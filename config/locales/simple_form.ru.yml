@@ -51,6 +51,7 @@ ru:
         address: Адрес регистрации
         name: Полное наименование
         phone: Телефон компании
+        email: Email для всязи
     placeholders:
       defaults:
         title: Название
@@ -76,6 +77,7 @@ ru:
         details: Подробное описание
       user:
         email: Ваш email
+        phone: Ваш телефон
         name: Ваше имя и фамилия
         password: Пароль
         password_confirmation: Подтверждение пароля

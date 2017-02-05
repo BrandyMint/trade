@@ -8,8 +8,7 @@ module RescueErrors
     rescue_from ActionController::MissingFile,       with: :rescue_not_found
     rescue_from ActiveRecord::RecordNotFound,        with: :rescue_not_found
     rescue_from ActionController::UnknownFormat,     with: :rescue_unknown_format
-    rescue_from NoAcceptedCompany,                   with: :rescue_not_accepted_company
-    rescue_from Pundit::AuthorizationNotPerformedError, with: :rescue_system_error
+    # rescue_from Pundit::AuthorizationNotPerformedError, with: :rescue_system_error
     # rescue_from HumanizedError,                      with: :rescue_error
   end
 
@@ -19,12 +18,6 @@ module RescueErrors
     Bugsnag.notify error
     render 'system_error',
       status: 500,
-      layout: 'simple'
-  end
-
-  def rescue_not_accepted_company
-    render 'not_accepted_company',
-      status: 200,
       layout: 'simple'
   end
 

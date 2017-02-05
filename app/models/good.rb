@@ -16,6 +16,10 @@ class Good < ApplicationRecord
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
 
+  def amount
+    Money.new price*100
+  end
+
   def to_s
     title
   end

@@ -9,6 +9,7 @@ after 'development:users' do
         ogrn: '1162130066526', #Faker::Russian.inn(sequence_number: 1), #Faker::Russian.ogrn,
         kpp: is_legal ? Faker::Russian.kpp : nil,
         phone: Faker::PhoneNumber.cell_phone,
+        email: Faker::Internet.email,
         # Vydumschik::Address.street_address
         address: Faker::Address.city + ' ' + Faker::Address.street_address + ' ' + Faker::Address.secondary_address
       )

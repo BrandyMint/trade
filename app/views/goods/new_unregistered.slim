@@ -1,0 +1,27 @@
+.alert.alert-success
+  h4 Отличное начало!
+  p Для публикации торговых предложени зарегистрируйте организацию
+
+- if company.present?
+  = render 'companies/form', company: company, step: company.registration_step
+
+- else 
+  .alert.alert-warning
+    p Организация #{review_company} ожидает подтверждения.
+  .mt-4
+    = link_to 'Добавить еще одну организацию', new_user_company_path, class: 'btn btn-outline-success'
+
+/- if current_company.blank?
+  /p Заполните анкету об организации
+  /= link_to 'Заполнить', new_company_path, class: 'btn btn-outline-success'
+/- if current_company.draft?
+  /p У вас еще не до коцна заполнены данные об организации #{current_company}
+
+  /= link_to 'Продолжить заполнение', edit_company_path(current_company), class: 'btn btn-outline-success'
+/- elsif current_company.waits_review?
+  /p Организация #{current_company} находится на проверке
+/- elsif current_company.rejected?
+  /p Организация #{current_company} не прошла проверку
+  /.alert.alert-danger= company.reject_message
+/- else
+  /p Ошибочный вывод страницы. Обратитесь к администраторам.

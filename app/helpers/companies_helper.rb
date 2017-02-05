@@ -32,4 +32,28 @@ module CompaniesHelper
   def humanized_form(form)
     I18n.t form, scope: [:helpers, :company_forms]
   end
+
+  def new_company_step_one_title(company)
+    title = '1. Сведения об организации'
+
+    if company.persisted?
+      title << " (указаны) #{check_circle true}"
+    else
+      title << " #{check_circle false}"
+    end
+
+    title.html_safe
+  end
+
+  def new_company_step_two_title(company)
+    title = "2. Загрузка уставных документов"
+
+    if company.all_documents_loaded?
+      title << " (загружены) #{check_circle true}"
+    else
+      title << " #{check_circle false}"
+    end
+
+    title.html_safe
+  end
 end

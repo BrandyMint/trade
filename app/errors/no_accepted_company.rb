@@ -1,2 +1,0 @@
-class NoAcceptedCompany < StandardError
-end

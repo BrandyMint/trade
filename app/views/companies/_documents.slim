@@ -1,0 +1,10 @@
+.row.mb-4
+  - company.documents.each do |d|
+    .col-md-3.media
+      = link_to d.file.url, target: '_blank' do
+        = image_tag d.file.thumb.url, style: 'width: 64px', class: 'd-flex mr-3'
+      .media-body
+        = d.file.file.extension
+        div= number_to_human_size d.file.size
+
+

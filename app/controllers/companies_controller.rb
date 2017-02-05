@@ -7,13 +7,30 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    @company = Company.new
-    respond_with @company, layout: 'simple'
+    @company = build_company
+    render locals: { step: params[:step] || @company.registration_step }, layout: 'simple'
   end
 
   def create
     @company = current_user.companies.create permitted_params
-    respond_with @company
+
+    case @companies.registration_step
+    when RegistrationSteps::InfoStep
+      raise 'Невозможный шаг регистрации'
+    when RegistrationSteps::DocumentsStep
+      render 'new', layout: 'simple'
+    when RegistrationSteps::ModerationStep
+      render 'waits_review'
+    else
+      raise 'Неизвестный или невозможный шаг регистрации'
+    end
+  end
+
+  def edit
+    @company = Company.find params[:id]
+    authorize @company
+
+    render 'new', locals: { step: @company.registration_step }, layout: 'simple'
   end
 
   def show
@@ -21,17 +38,19 @@ class CompaniesController < ApplicationController
     respond_with @company
   end
 
-  def edit
-    @company = Company.find params[:id]
-    authorize @company
-    respond_with @company
-  end
-
   def done
     @company = Company.find params[:id]
     authorize @company, :edit?
-    @company.done!
-    respond_with @company
+
+    if @company.all_documents_loaded?
+      if @company.draft?
+        @company.update_attribute :state, :waits_review
+      else
+        render 'new', locals: { step: @company.registration_step }, flash: { success: 'Компания ожидает подтверждения модератором' }
+      end
+    else
+      render 'new', locals: { step: @company.registration_step }, flash: { success: 'Не все виды документов загружены' }
+    end
   end
 
   def update
@@ -44,6 +63,10 @@ class CompaniesController < ApplicationController
   private
 
   def permitted_params
-    params[:company].permit(:phone, :party, :name, :inn, :ogrn, :form, :kpp, :address, :management_post, :management_name)
+    params[:company].permit(:email, :phone, :party, :name, :inn, :ogrn, :form, :kpp, :address, :management_post, :management_name)
+  end
+
+  def build_company
+    current_user.companies.draft.new email: current_user.email, phone: current_user.phone
   end
 end

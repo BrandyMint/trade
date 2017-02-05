@@ -1,0 +1,6 @@
+.dropdown-menu
+  = link_to 'Добавить организацию', new_company_path, class: 'dropdown-item'
+
+  .dropdown-divider
+  - companies.find_each do |c|
+    = link_to c, user_company_path(c.id), class: 'dropdown-item'

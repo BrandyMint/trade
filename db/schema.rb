@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203113654) do
+ActiveRecord::Schema.define(version: 20170205080306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,17 +45,22 @@ ActiveRecord::Schema.define(version: 20170203113654) do
     t.string   "phone"
     t.integer  "documents_count", default: 0,         null: false
     t.integer  "goods_count",     default: 0,         null: false
+    t.string   "email"
     t.index ["account_id"], name: "index_companies_on_account_id", unique: true, using: :btree
     t.index ["user_id", "inn"], name: "index_companies_on_user_id_and_inn", unique: true, using: :btree
     t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
   end
 
   create_table "company_documents", force: :cascade do |t|
-    t.integer  "company_id", null: false
-    t.string   "file",       null: false
-    t.string   "state",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "company_id",   null: false
+    t.string   "file",         null: false
+    t.string   "state",        null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "category",     null: false
+    t.bigint   "file_size"
+    t.string   "content_type"
+    t.index ["company_id", "category"], name: "index_company_documents_on_company_id_and_category", using: :btree
     t.index ["company_id"], name: "index_company_documents_on_company_id", using: :btree
   end
 

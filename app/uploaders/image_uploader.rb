@@ -12,6 +12,11 @@ class ImageUploader < BaseUploader
     process resize_to_fill: [64, 64]
   end
 
+  # У dropzone так
+  version :preview do
+    process resize_to_fill: [128, 128]
+  end
+
   def extension_white_list
     EXTENSION_WHITE_LIST
   end

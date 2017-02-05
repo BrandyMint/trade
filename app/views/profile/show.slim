@@ -1,7 +1,14 @@
 h1 Ваш профиль
 
 hr
-= current_user
+.row
+  .col-md-6
+    p= current_user.name
+    p= mail_to current_user.email
+    p= phone_to current_user.phone
 
-p Баланс: 
-= current_user.company.account.amount
+  .col-md-6
+    h2 Организации
+    
+    - current_user.companies.find_each do |c|
+      p Баланс #{c}: #{humanized_money_with_symbol c.amount}

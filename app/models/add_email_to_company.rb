@@ -1,0 +1,2 @@
+class AddEmailToCompany < ApplicationRecord
+end
