@@ -1,3 +1,4 @@
-= simple_form_for search_form, url: goods_path, method: :get, html: { class: 'form-inline' } do |f|
+= simple_form_for search_form, url: admin_companies_path, method: :get, html: { class: 'form-inline' } do |f|
   = f.input :q, label: false, hint: false, as: :search, input_html: { class: 'mr-3' }, required: false
   = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+

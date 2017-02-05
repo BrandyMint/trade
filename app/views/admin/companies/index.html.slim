@@ -1,5 +1,6 @@
-h1.mb-4 Организации (#{@companies.total_count} из #{Company.count})
+h1.mb-4 Организации (#{companies.total_count} из #{Company.count})
 
-.pull-right= paginate @companies
-= render 'list', companies: @companies
-.pull-right= paginate @companies
+= render 'search_form', search_form: search_form
+.pull-right= paginate companies
+= render 'list', companies: companies
+.pull-right= paginate companies

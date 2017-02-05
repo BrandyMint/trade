@@ -1,8 +1,9 @@
 class Admin::CompaniesController < Admin::ApplicationController
-  inherit_resources
-  defaults route_prefix: 'admin'
-
   respond_to :html
+
+  def index
+    render locals: { companies: companies, search_form: search_form }
+  end
 
   private
 
@@ -11,7 +12,15 @@ class Admin::CompaniesController < Admin::ApplicationController
   end
 
   protected
-  def collection
-    get_collection_ivar || set_collection_ivar(end_of_association_chain.includes(:user, :account).page(params[:page]))
+
+  def search_form
+    @search_form ||= SearchForm.new params.fetch(:search_form, {}).permit(:q)
+  end
+
+  def companies
+    scope = Company.includes(:user, :account)
+    scope = scope.search_by_name search_form.q if search_form.q.present?
+
+    scope.page params[:page]
   end
 end

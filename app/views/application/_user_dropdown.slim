@@ -8,7 +8,7 @@ ul.navbar-nav.float-xs-right
       = dropdown_link_to 'Мой профиль', profile_path
       - if current_user.is_admin?
         - if current_namespace == :admin
-          = link_to 'На сайт', admin_root_path, class: 'dropdown-item text-success'
+          = link_to 'На сайт', root_path, class: 'dropdown-item text-success'
         - else
           = link_to 'В админку', admin_root_path, class: 'dropdown-item text-danger'
 

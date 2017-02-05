@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
   FORMS = %w(LEGAL INDIVIDUAL)
 
+  include PgSearch
   extend Enumerize
   include ModerationState
   include RegistrationSteps
@@ -12,6 +13,10 @@ class Company < ApplicationRecord
   attribute :form, :string, default: 'LEGAL'
 
   scope :ordered, -> { order 'id desc' }
+  pg_search_scope :search_by_name,
+    against: { name: 'A', management_name: 'B', inn: 'B', ogrn: 'B', kpp: 'B', email: 'A', phone: 'A', management_post: 'C', address: 'D' },
+    using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
+
 
   belongs_to :user
   belongs_to :account, class_name: 'OpenbillAccount'
