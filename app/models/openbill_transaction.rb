@@ -5,7 +5,17 @@ class OpenbillTransaction < OpenbillRecord
   has_one :reversation_transaction, class_name: 'OpenbillTransaction'
   belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
 
+  scope :ordered, -> { order id: :desc }
+
   monetize :amount_cents, as: :amount
+
+  def income?(account)
+    to_account_id == account.id
+  end
+
+  def opposite_account(account)
+    to_account_id == account.id ? from_account : to_account
+  end
 
   def reverse!
     fail 'alreade reversed' if reverse_transaction_id.present?

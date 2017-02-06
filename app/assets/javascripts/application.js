@@ -11,6 +11,8 @@
 //= require better-form-validation/i18n/better-form-validation.ru
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require rubles/lib/rubles
+//= require amount
 
 DOM.set("lang", "ru");
 

@@ -1,0 +1,5 @@
+= simple_form_for company do |f|
+  = f.input :name, disabled: true, hint: false
+  = f.input :inn_kpp, disabled: true, hint: false
+  = f.input :ogrn, disabled: true, hint: false
+  = f.input :amount, disabled: true, hint: false, input_html: { value: humanized_money_with_symbol(company.account.amount) }

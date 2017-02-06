@@ -28,6 +28,9 @@ ru:
         order_id: Заказ
         row_order_position: Позиция
         color: Цвет
+      admin_transaction_form:
+        amount: Сумма
+        details: Комментарий
       user:
         email: email
         phone: Телефон
@@ -38,6 +41,10 @@ ru:
       order:
         title: 
           Название
+      company:
+        inn_kpp: ИНН / КПП
+        amount: Баланс
+
     hints:
       defaults:
         row_order_position: Позиция, начиная с 0

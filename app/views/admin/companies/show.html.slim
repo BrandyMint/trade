@@ -17,12 +17,12 @@ ol.breadcrumb
       h3.card-header Баланс
       .card-block
         h4.card-title На счету #{humanized_money_with_symbol @company.account.amount}
-        h4.card-title Заблокировано #{humanized_money_with_symbol @company.locked_account.amount}
+        h4.card-title Заблокировано #{humanized_money_with_symbol @company.locked_amount}
 
         .mt-4
-          = link_to 'Пополнить', admin_company_income_path(@company), class: 'btn btn-success mr-4'
-          = link_to 'Списать', admin_company_outcome_path(@company), class: 'btn btn-danger mr-4'
-          = link_to 'История операций', '#', class: 'card-link'
+          = link_to 'Пополнить', new_admin_company_transaction_path(@company, admin_transaction_form: { type: :income }), class: 'btn btn-success mr-4'
+          = link_to 'Списать', new_admin_company_transaction_path(@company, admin_transaction_form: { type: :outcome }), class: 'btn btn-danger mr-4'
+          = link_to 'История операций', admin_company_transactions_path(@company), class: 'card-link'
 
     .card.mb-4
       h3.card-header Данные компании
@@ -35,10 +35,12 @@ ol.breadcrumb
             - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
               = show_field @company, k
     .card
-      h3.card-header Пользователь
+      h3.card-header 
+        | Пользователь
+        .pull-right
+          = link_to 'Войти как', signin_admin_user_path(@company.user), method: :post, class: 'btn btn-outline-danger btn-sm'
       .card-block
         p.card-text
-          = link_to 'Войти как', admin_company_signin_path(@company), method: :post, class: 'btn btn-outline-danger btn-sm'
           dl
             - [:created_at, :name, :email, :phone].each do |k|
               = show_field @company.user, k

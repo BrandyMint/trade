@@ -1,0 +1,21 @@
+- if transaction.income?
+  h2 Зачисление на счет
+- else
+  h2 Списание со счета
+= link_to "&larr; на страницу компании".html_safe, admin_company_path(company)
+hr
+.row
+  .col-md-3
+    = render 'company_info', company: company
+  .col-md-9
+    = simple_form_for transaction, url: admin_company_transactions_path(company) do |f|
+      = f.error_notification
+
+      = f.input :amount, as: :numeric, input_html: { class: 'form-control-lg', data: { amount: :input } }
+      .lead data-amount=:string -
+      .mt-4
+        = f.input :details, as: :text
+
+      .mt-4
+        = f.button :submit, value: 'Зачислить', class: 'btn btn-lg btn-primary'
+        = f.input :type, as: :hidden

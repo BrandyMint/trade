@@ -16,6 +16,10 @@ class OpenbillAccount < OpenbillRecord
     find_by(id: SYSTEM_LOCKED_UUID) || create(id: SYSTEM_LOCKED_UUID, details: 'Заблокированные средства', owner_id: 1, category: OpenbillCategory.system)
   end
 
+  def all_transactions
+    OpenbillTransaction.where('from_account_id = ? or to_account_id = ?', id, id)
+  end
+
   def to_s
     company.to_s
   end

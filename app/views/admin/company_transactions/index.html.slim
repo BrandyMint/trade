@@ -1,0 +1,29 @@
+h2 Транзакции компании
+= link_to "&larr; на страницу компании".html_safe, admin_company_path(company)
+hr
+
+.row
+  .col-md-3
+    = render 'company_info', company: company
+  .col-md-9
+    h3.mb-4 Баланс: #{humanized_money_with_symbol company.account.amount}
+    table.table.table-condensed.table-striped
+      thead
+        tr
+          th Дата
+          th Сумма
+          th Счет
+          th Комментарий
+      tbody
+        - transactions.find_each do |t|
+          tr
+            td
+              .text-nowrap= l t.created_at, format: :short
+            td
+              - if t.income?(company.account)
+                .text-success= humanized_money_with_symbol t.amount
+              - else
+                .text-danger= humanized_money_with_symbol -t.amount
+
+            td= t.opposite_account(company.account).details
+            td.text-muted= t.details

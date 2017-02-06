@@ -29,10 +29,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
+    resources :users do
+      member do
+        post :signin
+      end
+    end
     resources :companies do
-      put :income
-      put :outcome
-      post :signin
+      resources :transactions, controller: 'company_transactions'
     end
   end
 end

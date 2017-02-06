@@ -24,6 +24,9 @@ class Company < ApplicationRecord
   has_many :goods
   has_many :documents, class_name: 'CompanyDocument'
 
+  has_many :buyer_lockings, class_name: 'OpenbillLocking', inverse_of: :buyer, foreign_key: :buyer_id
+  has_many :seller_lockings, class_name: 'OpenbillLocking', inverse_of: :seller, foreign_key: :seller_id
+
   validates :form, presence: true, inclusion: FORMS
   validates :name, presence: true
 
@@ -43,6 +46,14 @@ class Company < ApplicationRecord
     default: FORMS.first
 
   delegate :amount, to: :account
+
+  def inn_kpp
+    [inn, kpp].compact.join(' / ')
+  end
+
+  def locked_amount
+    Money.new buyer_lockings.with_state(:locked).sum(:amount_cents)
+  end
 
   def document_categories
     DocumentTypes.map(&:key)

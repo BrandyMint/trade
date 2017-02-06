@@ -1,16 +1,15 @@
 module Billing
-
-  def self.income_to_company(company, amount)
+  def self.income_to_company(company, amount, details = nil)
     OpenbillTransaction.create!(
       from_account: OpenbillAccount.system_income,
       to_account: company.account,
       amount: amount,
-      details: "Зачисление на счет",
+      details: details,
       key: 'income-' + Time.now.to_s
     )
   end
 
-  def self.outcome_from_company(company, amount)
+  def self.outcome_from_company(company, amount, details = nil)
     account = company.account.reload
     account.transaction do
       raise "На счету компании не достаточно средств" if account.amount < amount
@@ -18,7 +17,7 @@ module Billing
         from_account: company.account,
         to_account: OpenbillAccount.system_income,
         amount: amount,
-        details: "Вывод средств",
+        details: details,
         key: 'outcome-' + Time.now.to_s
       )
     end

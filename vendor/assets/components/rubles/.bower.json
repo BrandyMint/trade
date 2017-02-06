@@ -1,0 +1,26 @@
+{
+  "name": "rubles",
+  "version": "0.2.0",
+  "author": "Alexey Simonenko <alexey@simonenko.su>",
+  "homepage": "http://simonenko.su/projects/rubles",
+  "main": "./lib/rubles.min.js",
+  "ignore": [
+    ".editorconfig",
+    ".eslintrc",
+    ".gitignore",
+    ".npmignore",
+    ".travis.yml",
+    "package.json",
+    "test"
+  ],
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.0",
+    "commit": "78566ca0b94ff6a99bb16ae0abfe3812c95409d5"
+  },
+  "_source": "https://github.com/meritt/rubles.git",
+  "_target": "^0.2.0",
+  "_originalSource": "rubles",
+  "_direct": true
+}

@@ -1,81 +1,96 @@
-                       Prefix Verb   URI Pattern                                                 Controller#Action
-                         root GET    /                                                           welcome#index
-                       signin GET    /signin(.:format)                                           user_sessions#new
-                       signup GET    /signup(.:format)                                           users#new
-                      signout DELETE /signout(.:format)                                          user_sessions#destroy
-                user_sessions POST   /user_sessions(.:format)                                    user_sessions#create
-             new_user_session GET    /user_sessions/new(.:format)                                user_sessions#new
-                 user_session DELETE /user_sessions/:id(.:format)                                user_sessions#destroy
-                        users POST   /users(.:format)                                            users#create
-                     new_user GET    /users/new(.:format)                                        users#new
-                    edit_user GET    /users/:id/edit(.:format)                                   users#edit
-                         user PATCH  /users/:id(.:format)                                        users#update
-                              PUT    /users/:id(.:format)                                        users#update
-                  new_profile GET    /profile/new(.:format)                                      profile#new
-                 edit_profile GET    /profile/edit(.:format)                                     profile#edit
-                      profile GET    /profile(.:format)                                          profile#show
-                              PATCH  /profile(.:format)                                          profile#update
-                              PUT    /profile(.:format)                                          profile#update
-                              DELETE /profile(.:format)                                          profile#destroy
-                              POST   /profile(.:format)                                          profile#create
-                 done_company PUT    /companies/:id/done(.:format)                               companies#done
-    company_company_documents GET    /companies/:company_id/company_documents(.:format)          company_documents#index
-                              POST   /companies/:company_id/company_documents(.:format)          company_documents#create
- new_company_company_document GET    /companies/:company_id/company_documents/new(.:format)      company_documents#new
-edit_company_company_document GET    /companies/:company_id/company_documents/:id/edit(.:format) company_documents#edit
-     company_company_document GET    /companies/:company_id/company_documents/:id(.:format)      company_documents#show
-                              PATCH  /companies/:company_id/company_documents/:id(.:format)      company_documents#update
-                              PUT    /companies/:company_id/company_documents/:id(.:format)      company_documents#update
-                              DELETE /companies/:company_id/company_documents/:id(.:format)      company_documents#destroy
-        company_company_goods GET    /companies/:company_id/company_goods(.:format)              company_goods#index
-                              POST   /companies/:company_id/company_goods(.:format)              company_goods#create
-     new_company_company_good GET    /companies/:company_id/company_goods/new(.:format)          company_goods#new
-    edit_company_company_good GET    /companies/:company_id/company_goods/:id/edit(.:format)     company_goods#edit
-         company_company_good GET    /companies/:company_id/company_goods/:id(.:format)          company_goods#show
-                              PATCH  /companies/:company_id/company_goods/:id(.:format)          company_goods#update
-                              PUT    /companies/:company_id/company_goods/:id(.:format)          company_goods#update
-                              DELETE /companies/:company_id/company_goods/:id(.:format)          company_goods#destroy
-                    companies GET    /companies(.:format)                                        companies#index
-                              POST   /companies(.:format)                                        companies#create
-                  new_company GET    /companies/new(.:format)                                    companies#new
-                 edit_company GET    /companies/:id/edit(.:format)                               companies#edit
-                      company GET    /companies/:id(.:format)                                    companies#show
-                              PATCH  /companies/:id(.:format)                                    companies#update
-                              PUT    /companies/:id(.:format)                                    companies#update
-                              DELETE /companies/:id(.:format)                                    companies#destroy
-                   user_goods GET    /user_goods(.:format)                                       user_goods#index
-                              POST   /user_goods(.:format)                                       user_goods#create
-                new_user_good GET    /user_goods/new(.:format)                                   user_goods#new
-               edit_user_good GET    /user_goods/:id/edit(.:format)                              user_goods#edit
-                    user_good GET    /user_goods/:id(.:format)                                   user_goods#show
-                              PATCH  /user_goods/:id(.:format)                                   user_goods#update
-                              PUT    /user_goods/:id(.:format)                                   user_goods#update
-                              DELETE /user_goods/:id(.:format)                                   user_goods#destroy
-               user_companies GET    /user_companies(.:format)                                   user_companies#index
-                   categories GET    /categories(.:format)                                       categories#index
-                     category GET    /categories/:id(.:format)                                   categories#show
-                     buy_good GET    /goods/:id/buy(.:format)                                    goods#buy
-                        goods GET    /goods(.:format)                                            goods#index
-                              POST   /goods(.:format)                                            goods#create
-                     new_good GET    /goods/new(.:format)                                        goods#new
-                    edit_good GET    /goods/:id/edit(.:format)                                   goods#edit
-                         good GET    /goods/:id(.:format)                                        goods#show
-                              PATCH  /goods/:id(.:format)                                        goods#update
-                              PUT    /goods/:id(.:format)                                        goods#update
-                              DELETE /goods/:id(.:format)                                        goods#destroy
-              password_resets POST   /password_resets(.:format)                                  password_resets#create
-           new_password_reset GET    /password_resets/new(.:format)                              password_resets#new
-          edit_password_reset GET    /password_resets/:id/edit(.:format)                         password_resets#edit
-               password_reset PATCH  /password_resets/:id(.:format)                              password_resets#update
-                              PUT    /password_resets/:id(.:format)                              password_resets#update
-                   admin_root GET    /admin(.:format)                                            admin/dashboard#index
-         admin_company_income PUT    /admin/companies/:company_id/income(.:format)               admin/companies#income
-        admin_company_outcome PUT    /admin/companies/:company_id/outcome(.:format)              admin/companies#outcome
-              admin_companies GET    /admin/companies(.:format)                                  admin/companies#index
-                              POST   /admin/companies(.:format)                                  admin/companies#create
-            new_admin_company GET    /admin/companies/new(.:format)                              admin/companies#new
-           edit_admin_company GET    /admin/companies/:id/edit(.:format)                         admin/companies#edit
-                admin_company GET    /admin/companies/:id(.:format)                              admin/companies#show
-                              PATCH  /admin/companies/:id(.:format)                              admin/companies#update
-                              PUT    /admin/companies/:id(.:format)                              admin/companies#update
-                              DELETE /admin/companies/:id(.:format)                              admin/companies#destroy
+                        Prefix Verb   URI Pattern                                                  Controller#Action
+                          root GET    /                                                            welcome#index
+                        signin GET    /signin(.:format)                                            user_sessions#new
+                        signup GET    /signup(.:format)                                            users#new
+                       signout DELETE /signout(.:format)                                           user_sessions#destroy
+                 user_sessions POST   /user_sessions(.:format)                                     user_sessions#create
+              new_user_session GET    /user_sessions/new(.:format)                                 user_sessions#new
+                  user_session DELETE /user_sessions/:id(.:format)                                 user_sessions#destroy
+                         users POST   /users(.:format)                                             users#create
+                      new_user GET    /users/new(.:format)                                         users#new
+                     edit_user GET    /users/:id/edit(.:format)                                    users#edit
+                          user PATCH  /users/:id(.:format)                                         users#update
+                               PUT    /users/:id(.:format)                                         users#update
+                   new_profile GET    /profile/new(.:format)                                       profile#new
+                  edit_profile GET    /profile/edit(.:format)                                      profile#edit
+                       profile GET    /profile(.:format)                                           profile#show
+                               PATCH  /profile(.:format)                                           profile#update
+                               PUT    /profile(.:format)                                           profile#update
+                               DELETE /profile(.:format)                                           profile#destroy
+                               POST   /profile(.:format)                                           profile#create
+                  done_company PUT    /companies/:id/done(.:format)                                companies#done
+     company_company_documents GET    /companies/:company_id/company_documents(.:format)           company_documents#index
+                               POST   /companies/:company_id/company_documents(.:format)           company_documents#create
+  new_company_company_document GET    /companies/:company_id/company_documents/new(.:format)       company_documents#new
+ edit_company_company_document GET    /companies/:company_id/company_documents/:id/edit(.:format)  company_documents#edit
+      company_company_document GET    /companies/:company_id/company_documents/:id(.:format)       company_documents#show
+                               PATCH  /companies/:company_id/company_documents/:id(.:format)       company_documents#update
+                               PUT    /companies/:company_id/company_documents/:id(.:format)       company_documents#update
+                               DELETE /companies/:company_id/company_documents/:id(.:format)       company_documents#destroy
+         company_company_goods GET    /companies/:company_id/company_goods(.:format)               company_goods#index
+                               POST   /companies/:company_id/company_goods(.:format)               company_goods#create
+      new_company_company_good GET    /companies/:company_id/company_goods/new(.:format)           company_goods#new
+     edit_company_company_good GET    /companies/:company_id/company_goods/:id/edit(.:format)      company_goods#edit
+          company_company_good GET    /companies/:company_id/company_goods/:id(.:format)           company_goods#show
+                               PATCH  /companies/:company_id/company_goods/:id(.:format)           company_goods#update
+                               PUT    /companies/:company_id/company_goods/:id(.:format)           company_goods#update
+                               DELETE /companies/:company_id/company_goods/:id(.:format)           company_goods#destroy
+                     companies GET    /companies(.:format)                                         companies#index
+                               POST   /companies(.:format)                                         companies#create
+                   new_company GET    /companies/new(.:format)                                     companies#new
+                  edit_company GET    /companies/:id/edit(.:format)                                companies#edit
+                       company GET    /companies/:id(.:format)                                     companies#show
+                               PATCH  /companies/:id(.:format)                                     companies#update
+                               PUT    /companies/:id(.:format)                                     companies#update
+                               DELETE /companies/:id(.:format)                                     companies#destroy
+                    user_goods GET    /user_goods(.:format)                                        user_goods#index
+                               POST   /user_goods(.:format)                                        user_goods#create
+                 new_user_good GET    /user_goods/new(.:format)                                    user_goods#new
+                edit_user_good GET    /user_goods/:id/edit(.:format)                               user_goods#edit
+                     user_good GET    /user_goods/:id(.:format)                                    user_goods#show
+                               PATCH  /user_goods/:id(.:format)                                    user_goods#update
+                               PUT    /user_goods/:id(.:format)                                    user_goods#update
+                               DELETE /user_goods/:id(.:format)                                    user_goods#destroy
+                user_companies GET    /user_companies(.:format)                                    user_companies#index
+                    categories GET    /categories(.:format)                                        categories#index
+                      category GET    /categories/:id(.:format)                                    categories#show
+                      buy_good GET    /goods/:id/buy(.:format)                                     goods#buy
+                         goods GET    /goods(.:format)                                             goods#index
+                               POST   /goods(.:format)                                             goods#create
+                      new_good GET    /goods/new(.:format)                                         goods#new
+                     edit_good GET    /goods/:id/edit(.:format)                                    goods#edit
+                          good GET    /goods/:id(.:format)                                         goods#show
+                               PATCH  /goods/:id(.:format)                                         goods#update
+                               PUT    /goods/:id(.:format)                                         goods#update
+                               DELETE /goods/:id(.:format)                                         goods#destroy
+               password_resets POST   /password_resets(.:format)                                   password_resets#create
+            new_password_reset GET    /password_resets/new(.:format)                               password_resets#new
+           edit_password_reset GET    /password_resets/:id/edit(.:format)                          password_resets#edit
+                password_reset PATCH  /password_resets/:id(.:format)                               password_resets#update
+                               PUT    /password_resets/:id(.:format)                               password_resets#update
+                    admin_root GET    /admin(.:format)                                             admin/dashboard#index
+             signin_admin_user POST   /admin/users/:id/signin(.:format)                            admin/users#signin
+                   admin_users GET    /admin/users(.:format)                                       admin/users#index
+                               POST   /admin/users(.:format)                                       admin/users#create
+                new_admin_user GET    /admin/users/new(.:format)                                   admin/users#new
+               edit_admin_user GET    /admin/users/:id/edit(.:format)                              admin/users#edit
+                    admin_user GET    /admin/users/:id(.:format)                                   admin/users#show
+                               PATCH  /admin/users/:id(.:format)                                   admin/users#update
+                               PUT    /admin/users/:id(.:format)                                   admin/users#update
+                               DELETE /admin/users/:id(.:format)                                   admin/users#destroy
+    admin_company_transactions GET    /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#index
+                               POST   /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#create
+ new_admin_company_transaction GET    /admin/companies/:company_id/transactions/new(.:format)      admin/company_transactions#new
+edit_admin_company_transaction GET    /admin/companies/:company_id/transactions/:id/edit(.:format) admin/company_transactions#edit
+     admin_company_transaction GET    /admin/companies/:company_id/transactions/:id(.:format)      admin/company_transactions#show
+                               PATCH  /admin/companies/:company_id/transactions/:id(.:format)      admin/company_transactions#update
+                               PUT    /admin/companies/:company_id/transactions/:id(.:format)      admin/company_transactions#update
+                               DELETE /admin/companies/:company_id/transactions/:id(.:format)      admin/company_transactions#destroy
+               admin_companies GET    /admin/companies(.:format)                                   admin/companies#index
+                               POST   /admin/companies(.:format)                                   admin/companies#create
+             new_admin_company GET    /admin/companies/new(.:format)                               admin/companies#new
+            edit_admin_company GET    /admin/companies/:id/edit(.:format)                          admin/companies#edit
+                 admin_company GET    /admin/companies/:id(.:format)                               admin/companies#show
+                               PATCH  /admin/companies/:id(.:format)                               admin/companies#update
+                               PUT    /admin/companies/:id(.:format)                               admin/companies#update
+                               DELETE /admin/companies/:id(.:format)                               admin/companies#destroy
