@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205202741) do
+ActiveRecord::Schema.define(version: 20170205211923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,19 @@ ActiveRecord::Schema.define(version: 20170205202741) do
     t.string "name",      limit: 256, null: false
     t.uuid   "parent_id"
     t.index ["parent_id", "name"], name: "index_openbill_categories_name", unique: true, using: :btree
+  end
+
+  create_table "openbill_lockings", force: :cascade do |t|
+    t.integer  "seller_account_id",                           null: false
+    t.integer  "buyer_account_id",                            null: false
+    t.decimal  "amount_cents",                                null: false
+    t.string   "amount_currency",   limit: 3, default: "RUB", null: false
+    t.integer  "transaction_id",                              null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.index ["buyer_account_id"], name: "index_openbill_lockings_on_buyer_account_id", using: :btree
+    t.index ["seller_account_id"], name: "index_openbill_lockings_on_seller_account_id", using: :btree
+    t.index ["transaction_id"], name: "index_openbill_lockings_on_transaction_id", using: :btree
   end
 
   create_table "openbill_operations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
