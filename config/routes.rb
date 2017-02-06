@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :companies do
       put :income
       put :outcome
+      post :signin
     end
   end
 end

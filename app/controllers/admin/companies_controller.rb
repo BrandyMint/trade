@@ -14,6 +14,12 @@ class Admin::CompaniesController < Admin::ApplicationController
     }
   end
 
+  def signin
+    company = Company.find params[:company_id]
+    auto_login company.user
+    redirect_to company_path(company), { success: "Вы вошли как #{company.user}" }
+  end
+
   private
 
   def company_params

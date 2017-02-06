@@ -6,9 +6,6 @@ one:
   form: MyString
   inn: MyString
   ogrn: MyString
-  charter: MyString
-  order: MyString
-  decision: MyString
   account: one
 
 two:
@@ -17,7 +14,4 @@ two:
   form: MyString
   inn: MyString
   ogrn: MyString
-  charter: MyString
-  order: MyString
-  decision: MyString
   account: two

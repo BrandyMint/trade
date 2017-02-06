@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  company: one
+  category: ustav
   file: MyString
   state: MyString
 
 two:
+  company: one
+  category: ustav
   file: MyString
   state: MyString

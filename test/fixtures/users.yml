@@ -6,8 +6,12 @@
 #
 one: 
   email: danil@brandymint.ru
+  phone: +79033891228
+  name: Вася
 # column: value
 #
 two:
   email: test@brandymint.ru
+  phone: +79033891229
+  name: Петя
 # column: value

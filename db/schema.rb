@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170205211923) do
     t.uuid     "owner_id"
     t.uuid     "category_id",                                           null: false
     t.decimal  "amount_cents",                 default: "0.0",          null: false
-    t.string   "amount_currency",    limit: 3, default: "USD",          null: false
+    t.string   "amount_currency",    limit: 3, default: "RUB",          null: false
     t.text     "details"
     t.integer  "transactions_count",           default: 0,              null: false
     t.hstore   "meta",                         default: {},             null: false
@@ -102,16 +102,24 @@ ActiveRecord::Schema.define(version: 20170205211923) do
   end
 
   create_table "openbill_lockings", force: :cascade do |t|
-    t.integer  "seller_account_id",                           null: false
-    t.integer  "buyer_account_id",                            null: false
-    t.decimal  "amount_cents",                                null: false
-    t.string   "amount_currency",   limit: 3, default: "RUB", null: false
-    t.integer  "transaction_id",                              null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.index ["buyer_account_id"], name: "index_openbill_lockings_on_buyer_account_id", using: :btree
-    t.index ["seller_account_id"], name: "index_openbill_lockings_on_seller_account_id", using: :btree
-    t.index ["transaction_id"], name: "index_openbill_lockings_on_transaction_id", using: :btree
+    t.integer  "seller_id",                                        null: false
+    t.integer  "buyer_id",                                         null: false
+    t.integer  "good_id",                                          null: false
+    t.uuid     "locking_transaction_id",                           null: false
+    t.uuid     "reverse_transaction_id"
+    t.uuid     "buy_transaction_id"
+    t.string   "state",                                            null: false
+    t.decimal  "amount_cents",                                     null: false
+    t.string   "amount_currency",        limit: 3, default: "RUB", null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.index ["buy_transaction_id"], name: "index_openbill_lockings_on_buy_transaction_id", using: :btree
+    t.index ["buyer_id"], name: "index_openbill_lockings_on_buyer_id", using: :btree
+    t.index ["good_id"], name: "index_openbill_lockings_on_good_id", using: :btree
+    t.index ["locking_transaction_id"], name: "index_openbill_lockings_on_locking_transaction_id", using: :btree
+    t.index ["reverse_transaction_id"], name: "index_openbill_lockings_on_reverse_transaction_id", using: :btree
+    t.index ["seller_id"], name: "index_openbill_lockings_on_seller_id", using: :btree
+    t.index ["state"], name: "index_openbill_lockings_on_state", using: :btree
   end
 
   create_table "openbill_operations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -195,6 +203,12 @@ ActiveRecord::Schema.define(version: 20170205211923) do
   add_foreign_key "goods", "companies"
   add_foreign_key "openbill_accounts", "openbill_categories", column: "category_id", name: "openbill_accounts_category_id_fkey", on_delete: :restrict
   add_foreign_key "openbill_categories", "openbill_categories", column: "parent_id", name: "openbill_categories_parent_id_fkey", on_delete: :restrict
+  add_foreign_key "openbill_lockings", "companies", column: "buyer_id"
+  add_foreign_key "openbill_lockings", "companies", column: "seller_id"
+  add_foreign_key "openbill_lockings", "goods"
+  add_foreign_key "openbill_lockings", "openbill_transactions", column: "buy_transaction_id"
+  add_foreign_key "openbill_lockings", "openbill_transactions", column: "locking_transaction_id"
+  add_foreign_key "openbill_lockings", "openbill_transactions", column: "reverse_transaction_id"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "from_account_id", name: "openbill_policies_from_account_id_fkey"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "to_account_id", name: "openbill_policies_to_account_id_fkey"
   add_foreign_key "openbill_policies", "openbill_categories", column: "from_category_id", name: "openbill_policies_from_category_id_fkey"

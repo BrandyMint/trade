@@ -20,7 +20,6 @@ class Company < ApplicationRecord
 
   belongs_to :user
   belongs_to :account, class_name: 'OpenbillAccount'
-  belongs_to :locked_account, class_name: 'OpenbillAccount'
 
   has_many :goods
   has_many :documents, class_name: 'CompanyDocument'
@@ -36,7 +35,6 @@ class Company < ApplicationRecord
   validates :phone, presence: true, phone: true
 
   before_create :create_account
-  before_create :create_locked_account
 
   enumerize :form,
     in: FORMS,
@@ -68,10 +66,6 @@ class Company < ApplicationRecord
   end
 
   private
-
-  def create_locked_account
-    self.locked_account ||= OpenbillAccount.create! category: OpenbillCategory.locked
-  end
 
   def create_account
     self.account ||= OpenbillAccount.create! category: OpenbillCategory.companies

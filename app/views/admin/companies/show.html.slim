@@ -38,6 +38,7 @@ ol.breadcrumb
       h3.card-header Пользователь
       .card-block
         p.card-text
+          = link_to 'Войти как', admin_company_signin_path(@company), method: :post, class: 'btn btn-outline-danger btn-sm'
           dl
             - [:created_at, :name, :email, :phone].each do |k|
               = show_field @company.user, k

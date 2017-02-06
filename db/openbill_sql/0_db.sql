@@ -20,7 +20,7 @@ CREATE                TABLE OPENBILL_ACCOUNTS (
   category_id         uuid not null,
   key                 character varying(256) not null,
   amount_cents        numeric not null default 0,
-  amount_currency     char(3) not null default 'USD',
+  amount_currency     char(3) not null default 'RUB',
   details             text,
   transactions_count  integer not null default 0,
   meta                hstore not null default ''::hstore,

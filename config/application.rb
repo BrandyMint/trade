@@ -20,10 +20,8 @@ module Trade
       "#{Rails.root}/app/errors",
       "#{Rails.root}/app/inputs",
       "#{Rails.root}/app/services",
+      "#{Rails.root}/app/commands"
     ]
-    # config.web_console.whitelisted_ips = '10.101.0.0/16, 192.168.0.0/16' # , 213.88.60.17/32'
-    config.web_console.whiny_requests = false
-
     # Settings in config/environments/* take precedence over those specified here.
   end
 end
