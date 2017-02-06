@@ -16,4 +16,8 @@ class OpenbillLocking < ApplicationRecord
     predicates: true,
     scope: true,
     default: 'locked'
+
+  def self.total(state)
+    Money.new with_state(state).sum(:amount_cents)
+  end
 end

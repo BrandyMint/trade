@@ -1,2 +1,23 @@
-h1 Admin::Dashboard#index
-p Find me in app/views/admin/dashboard/index.html.slim
+.row
+  .col-md-4
+    = card 'Заблокировано средств' do
+      = humanized_money_with_symbol OpenbillAccount.system_locked.amount
+  .col-md-4
+    = card 'Зачислено средств' do
+      = humanized_money_with_symbol OpenbillAccount.system_income.amount
+  .col-md-4
+    = card 'Куплено товаров' do
+      p На сумму: #{humanized_money_with_symbol OpenbillLocking.total(:buy)}
+      p Покупок: #{OpenbillLocking.with_state(:buy).count}
+
+.row.mt-4
+  .col-md-4
+    = card 'Товаров создано за неделю' do
+      = Good.where('created_at >= ?', 7.days.ago).count
+  .col-md-4
+    = card 'Компаний зарегистрировано за неделю' do
+      = Company.where('created_at >= ?', 7.days.ago).count
+
+h3 Транзакции
+
+= render 'transactions', transactions: OpenbillTransaction.ordered

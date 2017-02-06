@@ -9,12 +9,22 @@ class OpenbillTransaction < OpenbillRecord
 
   monetize :amount_cents, as: :amount
 
-  def income?(account)
+  def income?(account = nil)
+    account ||= company.account
     to_account_id == account.id
   end
 
-  def opposite_account(account)
+  def outcome?
+    !income?
+  end
+
+  def opposite_account(account = nil)
+    account ||= company.account
     to_account_id == account.id ? from_account : to_account
+  end
+
+  def company
+    Company.find_by_id meta[:company_id]
   end
 
   def reverse!

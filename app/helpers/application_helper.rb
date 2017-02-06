@@ -1,4 +1,15 @@
 module ApplicationHelper
+  def transaction_amount(t)
+    if t.company.present? && t.outcome?
+      content_tag :span, humanized_money_with_symbol(-t.amount), class: 'text-danger'
+    else
+      content_tag :span, humanized_money_with_symbol(t.amount), class: 'text-success'
+    end
+  end
+
+  def card(title, &block)
+    render layout: 'card', locals: { title: title }, &block
+  end
 
   def q_to_param(attrs = {})
     q = params.fetch(:q, {}).permit!.merge(attrs)

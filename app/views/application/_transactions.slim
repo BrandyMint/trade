@@ -1,0 +1,18 @@
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th Дата
+      th Со счета
+      th Сумма
+      th На счет
+      th Комментарий
+  tbody
+    - transactions.find_each do |t|
+      tr
+        td
+          .text-nowrap= l t.created_at, format: :short
+        td= t.from_account     
+        td= transaction_amount t
+        td= t.to_account     
+        td= t.company.present? ? t.opposite_account.details : ''
+        td.text-muted= t.details

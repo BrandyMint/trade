@@ -1,4 +1,8 @@
 module Billing
+  def self.check!
+    raise 'Не соотсветвуют суммы заблокированных средств' unless OpenbillAccount.system_locked.amount == OpenbillLocking.total(:locked)
+  end
+
   def self.income_to_company(company, amount, details = nil)
     OpenbillTransaction.create!(
       from_account: OpenbillAccount.system_income,
