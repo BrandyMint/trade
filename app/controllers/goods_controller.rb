@@ -6,7 +6,7 @@ class GoodsController < ApplicationController
   def new
     require_login
 
-    if current_user.companies.accepted.exists?
+    if current_user.companies.with_accepted_state.exists?
       @good = Good.new
       respond_with @good
     else
@@ -27,18 +27,6 @@ class GoodsController < ApplicationController
     @good = Good.find params[:id]
     authorize @good
     respond_with @good
-  end
-
-  def buy
-    require_login
-    @good = Good.find params[:id]
-
-    if current_user.companies.accepted.exists?
-      @good = Good.new
-      respond_with @good
-    else
-      render_register 'buy_unregistered'
-    end
   end
 
   def destroy
@@ -68,11 +56,11 @@ class GoodsController < ApplicationController
   end
 
   def render_register(template)
-    if current_user.companies.draft.exists?
-      render template, locals: { company: current_user.companies.draft.first }, layout: 'simple'
+    if current_user.companies.with_draft_state.exists?
+      render template, locals: { company: current_user.companies.with_draft_state.first }, layout: 'simple'
 
     elsif current_user.companies.awaiting_reviews.exists?
-      render template, locals: { review_company: current_user.companies.awaiting_review.first }, layout: 'simple'
+      render template, locals: { review_company: current_user.companies.with_awaiting_review_state.first }, layout: 'simple'
 
     else
       render template, locals: { company: build_company }, layout: 'simple'

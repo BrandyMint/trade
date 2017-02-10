@@ -11,7 +11,7 @@
     - if company.accepted?
       .alert.alert-success
         | Организация принята #{company.moderator}
-      = link_to 'Отправить на препроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
+      = link_to 'Отправить на перепроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
 
     - elsif company.rejected?
       .alert.alert-danger
@@ -20,7 +20,7 @@
 
         p= company.reject_message
 
-      = link_to 'Отправить на препроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
+      = link_to 'Отправить на перепроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
     - elsif company.draft?
       .alert.alert-info Документы еще не загружены
 

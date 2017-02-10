@@ -20,15 +20,20 @@ Rails.application.routes.draw do
   resources :user_goods
   resources :user_companies, only: [:index]
   resources :categories, only: [:show, :index]
-  resources :goods do
-    member do
-      get :buy
-    end
-  end
+
+  resources :orders
+  resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   namespace :admin do
     root 'dashboard#index'
+    resources :transactions
+    resources :lockings do
+      member do
+        patch :accept
+        patch :reject
+      end
+    end
     resources :users do
       member do
         post :signin

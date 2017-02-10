@@ -1,0 +1,28 @@
+h1.mb-4 Блокировки
+hr
+
+table.table.table-condensed.table-striped
+  thead
+    tr
+      th Дата
+      th Покупатель
+      th Продавец
+      th Товар
+      th Сумма
+      th Состояние
+      th Действия
+  tbody
+    - @lockings.each do |t|
+      tr
+        td
+          .text-nowrap= l t.created_at, format: :short
+        td= t.buyer     
+        td= t.seller     
+        td= t.good     
+        td.text-nowrap= humanized_money_with_symbol t.amount
+        td= t.workflow_state     
+        td 
+          - if t.locked?
+            = link_to 'Заврешить покупку (отдать средства продавцу)', accept_admin_locking_path(t), class: 'btn btn-success btn-sm', method: :patch
+            = link_to 'Отклонить покупку (вернуть средства покупателю)', reject_admin_locking_path(t), class: 'btn btn-warning btn-sm', method: :patch
+

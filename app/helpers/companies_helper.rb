@@ -7,6 +7,13 @@ module CompaniesHelper
     'rejected' => 'badge-danger'
   }
 
+  def companies_to_buy(user)
+    user.companies.with_accepted_state.includes(:account).map do |c|
+      title = "#{c.name}: #{humanized_money_with_symbol(c.amount)}"
+      [title, c.id]
+    end
+  end
+
   def company_icon(company)
     fa_icon :briefcase
   end

@@ -5,7 +5,7 @@ class OpenbillTransaction < OpenbillRecord
   has_one :reversation_transaction, class_name: 'OpenbillTransaction'
   belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
 
-  scope :ordered, -> { order id: :desc }
+  scope :ordered, -> { order created_at: :desc }
 
   monetize :amount_cents, as: :amount
 

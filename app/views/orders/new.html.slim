@@ -1,0 +1,16 @@
+h2.mb-4 Оформление сделки
+
+= simple_form_for @order do |f|
+  = f.input :good_id, as: :hidden
+  .row
+    .col-md-4
+      p 
+        | Товар: 
+        strong= link_to @order.good, good_path(@order.good)
+      p 
+        | Стоимость: 
+        strong= humanized_money_with_symbol @order.good.amount
+    .col-md-4
+      = f.input :company_id, collection: companies_to_buy(current_user), include_blank: false, label: false, hint: 'Покупатель'
+    .col-md-4
+      = f.submit "Приобрести", class: 'btn btn-success'

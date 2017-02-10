@@ -7,8 +7,8 @@
       = humanized_money_with_symbol OpenbillAccount.system_income.amount
   .col-md-4
     = card 'Куплено товаров' do
-      p На сумму: #{humanized_money_with_symbol OpenbillLocking.total(:buy)}
-      p Покупок: #{OpenbillLocking.with_state(:buy).count}
+      p На сумму: #{humanized_money_with_symbol OpenbillLocking.total(:accepted)}
+      p Покупок: #{OpenbillLocking.with_accepted_state.count}
 
 .row.mt-4
   .col-md-4
@@ -20,4 +20,5 @@
 
 h3 Транзакции
 
-= render 'transactions', transactions: OpenbillTransaction.ordered
+.mt-4
+  = render 'transactions', transactions: OpenbillTransaction.ordered.includes(:to_account, :from_account)

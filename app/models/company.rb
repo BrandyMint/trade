@@ -56,7 +56,7 @@ class Company < ApplicationRecord
   end
 
   def locked_amount
-    Money.new buyer_lockings.with_state(:locked).sum(:amount_cents)
+    Money.new buyer_lockings.with_locked_state.sum(:amount_cents)
   end
 
   def document_categories

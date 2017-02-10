@@ -59,7 +59,7 @@ module Billing
     locking.reload.with_lock do
       raise 'Вернуть можно только заблокированные средства' unless locking.state == 'locked'
       t = locking.locking_transaction.reverse!
-      locking.update state: 'reversed', reverse_transaction: t
+      locking.update reverse_transaction: t
     end
   end
 
@@ -67,7 +67,7 @@ module Billing
   def self.buy_amount(locking)
     locking.reload.with_lock do
       raise 'Сумма блокировки отличается от суммы товара' unless locking.amount == locking.good.reload.amount
-      raise 'Разблокировать можно только заблокированные средства' unless locking.state == 'locked'
+      raise 'Разблокировать можно только заблокированные средства' unless locking.locked?
       t = OpenbillTransaction.create!(
         from_account: OpenbillAccount.system_locked,
         to_account: locking.seller.account,
@@ -81,7 +81,7 @@ module Billing
           buyer_id: locking.buyer_id,
         }
       )
-      locking.update state: 'buy', reverse_transaction: t
+      locking.update reverse_transaction: t
     end
   end
 end

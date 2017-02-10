@@ -20,5 +20,5 @@ table.table
         = link_to good.company, company_path(good.company)
       td
         .pull-right
-          = link_to 'Купить', buy_good_path(good), class: 'btn btn-success'
+          = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-success'
 
