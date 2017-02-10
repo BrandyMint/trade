@@ -19,6 +19,24 @@ class Admin::CompaniesController < Admin::ApplicationController
     respond_with @company
   end
 
+  def start_review
+    @company = Company.find params[:id]
+    @company.review! current_user
+    redirect_to admin_company_path @company
+  end
+
+  def reject
+    @company = Company.find params[:id]
+    @company.reject! current_user, params.require(:company)[:reject_message]
+    redirect_to admin_company_path @company
+  end
+
+  def accept
+    @company = Company.find params[:id]
+    @company.accept! current_user
+    redirect_to admin_company_path @company
+  end
+
   private
 
   def company_params

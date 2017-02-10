@@ -52,6 +52,8 @@ gem 'sorcery'
 gem 'ancestry'
 gem 'validates_russian'
 gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
+gem 'workflow'
+
 
 # Специально для draper
 # gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'

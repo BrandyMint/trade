@@ -20,7 +20,7 @@ class CompaniesController < ApplicationController
     when RegistrationSteps::DocumentsStep
       render 'new', layout: 'simple'
     when RegistrationSteps::ModerationStep
-      render 'waits_review'
+      render 'awaiting_review'
     else
       raise 'Неизвестный или невозможный шаг регистрации'
     end
@@ -44,7 +44,7 @@ class CompaniesController < ApplicationController
 
     if @company.all_documents_loaded?
       if @company.draft?
-        @company.update_attribute :state, :waits_review
+        @company.submit!
       else
         render 'new', locals: { step: @company.registration_step }, flash: { success: 'Компания ожидает подтверждения модератором' }
       end

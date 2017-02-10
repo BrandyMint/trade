@@ -1,0 +1,42 @@
+.card
+  h3.card-header 
+    | Модерация 
+    = company_state_tag company
+    br
+    small.text-muted
+      | с 
+      = l company.workflow_state_changed_at, format: :short
+
+  .card-block
+    - if company.accepted?
+      .alert.alert-success
+        | Организация принята #{company.moderator}
+      = link_to 'Отправить на препроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
+
+    - elsif company.rejected?
+      .alert.alert-danger
+        h4.alert-heading
+          | Организация не проша проверку (модератор #{company.moderator})
+
+        p= company.reject_message
+
+      = link_to 'Отправить на препроверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
+    - elsif company.draft?
+      .alert.alert-info Документы еще не загружены
+
+    - elsif company.awaiting_review?
+      .alert.alert-info Ожидает проверки с #{l company.awaiting_review_at || company.updated_at, format: :short}
+        = link_to 'Начать проверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
+
+    - elsif company.being_reviewed?
+      .alert.alert-info На проверке с #{l company.being_reviewed_at , format: :short}
+
+      = link_to 'Прошла проверку', accept_admin_company_path(company), method: :patch, class: 'btn btn-success'
+
+      hr
+      = simple_form_for [:admin, company], url: reject_admin_company_path do |f|
+        = f.input :reject_message, required: true
+        = f.submit 'Проверку не прошла', class: 'btn btn-danger'
+    - else
+      .alert.alert-danger 
+        strong Неизвестное состояние организации #{company.workflow_state}

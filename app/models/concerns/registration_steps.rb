@@ -13,7 +13,7 @@ module RegistrationSteps
   def registration_step
     @registration_step ||=
       if persisted?
-        if waits_review? || accepted? || rejected?
+        if awaiting_review? || accepted? || rejected?
           DoneStep
         else
           DocumentsStep

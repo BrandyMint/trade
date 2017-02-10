@@ -71,8 +71,8 @@ class GoodsController < ApplicationController
     if current_user.companies.draft.exists?
       render template, locals: { company: current_user.companies.draft.first }, layout: 'simple'
 
-    elsif current_user.companies.waits_reviews.exists?
-      render template, locals: { review_company: current_user.companies.waits_review.first }, layout: 'simple'
+    elsif current_user.companies.awaiting_reviews.exists?
+      render template, locals: { review_company: current_user.companies.awaiting_review.first }, layout: 'simple'
 
     else
       render template, locals: { company: build_company }, layout: 'simple'

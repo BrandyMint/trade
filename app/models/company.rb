@@ -3,8 +3,8 @@ class Company < ApplicationRecord
 
   include PgSearch
   extend Enumerize
-  include ModerationState
   include RegistrationSteps
+  include CompanyModerationWorkflow
 
   # Не сохраняемый атрибут используется в форме для dadata suggestions
   #
@@ -20,6 +20,7 @@ class Company < ApplicationRecord
 
   belongs_to :user
   belongs_to :account, class_name: 'OpenbillAccount'
+  belongs_to :moderator, class_name: 'User'
 
   has_many :goods
   has_many :documents, class_name: 'CompanyDocument'
@@ -46,6 +47,9 @@ class Company < ApplicationRecord
     default: FORMS.first
 
   delegate :amount, to: :account
+
+  def awaiting_review!
+  end
 
   def inn_kpp
     [inn, kpp].compact.join(' / ')

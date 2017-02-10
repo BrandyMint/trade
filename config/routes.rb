@@ -35,6 +35,11 @@ Rails.application.routes.draw do
       end
     end
     resources :companies do
+      member do
+        patch :start_review
+        patch :accept
+        patch :reject
+      end
       resources :transactions, controller: 'company_transactions'
     end
   end

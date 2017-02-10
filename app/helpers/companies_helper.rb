@@ -1,9 +1,10 @@
 module CompaniesHelper
   COMPANY_STATES_CLASSES = {
     'draft' => 'badge-info',
-    'waits_review' => 'badge-warning',
+    'awaiting_review' => 'badge-warning',
+    'being_reviewed' => 'badge-warning',
     'accepted' => 'badge-success',
-    'rejected' => 'badge-defaulg'
+    'rejected' => 'badge-danger'
   }
 
   def company_icon(company)
@@ -25,7 +26,7 @@ module CompaniesHelper
   end
 
   def company_state_tag(company)
-    content_tag :span, company.state_text, class: "badge #{COMPANY_STATES_CLASSES[company.state]}"
+    content_tag :span, company.state_text, class: "badge #{COMPANY_STATES_CLASSES[company.workflow_state]}"
   end
 
   def company_reg_info(company)

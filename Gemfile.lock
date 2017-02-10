@@ -412,6 +412,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    workflow (1.2.0)
     yard (0.9.8)
 
 PLATFORMS
@@ -489,6 +490,7 @@ DEPENDENCIES
   virtus
   vydumschik
   web-console (>= 3.3.0)
+  workflow
 
 BUNDLED WITH
    1.13.6

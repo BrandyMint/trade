@@ -8,10 +8,12 @@ ol.breadcrumb
 
 .row
   .col-md-6
-    - if @company.documents.exists?
-      = render 'documents', documents: @company.documents
-    - else
-      p.lead Документы не загружены
+    .mb-4
+      - if @company.documents.exists?
+        = render 'documents', documents: @company.documents
+      - else
+        p.lead Документы не загружены
+    = render 'admin/companies/moderation', company: @company
   .col-md-6
     .card.mb-4
       h3.card-header Баланс
@@ -28,9 +30,6 @@ ol.breadcrumb
       h3.card-header Данные компании
       .card-block
         p.card-text
-          - if @company.rejected?
-            .alert.alert-warning
-              = @company.rejected_message
           dl
             - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
               = show_field @company, k
@@ -44,5 +43,4 @@ ol.breadcrumb
           dl
             - [:created_at, :name, :email, :phone].each do |k|
               = show_field @company.user, k
-
 = javascript_include_tag 'lightbox', 'data-turbolinks-track' => 'reload'

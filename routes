@@ -78,6 +78,9 @@
                                PATCH  /admin/users/:id(.:format)                                   admin/users#update
                                PUT    /admin/users/:id(.:format)                                   admin/users#update
                                DELETE /admin/users/:id(.:format)                                   admin/users#destroy
+    start_review_admin_company PUT    /admin/companies/:id/start_review(.:format)                  admin/companies#start_review
+          accept_admin_company PUT    /admin/companies/:id/accept(.:format)                        admin/companies#accept
+          reject_admin_company PUT    /admin/companies/:id/reject(.:format)                        admin/companies#reject
     admin_company_transactions GET    /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#index
                                POST   /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#create
  new_admin_company_transaction GET    /admin/companies/:company_id/transactions/new(.:format)      admin/company_transactions#new
