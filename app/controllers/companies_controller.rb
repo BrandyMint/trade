@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
     when RegistrationSteps::InfoStep
       render 'new', locals: { step: @company.registration_step }, layout: 'simple'
     when RegistrationSteps::DocumentsStep
-      render 'new', layout: 'simple'
+      render 'new', layout: 'simple', locals: { step: @company.registration_step }
     when RegistrationSteps::ModerationStep
       render 'awaiting_review'
     else
@@ -43,11 +43,8 @@ class CompaniesController < ApplicationController
     authorize @company, :edit?
 
     if @company.all_documents_loaded?
-      if @company.draft?
-        @company.submit!
-      else
-        render 'new', locals: { step: @company.registration_step }, flash: { success: 'Компания ожидает подтверждения модератором' }
-      end
+      @company.submit! current_user if @company.draft?
+      render 'new', locals: { step: @company.registration_step }, flash: { success: 'Компания ожидает подтверждения модератором' }
     else
       flash.now[:danger] = 'Загрузите сканы регистрационных документов'
       render 'new', locals: { step: @company.registration_step }
@@ -68,6 +65,6 @@ class CompaniesController < ApplicationController
   end
 
   def build_company
-    current_user.companies.draft.new email: current_user.email, phone: current_user.phone
+    current_user.companies.with_draft_state.new email: current_user.email, phone: current_user.phone
   end
 end

@@ -3,6 +3,7 @@ require 'application_responder'
 class ApplicationController < ActionController::Base
   include Pundit
   include RescueErrors
+  include MoneyRails::ActionViewExtension
 
   self.responder = ApplicationResponder
 

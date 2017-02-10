@@ -16,9 +16,9 @@ table.table.table-condensed.table-striped
       tr
         td
           .text-nowrap= l t.created_at, format: :short
-        td= t.buyer     
-        td= t.seller     
-        td= t.good     
+        td= link_to t.buyer, admin_company_path(t.buyer)
+        td= link_to t.seller, admin_company_path(t.seller)   
+        td= link_to t.good, good_path(t.good)
         td.text-nowrap= humanized_money_with_symbol t.amount
         td= t.workflow_state     
         td 

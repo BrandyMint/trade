@@ -25,7 +25,8 @@
       .alert.alert-info Документы еще не загружены
 
     - elsif company.awaiting_review?
-      .alert.alert-info Ожидает проверки с #{l company.awaiting_review_at || company.updated_at, format: :short}
+      .alert.alert-info 
+        | Ожидает проверки с #{l company.awaiting_review_at || company.updated_at, format: :short} 
         = link_to 'Начать проверку', start_review_admin_company_path(company), method: :patch, class: 'btn btn-warning'
 
     - elsif company.being_reviewed?
