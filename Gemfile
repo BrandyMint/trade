@@ -125,8 +125,9 @@ end
 
 group :development do
   # Use Capistrano for deployment
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano3-puma', require: false
 
   gem 'seedbank'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
