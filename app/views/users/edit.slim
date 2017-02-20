@@ -3,7 +3,7 @@ hr
 = simple_form_for @user do |f|
   .row
     .col-md-12
-      = f.input :name, label: 'Ваше имя'
+      = f.input :name, label: 'Ваше имя и фамилия'
   .row
     .col-md-6
       = f.input :email,  as: :email
@@ -11,9 +11,9 @@ hr
       = f.input :phone
   .row
     .col-md-6
-      = f.input :password
+      = f.input :password, required: false
     .col-md-6
-      = f.input :password_confirmation
+      = f.input :password_confirmation, required: false
   .row.mt-4
     .col-md-12
       = f.button :submit, class: 'btn btn-lg btn-primary', data: { disable_with: 'Подождите..' }
