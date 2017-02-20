@@ -56,9 +56,9 @@ module ApplicationHelper
 
   def application_title
     if current_namespace == :admin
-      'OnlineTrade: админка'
+      'Online-Prodaja.Club: админка'
     else
-      'OnlineTrade'
+      'Online-Prodaja.Club'
     end
   end
 

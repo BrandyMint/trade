@@ -135,6 +135,9 @@ GEM
     capistrano-rails (1.2.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.1.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -426,6 +429,7 @@ DEPENDENCIES
   bugsnag
   byebug
   capistrano-rails
+  capistrano-rbenv
   carrierwave
   cocoon
   coffee-rails (~> 4.2)

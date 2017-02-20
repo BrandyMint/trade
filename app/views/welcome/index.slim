@@ -6,9 +6,18 @@ h1 Торговые предложения
 
 .clearfix
 .mt-4
-  = render 'search_form', search_form: search_form
+  = render 'goods/search_form', search_form: search_form
 
 .mt-4
-  .pull-right= paginate goods
-  = render 'goods/list', goods: goods
-  .pull-right= paginate goods
+
+  .row
+    .col-md-12
+      .pull-right= paginate goods
+  .row
+    .col-md-3.bd-sidebar
+      = render 'categories'
+    .col-md-9
+      = render 'goods/list', goods: goods
+  .row
+    .col-md-12
+      .pull-right= paginate goods

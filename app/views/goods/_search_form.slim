@@ -1,3 +1,8 @@
-= simple_form_for search_form, url: goods_path, method: :get, html: { class: 'form-inline' } do |f|
-  = f.input :q, label: false, hint: false, as: :search, input_html: { class: 'mr-3' }, required: false
-  = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+.jumbotron
+  = simple_form_for search_form, url: goods_path, method: :get do |f|
+    .row
+      .col-md-11
+        = f.input :q, label: false, hint: false, as: :search, input_html: { autofocus: :autofocus, class: 'mr-3' }
+      .col-md-1
+        .pull-right
+          = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
