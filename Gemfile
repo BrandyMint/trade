@@ -128,6 +128,8 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano3-puma', require: false
+  gem 'capistrano-secrets-yml', require: false
+  gem 'capistrano-faster-assets', require: false
 
   gem 'seedbank'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
