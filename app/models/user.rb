@@ -17,6 +17,10 @@ class User < ApplicationRecord
     scope: true,
     default: 'user'
 
+  def shown_banner(id)
+    update_column :shown_banners, shown_banners + [id]
+  end
+
   def is_admin?
     manager? || superadmin?
   end

@@ -1,0 +1,18 @@
+.pull-right= link_to 'Создать уведомление', new_admin_banner_path, class: 'btn btn-outline-success'
+
+h1.mt-4 Уведомления
+
+- if @banners.any?
+  table.table.table-condensed
+    - @banners.each do |b|
+      tr
+        td
+          h3= b.subject
+          = banner_badge b
+          = simple_format b.text
+        td
+          = link_to 'Изменить', edit_admin_banner_path(b), class: 'btn btn-sm btn-outline-primary'
+          .mt-2= link_to 'Удалить', admin_banner_path(b), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Действительно?' }
+- else
+  .alert.alert-info Уведомления отсутсвуют
+

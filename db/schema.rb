@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210100338) do
+ActiveRecord::Schema.define(version: 20170227214150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
   enable_extension "uuid-ossp"
+
+  create_table "banners", force: :cascade do |t|
+    t.string   "subject",                    null: false
+    t.text     "text"
+    t.boolean  "is_active",  default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",                   null: false
@@ -208,6 +216,7 @@ ActiveRecord::Schema.define(version: 20170210100338) do
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
     t.string   "role",                            default: "user", null: false
+    t.integer  "shown_banners",                   default: [],     null: false, array: true
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree

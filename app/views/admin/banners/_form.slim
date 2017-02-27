@@ -1,0 +1,8 @@
+= simple_form_for [:admin, banner] do |f|
+  .row
+    .col-md-6
+      = f.input :subject
+    .col-md-3
+      = f.input :is_active
+  = f.input :text
+  = f.button :submit 

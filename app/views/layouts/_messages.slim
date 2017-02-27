@@ -1,5 +1,10 @@
 - flash.each do |name, msg|
-  - if msg.is_a?(String)
-    div[class="alert alert-#{name.to_sym}"]
-      a.close[data-dismiss='alert'] ×
-      div= msg
+  div[class="alert alert-#{name}"]
+    a.close[data-dismiss='alert'] ×
+    div= msg
+
+- active_banners.each do |banner|
+  div[class="alert alert-#{banner.flash_type}"]
+    a.close[data-dismiss='alert' data-banner-close=banner.id] ×
+    h2= banner.subject
+    div= banner.text.html_safe

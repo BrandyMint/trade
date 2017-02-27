@@ -14,6 +14,9 @@ hr
       = f.input :amount, as: :numeric, input_html: { class: 'form-control-lg', data: { amount: :input } }
       .lead data-amount=:string -
       .mt-4
+        = f.input :order_number
+        = f.input :payer
+      .mt-4
         = f.input :details, as: :text
 
       .mt-4

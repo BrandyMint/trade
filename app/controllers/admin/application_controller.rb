@@ -1,12 +1,11 @@
 class Admin::ApplicationController < ApplicationController
   before_action :require_admin
-  before_action :set_admin_namespace
   layout 'admin/application'
 
   private
 
-  def set_admin_namespace
-    @current_namespace = :admin
+  def current_namespace
+    :admin
   end
 
   def require_admin

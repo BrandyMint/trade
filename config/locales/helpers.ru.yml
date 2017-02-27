@@ -19,6 +19,9 @@ ru:
       good:
         update: Изменить товар
         create: Добавить товар
+      banner:
+        create: Создать уведомление
+        update: Изменить уведомление
     goods_count:
       zero: 'Нет торговых предложений'
       one: '%{count} предложение'

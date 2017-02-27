@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :user_goods
   resources :user_companies, only: [:index]
 
+  resources :banners, only: [:destroy]
+
   resources :orders
   resources :goods
   resources :password_resets, only: [:new, :create, :edit, :update]
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :transactions
+    resources :banners
     resources :lockings do
       member do
         patch :accept

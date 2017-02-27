@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  attr_reader :current_namespace
+  def current_namespace
+    :common
+  end
 
   def not_authenticated
     raise NoAuthentication

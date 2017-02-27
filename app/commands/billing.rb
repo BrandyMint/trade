@@ -3,13 +3,14 @@ module Billing
     raise 'Не соотсветвуют суммы заблокированных средств' unless OpenbillAccount.system_locked.amount == OpenbillLocking.total(:locked)
   end
 
-  def self.income_to_company(company, amount, details = nil)
+  def self.income_to_company(company, amount, details:, order_number: , payer: )
     OpenbillTransaction.create!(
       from_account: OpenbillAccount.system_income,
       to_account: company.account,
       amount: amount,
       details: details,
-      key: 'income-' + Time.now.to_s
+      key: 'income-' + Time.now.to_s,
+      meta: { order_number: order_number, payer: payer }
     )
   end
 

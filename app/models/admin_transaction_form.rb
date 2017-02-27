@@ -1,7 +1,7 @@
 class AdminTransactionForm
   include ActiveModel::Model
 
-  attr_accessor :type, :amount, :details
+  attr_accessor :type, :amount, :details, :order_number, :payer
 
   validates :type, presence: true
   validates :amount, presence: true, numericality: { greater_than: 0 }

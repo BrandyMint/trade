@@ -28,7 +28,13 @@ ru:
         order_id: Заказ
         row_order_position: Позиция
         color: Цвет
+      banner:
+        subject: Заголовок
+        text: Текст
+        is_active: Включен
       admin_transaction_form:
+        order_number: Номер платежного поручения
+        payer: Плательщик
         amount: Сумма
         details: Комментарий
       user:

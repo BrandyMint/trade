@@ -7,6 +7,7 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-danger.fixed-top
       -# = navbar_link_to 'Товары и услуги', root_path, count: Good.count
       = navbar_link_to 'Организации', admin_companies_path, count: Company.count
       = navbar_link_to 'Блокировки', admin_lockings_path, count: OpenbillLocking.count
+      = navbar_link_to 'Уведомления', admin_banners_path, count: Banner.active.count
     
     - if current_user.present?
       = render 'user_dropdown'
