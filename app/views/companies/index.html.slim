@@ -5,22 +5,14 @@ table.table
   thead
     tr
       th Наименование
-      th ИНН/ОГРН
-      th Адрес
-      th Пользователь
-      th Статус
+      th Торговые предложения
   - @companies.each do |c|
     tr
       td
-        .text-nowrap
-          = company_icon c
-          |  
-          = link_to c.name, company_path(c)
-        small.text-muted= humanized_form c.form
+        span.text-nowrap= company_link c
+        |  
+        = company_state_tag c
+        .mt-2
+          small.text-muted= c.address
       td
-        = c.inn
-        | /
-        = c.ogrn
-      td= c.address
-      td= c.user
-      td= company_state_tag c
+        = link_to t('helpers.goods_count', count: c.goods_count), company_path(c.id)

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def category_link(category)
+    link_to category, goods_path(category_id: category), class: 'category-link'
+  end
+
   def transaction_amount(t)
     if t.company.present? && t.outcome?
       content_tag :span, humanized_money_with_symbol(-t.amount), class: 'text-danger'

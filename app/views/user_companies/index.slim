@@ -1,6 +1,7 @@
-.pull-right.mt-2
-  = link_to 'Добавить новую организацию', new_company_path, class: 'btn btn-sm btn-outline-success'
-h2.mb-3 Ваши компании
+.mb-4
+  .pull-right
+    = link_to 'Добавить новую организацию', new_company_path, class: 'btn btn-outline-success'
+  h2 Ваши компании
 
 table.table.table-condensed
   - companies.each do |c|

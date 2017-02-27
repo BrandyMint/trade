@@ -1,4 +1,9 @@
-h1.mb-4 Организация #{@company}
+h1.mb-4 
+  = company_icon @company
+  |  Организация #{@company}
+= company_state_tag @company
+hr
+p.text-muted= @company.address
 
 h2 Торговые предложения
 

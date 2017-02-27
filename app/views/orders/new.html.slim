@@ -1,16 +1,20 @@
-h2.mb-4 Оформление сделки
+h1 Оформление сделки
+hr.mb-4
 
 = simple_form_for @order do |f|
   = f.input :good_id, as: :hidden
   .row
-    .col-md-4
-      p 
-        | Товар: 
-        strong= link_to @order.good, good_path(@order.good)
-      p 
-        | Стоимость: 
-        strong= humanized_money_with_symbol @order.good.amount
-    .col-md-4
+    .col-md-6
+      h3.text-muted.mb-4 Товар или услуга
+      = render 'goods/short', good: @order.good
+
+      hr
+      h3.text-muted.mb-4 Продавец
+
+      = render 'companies/short', company: @order.good.company
+    .col-md-6
+      p Вы оформляете покупку на органиацию:
       = f.input :company_id, collection: companies_to_buy(current_user), include_blank: false, label: false, hint: 'Покупатель'
-    .col-md-4
-      = f.submit "Приобрести", class: 'btn btn-success'
+
+      .mt-4
+        = f.submit "Оформить заказ", class: 'btn btn-success'

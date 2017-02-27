@@ -1,8 +1,7 @@
 class WelcomeController < ApplicationController
+  include SearchFormConcern
+
   def index
-    render locals: {
-      search_form: SearchForm.new,
-      goods: Good.page(params[:page])
-    }
+    render 'goods/index', locals: { goods: goods_index }
   end
 end

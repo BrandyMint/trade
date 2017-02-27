@@ -48,7 +48,8 @@ class Company < ApplicationRecord
 
   delegate :amount, to: :account
 
-  def awaiting_review!
+  def verified?
+    accepted?
   end
 
   def inn_kpp

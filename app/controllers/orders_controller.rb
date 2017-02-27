@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   def create
     order = Order.create! order_params.merge(user_id: current_user.id)
     Billing.lock_amount order.company, order.good
-    redirect_back_or_to root_path, succes: "На вашем счету зарезервированы средства #{humanized_money_with_symbol order.amount}"
+    #redirect_back_or_to root_path, success: "На вашем счету зарезервированы средства #{humanized_money_with_symbol order.amount}"
   end
 
   private

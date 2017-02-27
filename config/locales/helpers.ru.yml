@@ -19,3 +19,10 @@ ru:
       good:
         update: Изменить товар
         create: Добавить товар
+    goods_count:
+      zero: 'Нет торговых предложений'
+      one: '%{count} предложение'
+      few: '%{count} предложения'
+      many: '%{count} предложений'
+      other: '%{count} предложений'
+

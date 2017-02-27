@@ -5,7 +5,7 @@ ru:
         draft: Черновик
         awaiting_review: Ожидает проверку
         being_reviewed: На проверке
-        accepted: Принято
+        accepted: Верифицирована
         rejected: Отвергнуто
       form:
         LEGAL: Юрлицо

@@ -1,10 +1,27 @@
-- if @company.present?
-  h1.mb-4 
-    | Товарные предложения организации 
-    = link_to @company, company_path(@company)
-- else
-  h1.mb-4 Товарные предложения
+.pull-right
+  = link_to 'Разместить торговое предложение', new_good_path, class: 'btn btn-outline-success'
 
-= render 'search_form', search_form: search_form
+h1 Торговые предложения
+
+.clearfix
 .mt-4
-  = render 'list', goods: @goods
+  = render 'goods/search_form', search_form: search_form
+
+.mt-4
+  .row
+    .col-md-12
+  .row
+    .col-md-3.bd-sidebar
+      = render 'categories', category: current_category
+    .col-md-9
+      .pull-left
+        - if current_category.present?
+          h2.mb-4= current_category
+        - else
+          h2.mb-4 Все торговые предложеия
+
+      .pull-right= paginate goods
+      = render 'goods/list', goods: goods
+  .row
+    .col-md-12
+      .pull-right= paginate goods

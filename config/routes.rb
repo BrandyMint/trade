@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :user_goods
   resources :user_companies, only: [:index]
-  resources :categories, only: [:show, :index]
 
   resources :orders
   resources :goods

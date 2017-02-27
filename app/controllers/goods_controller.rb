@@ -1,7 +1,7 @@
 class GoodsController < ApplicationController
+  include SearchFormConcern
   # before_filter :require_login, except: [:index, :new]
 
-  helper_method :search_form
 
   def new
     require_login
@@ -15,12 +15,7 @@ class GoodsController < ApplicationController
   end
 
   def index
-    if params[:company_id].present?
-      redirect_to company_path params[:company_id]
-    else
-      @goods = goods_index
-      respond_with @goods
-    end
+    render locals: { goods: goods_index }
   end
 
   def show
@@ -38,23 +33,6 @@ class GoodsController < ApplicationController
 
   private
 
-  def goods_index
-    scope = goods_scope
-    scope = scope.search_by_title search_form.q if search_form.q.present?
-
-    scope.page params[:page]
-  end
-
-  def goods_scope
-    scope = Good.includes(:company, :category)
-
-    if params[:company_id].present?
-      scope = scope.where(company_id: params[:company_id])
-    end
-
-    scope
-  end
-
   def render_register(template)
     if current_user.companies.with_draft_state.exists?
       render template, locals: { company: current_user.companies.with_draft_state.first }, layout: 'simple'
@@ -71,7 +49,4 @@ class GoodsController < ApplicationController
     params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :remote_image_url, :category_id)
   end
 
-  def search_form
-    @search_form ||= SearchForm.new params.fetch(:search_form, {}).permit(:q)
-  end
 end

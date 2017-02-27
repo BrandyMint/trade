@@ -1,24 +1,18 @@
-table.table
-  thead
-    th Изображение
-    th Товар
-    th Стоимость
-    th Организация
-    th
-
+table.table.table-striped
   - goods.each do |good|
     tr
-      td= image_tag good.image.thumb.url
+      td style="width: 64px"= image_tag good.image.thumb.url
       td
-        = link_to good.title, good_path(good)
+        span.good-title= link_to good.title, good_path(good)
         br
-        = link_to category_path(good.category) do
-          small.text-success= good.category
-        small.text-muted= simple_format good.details
-      td= humanized_thousand_money_with_symbol good.amount
+        small.text-muted= category_link good.category
+        .mt-2
+          small.text-muted= simple_format good.details
       td
-        = link_to good.company, company_path(good.company)
-      td
+        = humanized_thousand_money_with_symbol good.amount
+        .mt-2
+          small= company_link good.company
+      td style="width: 64px"
         .pull-right
-          = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-success'
+          = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
 

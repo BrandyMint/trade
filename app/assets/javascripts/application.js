@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require rubles/lib/rubles
 //= require amount
+//= require custom
 
 DOM.set("lang", "ru");
 

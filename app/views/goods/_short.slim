@@ -1,0 +1,8 @@
+h4= good
+p 
+  | Стоимость: 
+  strong= humanized_money_with_symbol good.amount
+
+p.text-muted= simple_format good.details
+
+small= link_to 'Подробнее о товаре..', good_path(good), target: '_blank'

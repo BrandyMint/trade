@@ -39,7 +39,7 @@ module Billing
       t = OpenbillTransaction.create!(
         from_account: base_account,
         to_account: OpenbillAccount.system_locked,
-        key: "lock-#{company.id}-#{good.id}",
+        key: "lock-#{company.id}-#{good.id}-#{Time.now.to_i}",
         amount: good.amount,
         details: "Блокировка средств для приобретения #{good.id}",
         meta: { buyer_company_id: company.id, seller_company_id: good.company_id, good_id: good.id }

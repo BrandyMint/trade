@@ -7,6 +7,24 @@ module CompaniesHelper
     'rejected' => 'badge-danger'
   }
 
+  def company_fields(company)
+    [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name]
+  end
+
+  def company_link(company)
+    link_to company_path(company), class: 'company-link', data: { toggle: :popover, trigger: :hover, content: company_popover_content(company) } do
+      company_icon company, company.name
+    end
+  end
+
+  def company_popover_content(company)
+    if company.verified?
+      "Организация прошла верификацию #{l company.accepted_at, format: :short}"
+    else
+      "Организация верификацию еще не прошла"
+    end
+  end
+
   def companies_to_buy(user)
     user.companies.with_accepted_state.includes(:account).map do |c|
       title = "#{c.name}: #{humanized_money_with_symbol(c.amount)}"
@@ -14,8 +32,9 @@ module CompaniesHelper
     end
   end
 
-  def company_icon(company)
-    fa_icon :briefcase
+  def company_icon(company, text=nil)
+    icon = company.verified? ? 'check-circle-o' : 'dot-circle-o' # :briefcase
+    fa_icon icon, text: text
   end
 
   def company_management(company)

@@ -30,9 +30,7 @@ ol.breadcrumb
       h3.card-header Данные компании
       .card-block
         p.card-text
-          dl
-            - [:created_at, :name, :inn, :ogrn, :kpp, :form_text, :phone, :email, :address, :management_post, :management_name].each do |k|
-              = show_field @company, k
+          = render 'companies/details', company: @company
     .card
       h3.card-header 
         | Пользователь
