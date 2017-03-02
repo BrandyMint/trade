@@ -1,7 +1,8 @@
 nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
   .container
     = link_to root_url, class: 'navbar-brand' do
-      = fa_icon :bank, text: application_title
+      = fa_icon :bank, class: 'navbar-brand-icon'
+      span.navbar-brand-title= 'Online-Prodaja'
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
       = navbar_link_to 'Предложения', root_path, count: Good.published.count
       = navbar_link_to 'Организации', companies_path, count: Company.active.count

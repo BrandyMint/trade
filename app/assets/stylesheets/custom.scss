@@ -3,6 +3,21 @@ input.radio_buttons.optional {
   margin-left: 10px;
 }
 
+.navbar-brand {
+  text-align: center;
+}
+
+.navbar-brand-title {
+  display: block;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+.navbar-brand-icon {
+  font-size: 28px;
+  margin-top: 5px;
+}
+
 .navbar.fixed-top {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.175);
 }
@@ -96,7 +111,7 @@ input.radio_buttons.optional {
 }
 
 #content {
-  padding-top: 5em;
+  padding-top: 7em;
 }
 
 #footer {
