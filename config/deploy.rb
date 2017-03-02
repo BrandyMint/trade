@@ -35,3 +35,14 @@ set :puma_init_active_record, true
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+desc 'Notify http://bugsnag.com'
+
+namespace :deploy do
+  task :notify_bugsnag do
+    run_locally do
+      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=0da75b4005a5275b96a760f0b503f263'
+    end
+  end
+
+  after :finishing, 'notify_bugsnag'
+end

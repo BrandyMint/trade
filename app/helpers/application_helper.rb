@@ -1,4 +1,7 @@
 module ApplicationHelper
+  def next_symbol
+    '»'
+  end
 
   def close_button(url=nil)
     url ||= url_for
@@ -35,7 +38,7 @@ module ApplicationHelper
   def humanized_price(price)
     if price
       # humanized_thousand_money_with_symbol price
-      humanized_money(price)
+      humanized_money_with_symbol(price)
     else
       'цена по договоренности'
     end
