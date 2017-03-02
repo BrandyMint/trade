@@ -1,5 +1,9 @@
 .pull-right
-  = link_to 'Разместить торговое предложение', new_good_path, class: 'btn btn-outline-success'
+  - if logged_in?
+    = link_to 'Разместить торговое предложение', new_good_path, class: 'btn btn-outline-success'
+  - else
+    = link_to 'Разместить торговое предложение', new_user_path, class: 'btn btn-outline-success'
+
 
 h1 Торговые предложения
 

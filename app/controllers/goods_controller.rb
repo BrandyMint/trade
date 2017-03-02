@@ -1,7 +1,7 @@
 class GoodsController < ApplicationController
   include SearchFormConcern
   include GoodsScope
-  before_filter :require_login, except: [:destroy, :update, :edit, :new]
+  before_filter :require_login, except: [:index, :show]
 
   def new
     @good = Good.new

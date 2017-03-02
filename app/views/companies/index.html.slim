@@ -1,4 +1,9 @@
-.pull-right= link_to 'Добавить свою', new_company_path, class: 'btn btn-outline-success'
+.pull-right
+  - if logged_in?
+    = link_to 'Добавить свою', new_company_path, class: 'btn btn-outline-success'
+  - else
+    = link_to 'Добавить свою', new_user_path, class: 'btn btn-outline-success'
+
 h1 Органиации (#{Company.active.count})
 
 table.table
