@@ -13,7 +13,9 @@ table.table.table-striped
         p= good_prepayment_state good
         .mt-2
           small= company_link good.company
+      td= good_workflow_state good.workflow_state
       td style="width: 64px"
         .pull-right
-          = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
+          = render 'button_actions', good: good
+
 

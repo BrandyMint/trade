@@ -6,8 +6,6 @@ class Company < ApplicationRecord
   include RegistrationSteps
   include CompanyModerationWorkflow
 
-
-
   # Не сохраняемый атрибут используется в форме для dadata suggestions
   #
   attr_accessor :party
@@ -19,6 +17,7 @@ class Company < ApplicationRecord
     against: { name: 'A', management_name: 'B', inn: 'B', ogrn: 'B', kpp: 'B', email: 'A', phone: 'A', management_post: 'C', address: 'D' },
     using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
+  scope :active, -> { where 'workflow_state <> ?', :draft }
 
   belongs_to :user
   belongs_to :account, class_name: 'OpenbillAccount'

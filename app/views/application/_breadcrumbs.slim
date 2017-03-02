@@ -1,0 +1,7 @@
+ol.breadcrumb
+  - breadcrumbs.each_with_index do |b|
+    li.breadcrumb-item class=(b[:active] ? 'active' : '')
+      - if b[:url]
+        = link_to b[:title], b[:url]
+      - else
+        = b[:title]

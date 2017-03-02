@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228084101) do
+ActiveRecord::Schema.define(version: 20170302154340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,16 +91,17 @@ ActiveRecord::Schema.define(version: 20170228084101) do
   end
 
   create_table "goods", force: :cascade do |t|
-    t.integer  "company_id",                         null: false
-    t.integer  "category_id",                        null: false
-    t.integer  "state_cd",            default: 0,    null: false
-    t.string   "title",                              null: false
+    t.integer  "company_id",                            null: false
+    t.integer  "category_id",                           null: false
+    t.integer  "state_cd",            default: 0,       null: false
+    t.string   "title",                                 null: false
     t.text     "details"
     t.decimal  "price"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "image"
-    t.boolean  "prepayment_required", default: true, null: false
+    t.boolean  "prepayment_required", default: true,    null: false
+    t.string   "workflow_state",      default: "draft", null: false
     t.index ["category_id"], name: "index_goods_on_category_id", using: :btree
     t.index ["company_id"], name: "index_goods_on_company_id", using: :btree
   end

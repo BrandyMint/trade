@@ -4,21 +4,23 @@
   h2 Ваши организации
 
 - if companies.any?
-  table.table.table-condensed
+  table.table.table-condensed.table-striped
     - companies.each do |c|
       tr
         td
           = c.name
-          br
+          div= company_state_tag c
           small.text-muted.mt-3
             = c.inn
             | /
             = c.ogrn
-        td= c.address
+          br
+          small.text-muted= c.address
         td
-          = company_state_tag c
+          = link_to t(:goods_count, scope: [:helpers], count: c.goods.published.count), user_goods_path(company_id: c.id)
+
+        td
           - if c.draft?
-            br
-            small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c)
+            small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-secondary'
 - else
   .alert.alert-info У Вас пока не зарегистрировано ни одной организации.

@@ -1,10 +1,21 @@
-h1.mb-4 
-  = company_icon @company
-  |  Организация #{@company}
-= company_state_tag @company
+.row.mb-4
+  .col-md-9
+    h1
+      = company_icon @company
+      |  Организация #{@company}
+    = company_state_tag @company
+
+  .col-md-3
+    - if logged_in?
+      - if current_user.companies.include? @company
+        .pull-right
+          p Это моя компания
+          .mb-2= link_to 'Редактировать реквизиты', edit_company_path(@company), class: 'btn btn-sm btn-outline-secondary'
+          = link_to 'Другие предложения', user_goods_path(company_id: @company.id), class: 'btn btn-sm btn-outline-secondary'
+
 hr
 p.text-muted= @company.address
 
 h2 Торговые предложения
 
-= render 'goods/list', goods: @company.goods
+= render 'goods/list', goods: @company.goods.published.view_order

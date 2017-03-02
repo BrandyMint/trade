@@ -1,13 +1,4 @@
-ol.breadcrumb
-  li.breadcrumb-item
-    = link_to 'Организации', admin_companies_path
-  li.breadcrumb-item.active
-    = company_icon @company
-    |  
-    = @company
-    = " [##{@company.id}] "
-    = company_state_tag @company
-
+= admin_companies_breadcrumbs @company
 .row
   .col-md-6
     .mb-4

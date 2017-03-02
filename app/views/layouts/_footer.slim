@@ -2,13 +2,11 @@
 footer#footer.bg-faded
   .container
     .row
+      .col-md-6.text-muted
+        = "#{application_title} (c) 2017 ООО Альянс."
+        .mt-2= link_to 'Администраторам', '/admin'
       .col-md-6
-        small.text-muted
-          = "#{application_title} #{AppVersion}"
-          p.mt-1 = link_to 'Зарегистрироваться', new_user_path, class: 'text-small mr-sm-2'
-      .col-md-6
-        small.text-muted.pull-right
+        .text-muted.pull-right
           | Сделано в 
           = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'
-          br
-          .mt-1= link_to 'Администраторам', '/admin'
+          .mt-2.text-muted= AppVersion

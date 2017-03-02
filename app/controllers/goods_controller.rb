@@ -1,13 +1,14 @@
 class GoodsController < ApplicationController
   include SearchFormConcern
+  include GoodsScope
   before_filter :require_login, except: [:destroy, :update, :edit, :new]
 
   def new
     @good = Good.new
-    @companies = @current_user.companies.ordered
+    @companies = current_user.companies.ordered
 
     if @companies.any?
-      render 'new'
+      render 'new', layout: 'profile'
     else
       render 'no_company'
     end
@@ -26,14 +27,14 @@ class GoodsController < ApplicationController
   def edit
     @good = Good.find params[:id]
     authorize @good
-    respond_with @good
+    respond_with @good, layout: 'profile'
   end
 
   def update
     @good = Good.find params[:id]
     authorize @good
     @good.update permitted_params
-    respond_with @good, locaion: -> { good_path @good }
+    respond_with @good, location: -> { good_path @good }
   end
 
   def show
@@ -64,6 +65,6 @@ class GoodsController < ApplicationController
   end
 
   def permitted_params
-    params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :remote_image_url, :company_id, :category_id)
+    params[:good].permit(:title, :price, :workflow_state, :prepayment_required, :details, :image, :remove_image, :image_cache, :remote_image_url, :company_id, :category_id)
   end
 end

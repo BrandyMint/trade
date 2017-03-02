@@ -2,8 +2,10 @@
   = link_to 'Добавить предложение', new_good_path, class: 'btn btn-sm btn-outline-success'
 h2.mb-3 Ваши предложения (#{goods.total_count})
 
+= render 'goods_filter'
+
 - if goods.any?
   .mt-4
-    = render 'goods/list', goods: goods
+    = render 'user_goods/list', goods: goods
 - else
   .alert.alert-info Вы пока не разместили ни одного торгового предложения

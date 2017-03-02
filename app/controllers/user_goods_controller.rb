@@ -1,4 +1,7 @@
 class UserGoodsController < ApplicationController
+  include SearchFormConcern
+  include GoodsScope
+
   respond_to :html
 
   before_filter :require_login
@@ -6,12 +9,12 @@ class UserGoodsController < ApplicationController
   layout 'profile'
 
   def index
-    render locals: { goods: goods }
+    render locals: { goods: goods_index }
   end
 
   private
 
-  def goods
-    current_user.goods.view_order.page params[:page]
+  def goods_scope
+    current_user.goods
   end
 end

@@ -1,4 +1,11 @@
 module ApplicationHelper
+
+  def close_button(url=nil)
+    url ||= url_for
+    buffer = '×'
+    link_to buffer, url, class: :close
+  end
+
   def category_link(category)
     link_to category, goods_path(category_id: category), class: 'category-link'
   end
@@ -27,7 +34,8 @@ module ApplicationHelper
 
   def humanized_price(price)
     if price
-      humanized_thousand_money_with_symbol price
+      # humanized_thousand_money_with_symbol price
+      humanized_money(price)
     else
       'цена по договоренности'
     end

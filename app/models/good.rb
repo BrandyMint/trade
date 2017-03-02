@@ -2,6 +2,7 @@ require 'carrierwave/orm/activerecord'
 
 class Good < ApplicationRecord
   include PgSearch
+  include Workflow
 
   mount_uploader :image, ImageUploader
 
@@ -13,12 +14,23 @@ class Good < ApplicationRecord
     against: { title: 'A', details: 'B' },
     using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
+  scope :published, -> { where workflow_state: :published }
   scope :view_order, -> { order 'id desc' }
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
   validates :company_id, presence: true
 
+  workflow do
+    state :draft do
+      event :publicate, :transitions_to => :published
+    end
+    state :published do
+      event :review, :transitions_to => :draft
+    end
+  end
+
   def amount
+    return if price.nil?
     Money.new price*100
   end
 

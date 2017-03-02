@@ -10,3 +10,6 @@ ru:
       form:
         LEGAL: Юрлицо
         INDIVIDUAL: ИП
+    good_workflow_states:
+      draft: Черновик
+      published: Опубликовано

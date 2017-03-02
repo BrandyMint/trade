@@ -75,8 +75,6 @@ module CompaniesHelper
 
     if company.persisted?
       title << " (указаны) #{check_circle true}"
-    else
-      title << " #{check_circle false}"
     end
 
     title.html_safe
@@ -87,8 +85,6 @@ module CompaniesHelper
 
     if company.all_documents_loaded?
       title << " (загружены) #{check_circle true}"
-    else
-      title << " #{check_circle false}"
     end
 
     title.html_safe

@@ -1,5 +1,5 @@
 .pull-right= link_to 'Добавить свою', new_company_path, class: 'btn btn-outline-success'
-h1 Органиации (#{Company.count})
+h1 Органиации (#{Company.active.count})
 
 table.table
   thead

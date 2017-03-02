@@ -54,6 +54,8 @@ ru:
         price: Цена
         remove_image: Удалить изображение?
         category: Категория
+        title: Краткое описание (80 символов)
+        details: Подробное описание (до 1000 символов)
         company: Органиация-продавец
         prepayment_required: Предоплата
 
@@ -74,6 +76,7 @@ ru:
         email: Email для всязи
       good:
         price: Стоимость в рублях. Оставьте это поле пустым, если цена договорная.
+        workflow_state: Статус
     placeholders:
       defaults:
         title: Название

@@ -1,5 +1,12 @@
 .pull-right
-  = render 'button_actions', good: @good
+  = link_to 'Другие товары этого продавца', company_path(@good.company_id), class: 'btn btn-sm btn-outline-secondary'
+p
+  | Продавец: 
+  = company_link @good.company
+hr
+- if logged_in?
+  .pull-right
+    = render 'user_goods/button_actions', good: @good
 h1.mb-4 
   | Товар 
   = link_to "##{@good.id}", good_path(@good)
@@ -8,13 +15,12 @@ h1.mb-4
   .col-md-4
     = image_tag @good.image.preview.url, width: 128
   .col-md-8
-    p.pull-right
-      | Продавец: 
-      = company_link @good.company
     h2= @good.title
     strong
       | Цена: 
       = humanized_price @good.price
     p.text-muted= simple_format @good.details
+
+    p= good_prepayment_state @good
 
     = simple_format @good.details

@@ -1,2 +1,5 @@
+.pull-right
+  = link_to 'На страницу товара', good_path(@good), class: 'btn btn-sm btn-outline-secondary' if @good.persisted?
+
 h1.mb-4 Изменение данных о товаре
 = render 'form'

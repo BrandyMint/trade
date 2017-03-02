@@ -3,10 +3,11 @@ hr
 = simple_form_for @user, url: password_path do |f|
   .row
     .col-md-6
-      = f.input :password, required: false
+      = f.input :password, required: false, placeholder: false
     .col-md-6
-      = f.input :password_confirmation, required: false
+      = f.input :password_confirmation, required: false, placeholder: false
   .row.mt-4
     .col-md-12
-      = f.button :submit, class: 'btn btn-lg btn-primary', data: { disable_with: 'Подождите..' }
+      .pull-right
+        = f.button :submit, class: 'btn btn-lg btn-primary', data: { disable_with: 'Подождите..' }
 

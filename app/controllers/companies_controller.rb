@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_filter :require_login, except: [:index, :show]
 
   def index
-    @companies = Company.order(:id)
+    @companies = Company.active.order(:id)
     respond_with @companies
   end
 
