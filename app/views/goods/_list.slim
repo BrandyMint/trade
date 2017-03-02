@@ -1,7 +1,7 @@
 table.table.table-striped
   - goods.each do |good|
     tr
-      td style="width: 64px"= image_tag good.image.thumb.url
+      td style="width: 64px"= image_tag good.image.thumb.url, width: 64
       td
         span.good-title= link_to good.title, good_path(good)
         br

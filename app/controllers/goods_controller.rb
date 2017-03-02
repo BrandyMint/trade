@@ -1,21 +1,39 @@
 class GoodsController < ApplicationController
   include SearchFormConcern
-  # before_filter :require_login, except: [:index, :new]
-
+  before_filter :require_login, except: [:destroy, :update, :edit, :new]
 
   def new
-    require_login
+    @good = Good.new
+    @companies = @current_user.companies.ordered
 
-    if current_user.companies.with_accepted_state.exists?
-      @good = Good.new
-      respond_with @good
+    if @companies.any?
+      render 'new'
     else
-      render_register 'new_unregistered'
+      render 'no_company'
     end
+  end
+
+  def create
+    @good = Good.create permitted_params
+
+    respond_with @good, location: -> { good_path @good }
   end
 
   def index
     render locals: { goods: goods_index }
+  end
+
+  def edit
+    @good = Good.find params[:id]
+    authorize @good
+    respond_with @good
+  end
+
+  def update
+    @good = Good.find params[:id]
+    authorize @good
+    @good.update permitted_params
+    respond_with @good, locaion: -> { good_path @good }
   end
 
   def show
@@ -37,7 +55,7 @@ class GoodsController < ApplicationController
     if current_user.companies.with_draft_state.exists?
       render template, locals: { company: current_user.companies.with_draft_state.first }, layout: 'simple'
 
-    elsif current_user.companies.awaiting_reviews.exists?
+    elsif current_user.companies.with_awaiting_review_state.exists?
       render template, locals: { review_company: current_user.companies.with_awaiting_review_state.first }, layout: 'simple'
 
     else
@@ -46,7 +64,6 @@ class GoodsController < ApplicationController
   end
 
   def permitted_params
-    params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :remote_image_url, :category_id)
+    params[:good].permit(:title, :price, :details, :image, :remove_image, :image_cache, :remote_image_url, :company_id, :category_id)
   end
-
 end

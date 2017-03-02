@@ -25,6 +25,14 @@ module ApplicationHelper
     params.fetch(:q, {}).permit!.fetch key, nil
   end
 
+  def humanized_price(price)
+    if price
+      humanized_thousand_money_with_symbol price
+    else
+      'цена по договоренности'
+    end
+  end
+
   def humanized_thousand_money_with_symbol(amount)
     amount = amount.to_f/1000
     amount = amount.to_i if amount.to_i == amount

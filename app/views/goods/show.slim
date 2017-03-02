@@ -6,11 +6,15 @@ h1.mb-4
 
 .row
   .col-md-4
-    = image_tag @good.image.thumb.url
+    = image_tag @good.image.preview.url, width: 128
   .col-md-8
-    h2= @good.title
-    p= humanized_money @good.price
-    p
+    p.pull-right
       | Продавец: 
-      = link_to @good.company, company_path(@good.company)
+      = company_link @good.company
+    h2= @good.title
+    strong
+      | Цена: 
+      = humanized_price @good.price
+    p.text-muted= simple_format @good.details
+
     = simple_format @good.details

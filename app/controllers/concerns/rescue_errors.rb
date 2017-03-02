@@ -24,7 +24,11 @@ module RescueErrors
   def user_not_authorized(error)
     render 'authority_forbidden',
       status: 403,
-      locals: build_error_page(error),
+      locals: {
+        title: 'В доступе отказано',
+        message: 'Вам запрещен доступ к этому действию или ресурсу',
+        allow_signup: false
+      },
       layout: 'simple'
   end
 

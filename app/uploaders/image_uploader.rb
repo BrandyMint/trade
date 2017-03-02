@@ -1,7 +1,7 @@
 class ImageUploader < BaseUploader
   # process :convert => 'png'
   include CarrierWave::MiniMagick
-  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png svg).freeze
+  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png).freeze
   TIMEOUT_SECONDS = 1
 
   version :medium do

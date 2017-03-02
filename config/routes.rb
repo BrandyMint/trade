@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :users, only: [:create, :update, :new, :edit]
 
+  resource :password, only: [:edit, :update]
+
   resource :profile, controller: :profile
   resources :companies do
     member do

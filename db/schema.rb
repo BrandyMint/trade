@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227214150) do
+ActiveRecord::Schema.define(version: 20170228084101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170227214150) do
     t.integer  "goods_count",        default: 0,         null: false
     t.string   "email"
     t.uuid     "locked_account_id"
-    t.datetime "waits_at"
     t.datetime "awaiting_review_at"
     t.datetime "being_reviewed_at"
     t.datetime "accepted_at"
@@ -79,16 +78,29 @@ ActiveRecord::Schema.define(version: 20170227214150) do
     t.index ["company_id"], name: "index_company_documents_on_company_id", using: :btree
   end
 
+  create_table "good_images", force: :cascade do |t|
+    t.integer  "good_id",      null: false
+    t.string   "image",        null: false
+    t.bigint   "file_size",    null: false
+    t.string   "content_type", null: false
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["good_id"], name: "index_good_images_on_good_id", using: :btree
+  end
+
   create_table "goods", force: :cascade do |t|
-    t.integer  "company_id"
-    t.integer  "category_id"
-    t.integer  "state_cd",    default: 0, null: false
-    t.string   "title",                   null: false
+    t.integer  "company_id",                         null: false
+    t.integer  "category_id",                        null: false
+    t.integer  "state_cd",            default: 0,    null: false
+    t.string   "title",                              null: false
     t.text     "details"
     t.decimal  "price"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image"
+    t.boolean  "prepayment_required", default: true, null: false
     t.index ["category_id"], name: "index_goods_on_category_id", using: :btree
     t.index ["company_id"], name: "index_goods_on_company_id", using: :btree
   end
@@ -97,7 +109,7 @@ ActiveRecord::Schema.define(version: 20170227214150) do
     t.uuid     "owner_id"
     t.uuid     "category_id",                                           null: false
     t.decimal  "amount_cents",                 default: "0.0",          null: false
-    t.string   "amount_currency",    limit: 3, default: "USD",          null: false
+    t.string   "amount_currency",    limit: 3, default: "RUB",          null: false
     t.text     "details"
     t.integer  "transactions_count",           default: 0,              null: false
     t.hstore   "meta",                         default: {},             null: false
@@ -226,6 +238,7 @@ ActiveRecord::Schema.define(version: 20170227214150) do
 
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "companies", "users", column: "moderator_id"
+  add_foreign_key "good_images", "goods"
   add_foreign_key "goods", "categories"
   add_foreign_key "goods", "companies"
   add_foreign_key "openbill_accounts", "openbill_categories", column: "category_id", name: "openbill_accounts_category_id_fkey", on_delete: :restrict

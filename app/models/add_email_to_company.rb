@@ -1,2 +1,0 @@
-class AddEmailToCompany < ApplicationRecord
-end

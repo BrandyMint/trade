@@ -11,6 +11,13 @@
                      edit_user GET    /users/:id/edit(.:format)                                    users#edit
                           user PATCH  /users/:id(.:format)                                         users#update
                                PUT    /users/:id(.:format)                                         users#update
+                  new_password GET    /password/new(.:format)                                      passwords#new
+                 edit_password GET    /password/edit(.:format)                                     passwords#edit
+                      password GET    /password(.:format)                                          passwords#show
+                               PATCH  /password(.:format)                                          passwords#update
+                               PUT    /password(.:format)                                          passwords#update
+                               DELETE /password(.:format)                                          passwords#destroy
+                               POST   /password(.:format)                                          passwords#create
                    new_profile GET    /profile/new(.:format)                                       profile#new
                   edit_profile GET    /profile/edit(.:format)                                      profile#edit
                        profile GET    /profile(.:format)                                           profile#show
@@ -52,9 +59,15 @@
                                PUT    /user_goods/:id(.:format)                                    user_goods#update
                                DELETE /user_goods/:id(.:format)                                    user_goods#destroy
                 user_companies GET    /user_companies(.:format)                                    user_companies#index
-                    categories GET    /categories(.:format)                                        categories#index
-                      category GET    /categories/:id(.:format)                                    categories#show
-                      buy_good GET    /goods/:id/buy(.:format)                                     goods#buy
+                        banner DELETE /banners/:id(.:format)                                       banners#destroy
+                        orders GET    /orders(.:format)                                            orders#index
+                               POST   /orders(.:format)                                            orders#create
+                     new_order GET    /orders/new(.:format)                                        orders#new
+                    edit_order GET    /orders/:id/edit(.:format)                                   orders#edit
+                         order GET    /orders/:id(.:format)                                        orders#show
+                               PATCH  /orders/:id(.:format)                                        orders#update
+                               PUT    /orders/:id(.:format)                                        orders#update
+                               DELETE /orders/:id(.:format)                                        orders#destroy
                          goods GET    /goods(.:format)                                             goods#index
                                POST   /goods(.:format)                                             goods#create
                       new_good GET    /goods/new(.:format)                                         goods#new
@@ -69,6 +82,32 @@
                 password_reset PATCH  /password_resets/:id(.:format)                               password_resets#update
                                PUT    /password_resets/:id(.:format)                               password_resets#update
                     admin_root GET    /admin(.:format)                                             admin/dashboard#index
+            admin_transactions GET    /admin/transactions(.:format)                                admin/transactions#index
+                               POST   /admin/transactions(.:format)                                admin/transactions#create
+         new_admin_transaction GET    /admin/transactions/new(.:format)                            admin/transactions#new
+        edit_admin_transaction GET    /admin/transactions/:id/edit(.:format)                       admin/transactions#edit
+             admin_transaction GET    /admin/transactions/:id(.:format)                            admin/transactions#show
+                               PATCH  /admin/transactions/:id(.:format)                            admin/transactions#update
+                               PUT    /admin/transactions/:id(.:format)                            admin/transactions#update
+                               DELETE /admin/transactions/:id(.:format)                            admin/transactions#destroy
+                 admin_banners GET    /admin/banners(.:format)                                     admin/banners#index
+                               POST   /admin/banners(.:format)                                     admin/banners#create
+              new_admin_banner GET    /admin/banners/new(.:format)                                 admin/banners#new
+             edit_admin_banner GET    /admin/banners/:id/edit(.:format)                            admin/banners#edit
+                  admin_banner GET    /admin/banners/:id(.:format)                                 admin/banners#show
+                               PATCH  /admin/banners/:id(.:format)                                 admin/banners#update
+                               PUT    /admin/banners/:id(.:format)                                 admin/banners#update
+                               DELETE /admin/banners/:id(.:format)                                 admin/banners#destroy
+          accept_admin_locking PATCH  /admin/lockings/:id/accept(.:format)                         admin/lockings#accept
+          reject_admin_locking PATCH  /admin/lockings/:id/reject(.:format)                         admin/lockings#reject
+                admin_lockings GET    /admin/lockings(.:format)                                    admin/lockings#index
+                               POST   /admin/lockings(.:format)                                    admin/lockings#create
+             new_admin_locking GET    /admin/lockings/new(.:format)                                admin/lockings#new
+            edit_admin_locking GET    /admin/lockings/:id/edit(.:format)                           admin/lockings#edit
+                 admin_locking GET    /admin/lockings/:id(.:format)                                admin/lockings#show
+                               PATCH  /admin/lockings/:id(.:format)                                admin/lockings#update
+                               PUT    /admin/lockings/:id(.:format)                                admin/lockings#update
+                               DELETE /admin/lockings/:id(.:format)                                admin/lockings#destroy
              signin_admin_user POST   /admin/users/:id/signin(.:format)                            admin/users#signin
                    admin_users GET    /admin/users(.:format)                                       admin/users#index
                                POST   /admin/users(.:format)                                       admin/users#create
@@ -78,9 +117,9 @@
                                PATCH  /admin/users/:id(.:format)                                   admin/users#update
                                PUT    /admin/users/:id(.:format)                                   admin/users#update
                                DELETE /admin/users/:id(.:format)                                   admin/users#destroy
-    start_review_admin_company PUT    /admin/companies/:id/start_review(.:format)                  admin/companies#start_review
-          accept_admin_company PUT    /admin/companies/:id/accept(.:format)                        admin/companies#accept
-          reject_admin_company PUT    /admin/companies/:id/reject(.:format)                        admin/companies#reject
+    start_review_admin_company PATCH  /admin/companies/:id/start_review(.:format)                  admin/companies#start_review
+          accept_admin_company PATCH  /admin/companies/:id/accept(.:format)                        admin/companies#accept
+          reject_admin_company PATCH  /admin/companies/:id/reject(.:format)                        admin/companies#reject
     admin_company_transactions GET    /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#index
                                POST   /admin/companies/:company_id/transactions(.:format)          admin/company_transactions#create
  new_admin_company_transaction GET    /admin/companies/:company_id/transactions/new(.:format)      admin/company_transactions#new

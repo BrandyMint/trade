@@ -1,0 +1,4 @@
+ru:
+  validators:
+    phone_validator: 
+      invalid_phone: Должен быт телефон в формате 8-901-01-01-01

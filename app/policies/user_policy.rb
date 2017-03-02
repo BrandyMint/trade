@@ -1,5 +1,4 @@
 class UserPolicy < ApplicationPolicy
-
   def edit?
     user == record
   end

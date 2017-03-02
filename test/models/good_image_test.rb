@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AddEmailToCompanyTest < ActiveSupport::TestCase
+class GoodImageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

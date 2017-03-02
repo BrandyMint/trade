@@ -1,0 +1,7 @@
+- if @good.image.present?
+  = image_tag @good.image.medium.url 
+  = f.input :remove_image, as: :boolean
+
+= f.input :image, label: 'Изображение'
+-# = f.input :image_url
+= f.input :image_cache, as: :hidden

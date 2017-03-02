@@ -1,21 +1,24 @@
 .mb-4
   .pull-right
     = link_to 'Добавить новую организацию', new_company_path, class: 'btn btn-outline-success'
-  h2 Ваши компании
+  h2 Ваши организации
 
-table.table.table-condensed
-  - companies.each do |c|
-    tr
-      td
-        = c.name
-        br
-        small.text-muted.mt-3
-          = c.inn
-          | /
-          = c.ogrn
-      td= c.address
-      td
-        = company_state_tag c
-        - if c.draft?
+- if companies.any?
+  table.table.table-condensed
+    - companies.each do |c|
+      tr
+        td
+          = c.name
           br
-          small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c)
+          small.text-muted.mt-3
+            = c.inn
+            | /
+            = c.ogrn
+        td= c.address
+        td
+          = company_state_tag c
+          - if c.draft?
+            br
+            small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c)
+- else
+  .alert.alert-info У Вас пока не зарегистрировано ни одной организации.

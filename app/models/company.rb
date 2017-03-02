@@ -6,6 +6,8 @@ class Company < ApplicationRecord
   include RegistrationSteps
   include CompanyModerationWorkflow
 
+
+
   # Не сохраняемый атрибут используется в форме для dadata suggestions
   #
   attr_accessor :party
@@ -28,10 +30,14 @@ class Company < ApplicationRecord
   has_many :buyer_lockings, class_name: 'OpenbillLocking', inverse_of: :buyer, foreign_key: :buyer_id
   has_many :seller_lockings, class_name: 'OpenbillLocking', inverse_of: :seller, foreign_key: :seller_id
 
+  before_validation do
+    self.phone = Phoner::Phone.parse(phone).to_s if phone.present?
+  end
+
   validates :form, presence: true, inclusion: FORMS
   validates :name, presence: true
 
-  validates :inn, presence: true, inn_format: true, uniqueness: { scope: :user_id }
+  validates :inn, presence: true, inn: true, uniqueness: { scope: :user_id }
   validates :ogrn, presence: true, ogrn_format: true
   validates :kpp, presence: true, kpp_format: true, if: :legal?
 
@@ -78,7 +84,7 @@ class Company < ApplicationRecord
   end
 
   def to_s
-    name
+    "#{name} (#{state_text})"
   end
 
   private

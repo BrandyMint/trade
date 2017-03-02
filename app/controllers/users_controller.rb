@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     require_login
 
     @user = current_user
-    authorize @user
     @user.update user_params
     respond_with @user, layout: 'profile'
   end
@@ -25,13 +24,12 @@ class UsersController < ApplicationController
   def edit
     require_login
     @user = current_user
-    authorize @user
     respond_with @user, layout: 'profile'
   end
 
   private
 
   def user_params
-    params.require( :user ).permit(:phone, :name, :email, :password, :password_confirmation)
+    params.require( :user ).permit(:phone, :name, :email)
   end
 end

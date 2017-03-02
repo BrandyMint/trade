@@ -50,6 +50,12 @@ ru:
       company:
         inn_kpp: ИНН / КПП
         amount: Баланс
+      good:
+        price: Цена
+        remove_image: Удалить изображение?
+        category: Категория
+        company: Органиация-продавец
+        prepayment_required: Предоплата
 
     hints:
       defaults:
@@ -66,6 +72,8 @@ ru:
         name: Полное наименование
         phone: Телефон компании
         email: Email для всязи
+      good:
+        price: Стоимость в рублях. Оставьте это поле пустым, если цена договорная.
     placeholders:
       defaults:
         title: Название

@@ -15,7 +15,6 @@ class GoodPolicy < ApplicationPolicy
   end
 
   def create?
-    binding.pry.
     user.present? && record.company.present? && record.company.accepted?
   end
 

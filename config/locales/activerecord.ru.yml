@@ -54,9 +54,16 @@ ru:
         reject_message: Причина отклонения
     errors:
       messages:
-        blank: Поле не должно быть пустым
+        blank: не должно быть пустым
         taken: В базе уже есть запись с таким значением
       models:
+        company:
+          attributes:
+            inn:
+              unknown_region: Неверный регион в ИНН
+              numbers_only: ИНН состоит только из чисел
+              invalid_pp: Не зарегистрированная причина выдачи
+              invalid_length: ИНН должен быть длинной 10 ил 12 символов
         user:
           attributes:
             email:
