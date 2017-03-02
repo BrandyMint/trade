@@ -5,8 +5,12 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
       = navbar_link_to 'Предложения', root_path, count: Good.published.count
       = navbar_link_to 'Организации', companies_path, count: Company.active.count
+
+      - unless logged_in?
+        = navbar_link_to 'Регистрация', new_user_path
+
     
-    - if current_user.present?
+    - if logged_in?
       = render 'user_dropdown'
     - else
       = simple_form_for UserSession.new, method: :post, html: { class: 'form-inline' } do |f|
