@@ -6,15 +6,15 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
       = navbar_link_to 'Предложения', root_path, count: Good.published.count
       = navbar_link_to 'Организации', companies_path, count: Company.active.count
 
-      - unless logged_in?
-        = navbar_link_to 'Регистрация', new_user_path
-
-    
     - if logged_in?
       = render 'user_dropdown'
     - else
+      - unless logged_in?
+       .mr-4= link_to 'Регистрация', new_user_path
       = simple_form_for UserSession.new, method: :post, html: { class: 'form-inline' } do |f|
         = f.input :email, label: false, input_html: { class: 'form-control-sm mr-sm-2' }
         = f.input :password, as: :password, label: false, input_html: { class: 'form-control-sm mr-sm-2' }
         button.btn.btn-sm.btn-outline-success.my-2.my-sm-0 type='submit'
           = fa_icon 'arrow-circle-right'
+
+      br

@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
   respond_to :html
 
-
   def new
     @user = User.new
-    respond_with @user
+    respond_with @user, layout: 'simple'
   end
 
   def create
     @user = User.create user_params
     auto_login @user if @user.persisted?
-    respond_with @user, location: -> { new_company_path }
+    respond_with @user, location: -> { new_company_path }, layout: 'simple'
   end
 
   def update

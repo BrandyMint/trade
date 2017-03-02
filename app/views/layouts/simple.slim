@@ -6,10 +6,12 @@ html
     = render 'layouts/dadata'
     = csrf_meta_tags
   body
+    nav.navbar.navbar-light.bg-faded.navbar-simple
+      .container.flex-centered
+        = link_to root_url, class: 'navbar-brand' do
+          = fa_icon :bank, text: application_title
     = render 'layouts/messages'
     main#content.container
-      nav.navbar.navbar-toggleable-md.navbar-light.bg-faded.fixed-top
-        .container
-          = link_to root_url, class: 'navbar-brand' do
-            = fa_icon :bank, text: application_title
       = yield
+
+    = render 'layouts/footer'
