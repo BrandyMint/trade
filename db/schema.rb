@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302154340) do
+ActiveRecord::Schema.define(version: 20170303102324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20170302154340) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "category",     null: false
-    t.bigint   "file_size"
-    t.string   "content_type"
+    t.bigint   "file_size",    null: false
+    t.string   "content_type", null: false
     t.index ["company_id", "category"], name: "index_company_documents_on_company_id_and_category", using: :btree
     t.index ["company_id"], name: "index_company_documents_on_company_id", using: :btree
   end
