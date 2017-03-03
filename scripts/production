@@ -1,1 +1,3 @@
-ssh www@online-prodaja.club
+#!/bin/bash
+
+ssh www@online-prodaja.club

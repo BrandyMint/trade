@@ -18,7 +18,8 @@ class Good < ApplicationRecord
   scope :view_order, -> { order 'id desc' }
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
-  validates :company_id, presence: true
+  validates :company, presence: true
+  validates :category, presence: true
 
   workflow do
     state :draft do
