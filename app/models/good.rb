@@ -7,7 +7,16 @@ class Good < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :company, counter_cache: true
-  belongs_to :category, counter_cache: true
+  belongs_to :category
+
+  counter_culture :category,
+    column_name: proc {|good| good.published? ? 'goods_count' : nil },
+    column_names: {
+      ['goods.workflow_state = ?', :published] => :goods_count
+    },
+    touch: true
+
+  # TODO перевести изображения товара с поля image в таблицу GoodImage
   # has_many :images, class_name: 'GoodImage'
 
   pg_search_scope :search_by_title,

@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'seedbank'
-
+gem 'counter_culture'
 
 gem 'money'
 gem 'money-rails'

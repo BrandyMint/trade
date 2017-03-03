@@ -1,6 +1,6 @@
 ul.nav.bd-sidebar
   li class=(category.present? ? 'nav-item' : 'nav-item active')
-    = link_to title_with_count('Все предложения', Good.count), goods_path, class: 'nav-link'
-  - Category.ordered.each do |c|
+    = link_to title_with_count('Все предложения', Good.published.count), goods_path, class: 'nav-link'
+  - Category.with_goods.ordered.each do |c|
     li class=(category == c ? 'nav-item active' : 'nav-item')
       = link_to title_with_count(c, c.goods_count), goods_path(category_id: c.id), class: 'nav-link'
