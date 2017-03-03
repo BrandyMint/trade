@@ -34,6 +34,9 @@ class GoodsController < ApplicationController
     @good = Good.find params[:id]
     authorize @good
     @good.update permitted_params
+
+    @good.draft! if params[:draft] && !@good.draft?
+    @good.publish! if params[:publish] && !@good.published?
     respond_with @good, location: -> { good_path @good }
   end
 
@@ -46,8 +49,8 @@ class GoodsController < ApplicationController
   def destroy
     @good = Good.find params[:id]
     authorize @good
-    @good.destroy!
-    redirect_to company_goods_path, success: "Товар #{@good.title} удален"
+    @good.trash!
+    redirect_to user_goods_path, success: "Товар #{@good.title} удален"
   end
 
   private

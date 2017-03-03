@@ -18,9 +18,14 @@
       = f.input :title
       hr
       = f.input :details
-      .row.mt-4
-        .col-md-6
-          = f.input :workflow_state, label: false, collection: good_workflow_states_collection, include_blank: false
-        .col-md-6
-          .pull-right
-            = f.button :submit, class: 'btn btn-primary'
+  .row.mt-4
+    .col-md-9
+      = f.button :submit, 'Сохранить в черновике', name: :draft, class: 'btn btn-outline-primary'
+      - if @good.persisted?
+        .mt-3
+          = link_to 'В архив', good_path(@good), method: :destroy, data: { confirm: 'Уверены?' }, class: 'btn btn-sm btn-outline-danger'
+    .col-md-3
+      .pull-right
+        = f.button :submit, 'Опубликовать', name: :publish, class: 'btn btn-success'
+      .clearfix
+

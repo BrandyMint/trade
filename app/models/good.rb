@@ -25,6 +25,7 @@ class Good < ApplicationRecord
 
   scope :published, -> { where workflow_state: :published }
   scope :view_order, -> { order 'id desc' }
+  scope :active, -> { where workflow_state: [:published, :draft] }
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
   validates :company, presence: true
@@ -32,10 +33,16 @@ class Good < ApplicationRecord
 
   workflow do
     state :draft do
-      event :publicate, :transitions_to => :published
+      event :publish, :transitions_to => :published
+      event :trash, :transitions_to => :trash
     end
     state :published do
-      event :review, :transitions_to => :draft
+      event :draft, :transitions_to => :draft
+      event :trash, :transitions_to => :trash
+    end
+    state :trash do
+      event :draft, :transitions_to => :trash
+      event :published, :transitions_to => :trash
     end
   end
 

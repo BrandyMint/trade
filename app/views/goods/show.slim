@@ -7,11 +7,13 @@ hr
 - if logged_in?
   .pull-right
     = render 'user_goods/button_actions', good: @good
-h1.mb-4 
+
+h1
   | Товар 
   = link_to "##{@good.id}", good_path(@good)
+= good_workflow_state @good.workflow_state
 
-.row
+.row.mt-4
   .col-md-4
     = image_tag @good.image.preview.url, width: 128
   .col-md-8

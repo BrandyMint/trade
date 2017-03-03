@@ -15,6 +15,6 @@ class UserGoodsController < ApplicationController
   private
 
   def goods_scope
-    current_user.goods
+    current_user.goods.active
   end
 end

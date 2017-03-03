@@ -13,3 +13,4 @@ ru:
     good_workflow_states:
       draft: Черновик
       published: Опубликовано
+      trash: В архиве

@@ -1,6 +1,6 @@
 - if policy(good).update?
-  = link_to 'Изменить', edit_good_path(good), class: 'btn btn-sm btn-outline-warning'
+  = link_to 'Изменить', edit_good_path(good), class: 'btn btn-sm btn-outline-secondary'
 
-- if policy(good).destroy?
-  = link_to 'Удалить', good_path(good), method: :delete, class: 'btn btn-sm btn-outline-danger ml-2', data: { confirm: 'Удалить?' }
+/- if policy(good).destroy?
+  /= link_to 'В архив', good_path(good), method: :delete, class: 'btn btn-sm btn-outline-danger ml-2', data: { confirm: 'Перемещаю в архив?' }
 

@@ -14,10 +14,13 @@ module GoodsHelper
   end
 
   def good_workflow_state(state)
-    if state == 'draft'
-      klass = 'badge badge-default'
-    else
+    case state
+    when 'draft'
+      klass = 'badge badge-info'
+    when 'published'
       klass = 'badge badge-success'
+    else
+      klass = 'badge badge-default'
     end
     content_tag :span, good_workflow_state_text(state), class: klass
   end

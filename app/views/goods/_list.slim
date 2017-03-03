@@ -1,19 +1,21 @@
-table.table.table-striped
-  - goods.each do |good|
-    tr
-      td style="width: 64px"= image_tag good.image.thumb.url, width: 64
-      td
-        span.good-title= link_to good.title, good_path(good)
-        br
-        small.text-muted= category_link good.category
-        .mt-2
-          small.text-muted= simple_format good.details
-      td
-        = humanized_price good.amount
-        p= good_prepayment_state good
-        .mt-2
-          small= company_link good.company
-      td style="width: 64px"
-        .pull-right
-          = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
-
+- if goods.any?
+  table.table.table-striped
+    - goods.each do |good|
+      tr
+        td style="width: 64px"= image_tag good.image.thumb.url, width: 64
+        td
+          span.good-title= link_to good.title, good_path(good)
+          br
+          small.text-muted= category_link good.category
+          .mt-2
+            small.text-muted= simple_format good.details
+        td
+          = humanized_price good.amount
+          p= good_prepayment_state good
+          .mt-2
+            small= company_link good.company
+        td style="width: 64px"
+          .pull-right
+            = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
+- else
+  .alert.alert-info Не найдно товаров по этому запросу
