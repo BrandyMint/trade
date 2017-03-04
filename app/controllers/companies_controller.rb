@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_filter :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index, :show]
 
   def index
     @companies = Company.active.order(:id)
@@ -55,7 +55,8 @@ class CompaniesController < ApplicationController
     @company = Company.find params[:id]
     authorize @company
     @company.update permitted_params
-    respond_with @company
+
+    render 'edit', locals: { step: @company.registration_step }
   end
 
   private

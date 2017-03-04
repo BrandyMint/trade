@@ -3,22 +3,24 @@ module Billing
     raise 'Не соотсветвуют суммы заблокированных средств' unless OpenbillAccount.system_locked.amount == OpenbillLocking.total(:locked)
   end
 
-  def self.income_to_company(company, amount, details:, order_number: , payer: )
+  def self.income_to_company(user:, company:, amount:, details:, order_number: , payer: )
     OpenbillTransaction.create!(
+      user: user,
       from_account: OpenbillAccount.system_income,
       to_account: company.account,
       amount: amount,
       details: details,
-      key: 'income-' + Time.now.to_s,
+      key: "income-#{order_number}",
       meta: { order_number: order_number, payer: payer }
     )
   end
 
-  def self.outcome_from_company(company, amount, details = nil)
+  def self.outcome_from_company(user:, company:, amount:, details:)
     account = company.account.reload
     account.transaction do
       raise "На счету компании не достаточно средств" if account.amount < amount
       OpenbillTransaction.create!(
+        user: user,
         from_account: company.account,
         to_account: OpenbillAccount.system_income,
         amount: amount,
@@ -29,7 +31,7 @@ module Billing
   end
 
   # Блокируем на счету компании сумму достаточную для покупки товара
-  def self.lock_amount(company, good)
+  def self.lock_amount(user:, company:, good:)
     base_account = company.account.reload
     fail 'Нельзя покупать у самого себя' if company.id == good.company.id
 
@@ -38,6 +40,7 @@ module Billing
       raise "Не хватает средств #{base_account.amount} < #{good.amount}" if base_account.amount < good.amount
 
       t = OpenbillTransaction.create!(
+        user: user,
         from_account: base_account,
         to_account: OpenbillAccount.system_locked,
         key: "lock-#{company.id}-#{good.id}-#{Time.now.to_i}",
@@ -46,6 +49,7 @@ module Billing
         meta: { buyer_company_id: company.id, seller_company_id: good.company_id, good_id: good.id }
       )
       OpenbillLocking.create!(
+        user: user,
         seller: good.company,
         buyer: company,
         amount: good.amount,
@@ -56,20 +60,21 @@ module Billing
   end
 
   # Овобождаем заблокированные средства (возвращаем покупателю)
-  def self.free_amount(locking)
+  def self.free_amount(user:, locking:)
     locking.reload.with_lock do
-      raise 'Вернуть можно только заблокированные средства' unless locking.state == 'locked'
-      t = locking.locking_transaction.reverse!
+      raise 'Вернуть можно только заблокированные средства' unless locking.locked?
+      t = locking.locking_transaction.reverse! user: user
       locking.update reverse_transaction: t
     end
   end
 
   # Передаем заблокированные средства покупателю
-  def self.buy_amount(locking)
+  def self.buy_amount(user:, locking:)
     locking.reload.with_lock do
       raise 'Сумма блокировки отличается от суммы товара' unless locking.amount == locking.good.reload.amount
       raise 'Разблокировать можно только заблокированные средства' unless locking.locked?
       t = OpenbillTransaction.create!(
+        user: user,
         from_account: OpenbillAccount.system_locked,
         to_account: locking.seller.account,
         key: "buy-#{locking.id}",

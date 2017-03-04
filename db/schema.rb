@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303102324) do
+ActiveRecord::Schema.define(version: 20170304222022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,12 +140,14 @@ ActiveRecord::Schema.define(version: 20170303102324) do
     t.string   "amount_currency",        limit: 3, default: "RUB", null: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.integer  "user_id",                                          null: false
     t.index ["buy_transaction_id"], name: "index_openbill_lockings_on_buy_transaction_id", using: :btree
     t.index ["buyer_id"], name: "index_openbill_lockings_on_buyer_id", using: :btree
     t.index ["good_id"], name: "index_openbill_lockings_on_good_id", using: :btree
     t.index ["locking_transaction_id"], name: "index_openbill_lockings_on_locking_transaction_id", using: :btree
     t.index ["reverse_transaction_id"], name: "index_openbill_lockings_on_reverse_transaction_id", using: :btree
     t.index ["seller_id"], name: "index_openbill_lockings_on_seller_id", using: :btree
+    t.index ["user_id"], name: "index_openbill_lockings_on_user_id", using: :btree
     t.index ["workflow_state"], name: "index_openbill_lockings_on_workflow_state", using: :btree
   end
 
@@ -172,6 +174,7 @@ ActiveRecord::Schema.define(version: 20170303102324) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
+    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -250,6 +253,7 @@ ActiveRecord::Schema.define(version: 20170303102324) do
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "buy_transaction_id"
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "locking_transaction_id"
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "reverse_transaction_id"
+  add_foreign_key "openbill_lockings", "users"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "from_account_id", name: "openbill_policies_from_account_id_fkey"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "to_account_id", name: "openbill_policies_to_account_id_fkey"
   add_foreign_key "openbill_policies", "openbill_categories", column: "from_category_id", name: "openbill_policies_from_category_id_fkey"
@@ -258,6 +262,7 @@ ActiveRecord::Schema.define(version: 20170303102324) do
   add_foreign_key "openbill_transactions", "openbill_accounts", column: "to_account_id", name: "openbill_transactions_to_account_id_fkey"
   add_foreign_key "openbill_transactions", "openbill_operations", column: "operation_id", name: "openbill_transactions_operation_id_fkey", on_update: :restrict, on_delete: :restrict
   add_foreign_key "openbill_transactions", "openbill_transactions", column: "reverse_transaction_id", name: "reverse_transaction_foreign_key"
+  add_foreign_key "openbill_transactions", "users", name: "openbill_transactions_user_id"
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "goods"
   add_foreign_key "orders", "users"

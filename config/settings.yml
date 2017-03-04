@@ -1,0 +1,22 @@
+defaults: &defaults
+  app:
+    name: 'Online-Prodaja.Club'
+
+    host: online-prodaja.club
+    # Можно и не устанавливать
+    # tld_length: 1
+  mailer:
+    from: noreply@online-prodaja.club
+
+development:
+  <<: *defaults
+  app:
+    name: 'Online-Prodaja.Club'
+
+    host: 3000.brandymint.ru
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults

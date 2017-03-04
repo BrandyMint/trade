@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
     :common
   end
 
+  # Вызфывает Sorcery из require_login
   def not_authenticated
-    raise NoAuthentication
+    raise RequireLogin
   end
 end

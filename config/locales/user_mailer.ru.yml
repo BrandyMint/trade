@@ -1,0 +1,5 @@
+ru:
+  user_mailer:
+    reset_password_email:
+      subject: 'Восстановление доступа'
+

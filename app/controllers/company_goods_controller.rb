@@ -1,5 +1,4 @@
 class CompanyGoodsController < ApplicationController
-  after_action :verify_authorized
   respond_to :html
 
   def new

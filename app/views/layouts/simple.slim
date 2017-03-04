@@ -10,8 +10,8 @@ html
       .container.flex-centered
         = link_to root_url, class: 'navbar-brand' do
           = fa_icon :bank, text: application_title
-    = render 'layouts/messages'
     main#content.container
+      = render 'layouts/messages'
       = yield
 
     = render 'layouts/footer'

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :goods, through: :companies
 
   validates :name,                    presence: true
-  validates :phone,                   presence: true
+  validates :phone,                   presence: true, phone: true, uniqueness: true
   validates :password,                presence: true, confirmation: true, length: { minimum: 3}
   validates :email,                   presence: true, uniqueness: true, email: true
   validates :password_confirmation,   presence: true

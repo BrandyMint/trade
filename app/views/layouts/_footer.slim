@@ -5,8 +5,9 @@ footer#footer.bg-faded
       .col-md-6.text-muted
         = "#{application_title} © ООО Альянс 2017"
         .mt-3= link_to 'Администраторам', '/admin'
+        - if Rails.env.development?
+          .mt-3= link_to 'letter_opener', '/letter_opener'
       .col-md-6
-        = link_to 'на верх', '#'
         .text-muted.pull-right
           | Сделано в 
           = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'

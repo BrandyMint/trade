@@ -49,6 +49,7 @@ CREATE TABLE OPENBILL_TRANSACTIONS (
   id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   operation_id    UUID,
   owner_id        UUID,
+  user_id         integer not null,
   username        character varying(255) not null,
   date            date default current_date not null,
   created_at      timestamp without time zone default current_timestamp,
@@ -67,3 +68,5 @@ CREATE TABLE OPENBILL_TRANSACTIONS (
 CREATE UNIQUE INDEX index_transactions_on_key ON OPENBILL_TRANSACTIONS USING btree (key);
 CREATE INDEX index_transactions_on_meta ON OPENBILL_TRANSACTIONS USING gin (meta);
 CREATE INDEX index_transactions_on_created_at ON OPENBILL_TRANSACTIONS USING btree (created_at);
+
+alter table openbill_transactions add constraint openbill_transactions_user_id foreign key (user_id) references users (id);

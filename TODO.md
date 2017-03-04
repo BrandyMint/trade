@@ -24,3 +24,7 @@
 * [ ] Проверка контрагента по IFNS
 * [ ] Формирование счета
 * [ ] Учитывать статус товара при просмотре
+
+    alter table openbill_transactions add user_id integer not null;
+
+alter table openbill_transactions add constraint openbill_transactions_user_id foreign key (user_id) references users (id);

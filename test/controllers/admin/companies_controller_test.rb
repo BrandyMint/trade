@@ -2,7 +2,8 @@ require 'test_helper'
 
 class Admin::CompaniesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @company = companies(:one)
+    @company = companies(:two)
+    login users(:manager)
   end
 
   test "should get index" do
@@ -10,39 +11,27 @@ class Admin::CompaniesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_company_url
-    assert_response :success
-  end
-
-  test "should create company" do
-    assert_difference('Company.count') do
-      post companies_url, params: { company: {  } }
-    end
-
-    assert_redirected_to company_url(Company.last)
-  end
-
   test "should show company" do
     get company_url(@company)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_company_url(@company)
-    assert_response :success
-  end
+  test "should review company" do
+    patch start_review_admin_company_url(@company)
+    assert_redirected_to admin_company_url(@company)
+    assert @company.reload.being_reviewed?
 
-  test "should update company" do
-    patch company_url(@company), params: { company: {  } }
-    assert_redirected_to company_url(@company)
-  end
+    patch reject_admin_company_url(@company),
+      params: { company: { reject_message: 'test' }}
+    assert_redirected_to admin_company_url(@company)
+    assert @company.reload.rejected?
 
-  test "should destroy company" do
-    assert_difference('Company.count', -1) do
-      delete company_url(@company)
-    end
+    patch start_review_admin_company_url(@company)
+    assert_redirected_to admin_company_url(@company)
+    assert @company.reload.being_reviewed?
 
-    assert_redirected_to companies_url
+    patch accept_admin_company_url(@company)
+    assert_redirected_to admin_company_url(@company)
+    assert @company.reload.accepted?
   end
 end

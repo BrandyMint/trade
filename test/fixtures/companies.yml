@@ -3,15 +3,19 @@
 one:
   user: one
   name: MyString
-  form: MyString
+  form: INDIVIDUAL
   inn: MyString
   ogrn: MyString
   account: one
 
 two:
   user: two
-  name: MyString
-  form: MyString
-  inn: MyString
-  ogrn: MyString
+  name: test
+  inn: 7883296551
+  ogrn: 1162130066526
+  kpp: 472601001
+  email: danil@brandymint.ru
+  phone: +79033891228
+  form: LEGAL
   account: two
+  workflow_state: awaiting_review

@@ -7,28 +7,34 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create user_params
+    @user = User.new user_params
+    @user.save!
     auto_login @user if @user.persisted?
-    respond_with @user, location: -> { new_company_path }, layout: 'simple'
+
+    redirect_to new_company_path
+  rescue ActiveRecord::RecordInvalid
+    render :new, layout: 'simple'
   end
 
   def update
     require_login
 
-    @user = current_user
+    @user = User.find params[:id]
+    authorize @user
     @user.update user_params
     respond_with @user, layout: 'profile'
   end
 
   def edit
     require_login
-    @user = current_user
+    @user = User.find params[:id]
+    authorize @user
     respond_with @user, layout: 'profile'
   end
 
   private
 
   def user_params
-    params.require( :user ).permit(:phone, :name, :email)
+    params.require( :user ).permit(:phone, :name, :email, :password, :password_confirmation)
   end
 end

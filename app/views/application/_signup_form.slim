@@ -13,5 +13,8 @@
     .col-md-6
       = f.input :password_confirmation, label: false
   .row.mt-4
-    .col-md-12
+    .col-md-6
       = f.button :submit, class: 'btn btn-lg btn-primary', data: { disable_with: 'Подождите..' }
+    .col-md-6
+      .pull-right
+        = link_to 'Я уже зарегистрирован. Дайте войти..', signin_path

@@ -10,6 +10,6 @@ class Admin::ApplicationController < ApplicationController
 
   def require_admin
     require_login
-    raise AdminRequired unless current_user.is_admin?
+    authorize current_user, :admin?
   end
 end

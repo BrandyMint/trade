@@ -5,6 +5,7 @@ class OpenbillLocking < ApplicationRecord
   belongs_to :seller, class_name: 'Company'
   belongs_to :buyer, class_name: 'Company'
   belongs_to :good
+  belongs_to :user
 
   belongs_to :locking_transaction, class_name: 'OpenbillTransaction'
   belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
@@ -25,12 +26,11 @@ class OpenbillLocking < ApplicationRecord
     Money.new where(workflow_state: state).sum(:amount_cents)
   end
 
-  def accept(admin)
-    # TODO update admin
-    Billing.buy_amount self
+  def accept(user)
+    Billing.buy_amount user: user, locking: self
   end
 
-  def reject(admin)
-    Billing.free_amount self
+  def reject(user)
+    Billing.free_amount user: user, locking: self
   end
 end

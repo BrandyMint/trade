@@ -1,0 +1,2 @@
+class RequireLogin < StandardError
+end

@@ -1,30 +1,18 @@
                         Prefix Verb   URI Pattern                                                  Controller#Action
                           root GET    /                                                            welcome#index
+             letter_opener_web        /letter_opener                                               LetterOpenerWeb::Engine
                         signin GET    /signin(.:format)                                            user_sessions#new
                         signup GET    /signup(.:format)                                            users#new
                        signout DELETE /signout(.:format)                                           user_sessions#destroy
                  user_sessions POST   /user_sessions(.:format)                                     user_sessions#create
-              new_user_session GET    /user_sessions/new(.:format)                                 user_sessions#new
-                  user_session DELETE /user_sessions/:id(.:format)                                 user_sessions#destroy
                          users POST   /users(.:format)                                             users#create
                       new_user GET    /users/new(.:format)                                         users#new
                      edit_user GET    /users/:id/edit(.:format)                                    users#edit
                           user PATCH  /users/:id(.:format)                                         users#update
                                PUT    /users/:id(.:format)                                         users#update
-                  new_password GET    /password/new(.:format)                                      passwords#new
                  edit_password GET    /password/edit(.:format)                                     passwords#edit
-                      password GET    /password(.:format)                                          passwords#show
-                               PATCH  /password(.:format)                                          passwords#update
+                      password PATCH  /password(.:format)                                          passwords#update
                                PUT    /password(.:format)                                          passwords#update
-                               DELETE /password(.:format)                                          passwords#destroy
-                               POST   /password(.:format)                                          passwords#create
-                   new_profile GET    /profile/new(.:format)                                       profile#new
-                  edit_profile GET    /profile/edit(.:format)                                      profile#edit
-                       profile GET    /profile(.:format)                                           profile#show
-                               PATCH  /profile(.:format)                                           profile#update
-                               PUT    /profile(.:format)                                           profile#update
-                               DELETE /profile(.:format)                                           profile#destroy
-                               POST   /profile(.:format)                                           profile#create
                   done_company PUT    /companies/:id/done(.:format)                                companies#done
      company_company_documents GET    /companies/:company_id/company_documents(.:format)           company_documents#index
                                POST   /companies/:company_id/company_documents(.:format)           company_documents#create
@@ -34,14 +22,6 @@
                                PATCH  /companies/:company_id/company_documents/:id(.:format)       company_documents#update
                                PUT    /companies/:company_id/company_documents/:id(.:format)       company_documents#update
                                DELETE /companies/:company_id/company_documents/:id(.:format)       company_documents#destroy
-         company_company_goods GET    /companies/:company_id/company_goods(.:format)               company_goods#index
-                               POST   /companies/:company_id/company_goods(.:format)               company_goods#create
-      new_company_company_good GET    /companies/:company_id/company_goods/new(.:format)           company_goods#new
-     edit_company_company_good GET    /companies/:company_id/company_goods/:id/edit(.:format)      company_goods#edit
-          company_company_good GET    /companies/:company_id/company_goods/:id(.:format)           company_goods#show
-                               PATCH  /companies/:company_id/company_goods/:id(.:format)           company_goods#update
-                               PUT    /companies/:company_id/company_goods/:id(.:format)           company_goods#update
-                               DELETE /companies/:company_id/company_goods/:id(.:format)           company_goods#destroy
                      companies GET    /companies(.:format)                                         companies#index
                                POST   /companies(.:format)                                         companies#create
                    new_company GET    /companies/new(.:format)                                     companies#new
@@ -79,8 +59,6 @@
                password_resets POST   /password_resets(.:format)                                   password_resets#create
             new_password_reset GET    /password_resets/new(.:format)                               password_resets#new
            edit_password_reset GET    /password_resets/:id/edit(.:format)                          password_resets#edit
-                password_reset PATCH  /password_resets/:id(.:format)                               password_resets#update
-                               PUT    /password_resets/:id(.:format)                               password_resets#update
                     admin_root GET    /admin(.:format)                                             admin/dashboard#index
             admin_transactions GET    /admin/transactions(.:format)                                admin/transactions#index
                                POST   /admin/transactions(.:format)                                admin/transactions#create
@@ -136,3 +114,10 @@ edit_admin_company_transaction GET    /admin/companies/:company_id/transactions/
                                PATCH  /admin/companies/:id(.:format)                               admin/companies#update
                                PUT    /admin/companies/:id(.:format)                               admin/companies#update
                                DELETE /admin/companies/:id(.:format)                               admin/companies#destroy
+
+Routes for LetterOpenerWeb::Engine:
+clear_letters DELETE /clear(.:format)                 letter_opener_web/letters#clear
+delete_letter DELETE /:id(.:format)                   letter_opener_web/letters#destroy
+      letters GET    /                                letter_opener_web/letters#index
+       letter GET    /:id(/:style)(.:format)          letter_opener_web/letters#show
+              GET    /:id/attachments/:file(.:format) letter_opener_web/letters#attachment

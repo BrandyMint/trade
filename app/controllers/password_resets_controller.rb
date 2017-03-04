@@ -14,7 +14,9 @@ class PasswordResetsController < ApplicationController
 
       # Tell the user instructions have been sent whether or not email was found.
       # This is to not leak information to attackers about which emails exist in the system.
-      redirect_to signin_path, success: "Инструкции по восстановлению пароля отправлены на указанный емайл #{password_reset.email}"
+      flash[:success] =
+        "Если вы зарегистрированы, то инструкции по восстановлению пароля отправлены на указанный емайл #{password_reset.email}"
+      redirect_to signin_path
     else
       render :new, locals: { password_reset: password_reset }
     end
@@ -25,22 +27,26 @@ class PasswordResetsController < ApplicationController
     @user = User.load_from_reset_password_token(params[:id])
     @token = params[:id]
     not_authenticated if !@user
+
+    auto_login @user
+    flash[:success] = 'Установите новый пароль'
+    redirect_to edit_password_path
   end
 
   # This action fires when the user has sent the reset password form.
-  def update
-    @token = params[:token] # needed to render the form again in case of error
-    @user = User.load_from_reset_password_token(@token)
-    not_authenticated if !@user
-    # the next line makes the password confirmation validation work
-    @user.password_confirmation = params[:user][:password_confirmation]
-    # the next line clears the temporary token and updates the password
-    if @user.change_password!(params[:user][:password])
-      redirect_to(root_path, :notice => 'Password was successfully updated.')
-    else
-      render :action => "edit"
-    end
-  end
+  #def update
+    #@token = params[:token] # needed to render the form again in case of error
+    #@user = User.load_from_reset_password_token(@token)
+    #not_authenticated if !@user
+    ## the next line makes the password confirmation validation work
+    #@user.password_confirmation = params[:user][:password_confirmation]
+    ## the next line clears the temporary token and updates the password
+    #if @user.change_password!(params[:user][:password])
+      #redirect_to(root_path, :notice => 'Password was successfully updated.')
+    #else
+      #render :action => "edit"
+    #end
+  #end
 
   private
 

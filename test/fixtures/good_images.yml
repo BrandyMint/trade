@@ -3,7 +3,11 @@
 one:
   good: one
   image: MyString
+  file_size: 123
+  content_type: image/jpeg
 
 two:
   good: two
   image: MyString
+  file_size: 123
+  content_type: image/jpeg

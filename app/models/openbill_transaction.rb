@@ -1,9 +1,10 @@
 class OpenbillTransaction < OpenbillRecord
   belongs_to :from_account, class_name: 'OpenbillAccount'
   belongs_to :to_account, class_name: 'OpenbillAccount'
+  belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
+  belongs_to :user
 
   has_one :reversation_transaction, class_name: 'OpenbillTransaction'
-  belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
 
   scope :ordered, -> { order created_at: :desc }
 
@@ -27,9 +28,10 @@ class OpenbillTransaction < OpenbillRecord
     Company.find_by_id meta[:company_id]
   end
 
-  def reverse!
+  def reverse!(user: )
     fail 'alreade reversed' if reverse_transaction_id.present?
     reverse_transaction = self.class.new
+    reverse_transaction.user = user
     reverse_transaction.amount = amount
     reverse_transaction.from_account_id = to_account_id
     reverse_transaction.to_account_id = from_account_id

@@ -1,2 +1,0 @@
-class NoAuthentication < StandardError
-end

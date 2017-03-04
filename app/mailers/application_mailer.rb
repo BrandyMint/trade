@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  self.default_url_options = { host: Settings.app.host }
+  default from: Settings.mailer.from
+
   layout 'mailer'
 end

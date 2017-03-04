@@ -8,6 +8,7 @@ class InnValidator <  ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     res = true
+    value = value.to_s
     unless value =~ /^\d+$/
       error record, attribute, value, :numbers_only
       res = false

@@ -8,10 +8,27 @@ one:
   email: danil@brandymint.ru
   phone: +79033891228
   name: Вася
-# column: value
-#
+
+  # пароль: 123
+  crypted_password: $2a$10$YP1cvtJyIIljTJO8U6uHKuuMzWOfRIh/1xyQiBfdU33SV0zQ/pQHO
+  salt: 72TumoFenjTzLVPQfRus
+
+  reset_password_token: 123
+
 two:
   email: test@brandymint.ru
   phone: +79033891229
   name: Петя
-# column: value
+
+manager: 
+  email: admin@brandymint.ru
+  phone: +79033891220
+  name: Вася
+  role: manager
+
+  # пароль: 123
+  crypted_password: $2a$10$YP1cvtJyIIljTJO8U6uHKuuMzWOfRIh/1xyQiBfdU33SV0zQ/pQHO
+  salt: 72TumoFenjTzLVPQfRus
+
+  reset_password_token: 123
+

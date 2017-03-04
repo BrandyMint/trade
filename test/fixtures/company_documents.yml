@@ -4,10 +4,14 @@ one:
   company: one
   category: ustav
   file: MyString
-  state: MyString
+  state: draft
+  file_size: 123
+  content_type: image/jpeg
 
 two:
   company: one
   category: ustav
   file: MyString
-  state: MyString
+  state: accepted
+  file_size: 456
+  content_type: image/jpeg

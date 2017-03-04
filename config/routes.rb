@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   get 'signin', to: 'user_sessions#new'
   get 'signup', to: 'users#new'
   delete 'signout', to: 'user_sessions#destroy'
 
-  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :user_sessions, only: [:create]
   resources :users, only: [:create, :update, :new, :edit]
 
   resource :password, only: [:edit, :update]
 
-  resource :profile, controller: :profile
   resources :companies do
     member do
       put :done
     end
     resources :company_documents
-    resources :company_goods
   end
 
   resources :user_goods
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :orders
   resources :goods
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit]
 
   namespace :admin do
     root 'dashboard#index'

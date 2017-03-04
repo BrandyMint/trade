@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if login user_session.email, user_session.password, user_session.remember
       redirect_back_or_to root_url, { success: "Добро пожаловать, #{current_user}!" }
     else
-      user_session.errors[:email] = 'Нет такого пользователя или пароль не верный'
+      user_session.errors.add :email, 'Нет такого пользователя или пароль не верный'
       render :new, locals: { user_session: user_session }
     end
   end

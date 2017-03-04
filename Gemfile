@@ -52,6 +52,7 @@ gem 'ancestry'
 gem 'validates_russian'
 gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 gem 'workflow'
+gem 'settingslogic'
 
 
 # Специально для draper
@@ -103,6 +104,10 @@ end
 gem 'nprogress-rails'
 
 group :development, :test do
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+  gem 'rspec-expectations'
+  gem 'rspec-mocks'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'faker-russian'

@@ -60,14 +60,15 @@ ru:
         company:
           attributes:
             inn:
-              unknown_region: Неверный регион в ИНН
-              numbers_only: ИНН состоит только из чисел
+              unknown_region: Неверный регион
+              numbers_only: состоит только из чисел
               invalid_pp: Не зарегистрированная причина выдачи
-              invalid_length: ИНН должен быть длинной 10 ил 12 символов
+              invalid_length: должен быть длинной 10 ил 12 символов
         user:
           attributes:
             email:
               taken: Пользователь с этим емайлом уже зарегистрирован
+              email: Должен быть емайл
             password_confirmation:
               blank: Подвтердите пароль
               confirmation: Пароли на совпадают
