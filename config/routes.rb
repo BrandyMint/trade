@@ -66,4 +66,11 @@ Rails.application.routes.draw do
       resources :transactions, controller: 'company_transactions'
     end
   end
+
+  get "error" => "errors#show", :as => "error"
+  %w( 404 422 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
+  get '*anything', to: 'errors#show', code: 404
 end
