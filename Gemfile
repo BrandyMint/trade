@@ -37,6 +37,8 @@ gem 'counter_culture'
 gem 'money'
 gem 'money-rails'
 
+gem 'sidekiq'
+
 # gem 'openbill-ruby', github: 'openbill-service/openbill-ruby'
 gem 'pundit'
 gem 'kaminari'

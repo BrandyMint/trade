@@ -1,5 +1,12 @@
+require 'sidekiq/web'
+Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+
+require 'admin_constraint'
+
 Rails.application.routes.draw do
   root 'welcome#index'
+
+  mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
