@@ -3,7 +3,7 @@ class OpenbillCategory < ApplicationRecord
   LOCKED_NAME = 'Счета блокировки'
   SYSTEM_NAME = 'Системные счета'
 
-  has_many :openbill_accounts
+  has_many :openbill_accounts, foreign_key: :category_id
 
   def self.system
     OpenbillCategory.find_or_create_by name: SYSTEM_NAME

@@ -9,6 +9,8 @@ class Good < ApplicationRecord
   belongs_to :company, counter_cache: true
   belongs_to :category
 
+  has_many :orders
+
   counter_culture :category,
     column_name: proc {|good| good.published? ? 'goods_count' : nil },
     column_names: {
@@ -55,6 +57,10 @@ class Good < ApplicationRecord
 
   def to_s
     title
+  end
+
+  def orderable_for_company?(company)
+    !prepayment_required? || amount.nil? || amount <= company.amount
   end
 
   private

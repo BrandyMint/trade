@@ -31,7 +31,10 @@ module Billing
   end
 
   # Блокируем на счету компании сумму достаточную для покупки товара
-  def self.lock_amount(user:, company:, good:)
+  def self.lock_amount(order)
+    user = order.user
+    company = order.company
+    good = order.good
     base_account = company.account.reload
     fail 'Нельзя покупать у самого себя' if company.id == good.company.id
 
@@ -43,12 +46,13 @@ module Billing
         user: user,
         from_account: base_account,
         to_account: OpenbillAccount.system_locked,
-        key: "lock-#{company.id}-#{good.id}-#{Time.now.to_i}",
+        key: "lock-for-order:#{order.id}",
         amount: good.amount,
-        details: "Блокировка средств для приобретения #{good.id}",
-        meta: { buyer_company_id: company.id, seller_company_id: good.company_id, good_id: good.id }
+        details: "Блокировка средств для приобретения #{good.id}. Заказ #{order.id}",
+        meta: { buyer_company_id: company.id, order_id: order.id, seller_company_id: good.company_id, good_id: good.id }
       )
       OpenbillLocking.create!(
+        order: order,
         user: user,
         seller: good.company,
         buyer: company,

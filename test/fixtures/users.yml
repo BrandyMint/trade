@@ -7,7 +7,7 @@
 one: 
   email: danil@brandymint.ru
   phone: +79033891228
-  name: Вася
+  name: Сережа
 
   # пароль: 123
   crypted_password: $2a$10$YP1cvtJyIIljTJO8U6uHKuuMzWOfRIh/1xyQiBfdU33SV0zQ/pQHO
@@ -18,7 +18,18 @@ one:
 two:
   email: test@brandymint.ru
   phone: +79033891229
+  name: Вася
+  # пароль: 123
+  crypted_password: $2a$10$YP1cvtJyIIljTJO8U6uHKuuMzWOfRIh/1xyQiBfdU33SV0zQ/pQHO
+  salt: 72TumoFenjTzLVPQfRus
+
+without_company:
+  email: nocompany@brandymint.ru
+  phone: +79033891221
   name: Петя
+  # пароль: 123
+  crypted_password: $2a$10$YP1cvtJyIIljTJO8U6uHKuuMzWOfRIh/1xyQiBfdU33SV0zQ/pQHO
+  salt: 72TumoFenjTzLVPQfRus
 
 manager: 
   email: admin@brandymint.ru

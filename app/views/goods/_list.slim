@@ -11,11 +11,11 @@
             small.text-muted= simple_format good.details
         td
           = humanized_price good.amount
-          p= good_prepayment_state good
+          span.ml-2= good_prepayment_icon good
+          .pull-right
+            = good_buy_link good
+          .clearfix
           .mt-2
             small= company_link good.company
-        td style="width: 64px"
-          .pull-right
-            = link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
 - else
   .alert.alert-info Не найдно товаров по этому запросу

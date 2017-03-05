@@ -14,14 +14,14 @@ table.table.table-condensed.table-striped
           .text-nowrap= l t.created_at, format: :short
         td
           - if t.from_account.company.present?
-            = link_to t.from_account, admin_company_path(t.from_account.company.id)
+            = admin_company_link t.from_account.company
           - else
             = t.from_account
         td.text-nowrap
           = link_to transaction_amount(t), admin_transaction_path(t)
         td
           - if t.to_account.company.present?
-            = link_to t.to_account, admin_company_path(t.to_account.company.id)
+            = admin_company_link t.to_account.company
           - else
             = t.to_account
         td= t.company.present? ? t.opposite_account.details : ''

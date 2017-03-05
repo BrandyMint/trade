@@ -6,6 +6,8 @@ require 'admin_constraint'
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  get 'supersignin/:id', to: 'user_sessions#supersignin', as: :supersignin
+
   mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
 
   if Rails.env.development?
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   delete 'signout', to: 'user_sessions#destroy'
 
+  resources :user_transactions, only: [:index, :new, :show]
   resources :user_sessions, only: [:create]
   resources :users, only: [:create, :update, :new, :edit]
 
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user_orders
   resources :user_goods
   resources :user_companies, only: [:index]
 
@@ -44,14 +48,16 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :transactions
+    resources :users
     resources :banners
     resources :goods
-    resources :lockings do
+    resources :orders do
       member do
-        patch :accept
-        patch :reject
+        patch :complete
+        patch :cancel
       end
     end
+    resources :lockings
     resources :users do
       member do
         post :signin

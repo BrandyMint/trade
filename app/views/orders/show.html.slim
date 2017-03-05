@@ -1,0 +1,5 @@
+h1 Заказ ##{order.id}
+
+.badge.badge-info= order_workflow_state_text order.workflow_state
+p Покупатель: #{company_link order.company}
+= render 'goods/short', good: order.good

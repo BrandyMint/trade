@@ -12,3 +12,4 @@ footer#footer.bg-faded
           | Сделано в 
           = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'
           .mt-3.text-muted= AppVersion
+    = render 'test_users' if can_supersignin?

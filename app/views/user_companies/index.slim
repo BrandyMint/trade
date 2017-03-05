@@ -8,19 +8,20 @@
     - companies.each do |c|
       tr
         td
+          = company_icon c
+          |  
           = c.name
-          div= company_state_tag c
-          small.text-muted.mt-3
-            = c.inn
-            | /
-            = c.ogrn
+          |  
+          span= company_state_tag c
+          br
+          small.text-muted= company_reg_info c
           br
           small.text-muted= c.address
+          - if c.draft?
+            .mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-secondary'
+        td.text-nowrap
+          = humanized_money_with_symbol c.amount
         td
           = link_to t(:goods_count, scope: [:helpers], count: c.goods.published.count), user_goods_path(company_id: c.id)
-
-        td
-          - if c.draft?
-            small.mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-secondary'
 - else
   .alert.alert-info У Вас пока не зарегистрировано ни одной организации.

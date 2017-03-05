@@ -1,9 +1,11 @@
 .row.mb-4
   .col-md-9
-    h1
-      = company_icon @company
-      |  Организация #{@company}
-    = company_state_tag @company
+    .pull-right
+      = company_state_tag @company
+    h1.mb-2= @company
+    span.mr-3= company_icon @company
+    = @company.address
+
 
   .col-md-3
     - if logged_in?
@@ -14,7 +16,6 @@
           = link_to 'Другие предложения', user_goods_path(company_id: @company.id), class: 'btn btn-sm btn-outline-secondary'
 
 hr
-p.text-muted= @company.address
 
 h2 Торговые предложения
 

@@ -11,12 +11,17 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   helper_method :current_namespace
+  helper_method :can_supersignin?
   protect_from_forgery with: :exception
 
   protected
 
   def current_namespace
     :common
+  end
+
+  def can_supersignin?
+    Rails.env.development? || (logged_in? && current_user.is_admin?)
   end
 
   # Вызфывает Sorcery из require_login

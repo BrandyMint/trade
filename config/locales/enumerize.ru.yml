@@ -14,3 +14,12 @@ ru:
       draft: Черновик
       published: Опубликовано
       trash: В архиве
+    order_workflow_states:
+      actual: Действующий
+      completed: Завершен
+      canceled: Отменен
+    locking_workflow_states:
+      locked: Заблокировано
+      accepted: Средства переведены продавцу
+      rejecetd: Средства возвращены покупателю
+

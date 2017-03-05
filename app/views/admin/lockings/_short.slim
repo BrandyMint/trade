@@ -1,0 +1,9 @@
+.alert.alert-danger
+  = locking_workflow_state_text order.locking.workflow_state
+  - if order.locked?
+    | : 
+    strong= humanized_money_with_symbol order.locking.amount
+
+- if order.locked?
+  = link_to 'Заврешить покупку (отдать средства продавцу)', complete_admin_order_path(order), class: 'btn btn-success btn-sm', method: :patch
+  = link_to 'Отклонить покупку (вернуть средства покупателю)', cancel_admin_order_path(order), class: 'btn btn-warning btn-sm', method: :patch

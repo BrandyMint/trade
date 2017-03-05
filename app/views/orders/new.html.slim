@@ -14,7 +14,8 @@ hr.mb-4
       = render 'companies/short', company: @order.good.company
     .col-md-6
       p Вы оформляете покупку на органиацию:
-      = f.input :company_id, collection: companies_to_buy(current_user), include_blank: false, label: false, hint: 'Покупатель'
+      = select_tag 'order[company_id]', companies_as_options
+      -# = f.input :company_id, collection: available_companies, include_blank: false, label: false, hint: 'Покупатель'
 
       .mt-4
         = f.submit "Оформить заказ", class: 'btn btn-success'

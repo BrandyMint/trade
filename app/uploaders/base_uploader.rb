@@ -64,7 +64,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   before :cache, :save_original_filename
 
   def save_original_filename(file)
-    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename) && model.respond_to?(:original_filename)
   end
 
   def secure_token

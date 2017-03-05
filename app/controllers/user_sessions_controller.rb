@@ -5,6 +5,20 @@ class UserSessionsController < ApplicationController
     render locals: { user_session: user_session }
   end
 
+  def supersignin
+    if can_supersignin?
+      user = User.find params[:id]
+      auto_login user
+      if user.is_admin?
+        redirect_to admin_root_path
+      else
+        redirect_to :back
+      end
+    else
+      flash[:danger] = 'Ай-яй'
+    end
+  end
+
   def create
     if login user_session.email, user_session.password, user_session.remember
       redirect_back_or_to root_url, { success: "Добро пожаловать, #{current_user}!" }

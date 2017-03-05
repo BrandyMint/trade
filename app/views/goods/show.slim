@@ -4,14 +4,17 @@ p
   | Продавец: 
   = company_link @good.company
 hr
-- if logged_in?
-  .pull-right
+.pull-right
+  .mb-3= good_buy_link @good
+  - if logged_in?
     = render 'user_goods/button_actions', good: @good
 
 h1
   | Товар 
   = link_to "##{@good.id}", good_path(@good)
-= good_workflow_state @good.workflow_state
+
+- unless @good.published?
+  = good_workflow_state @good.workflow_state
 
 .row.mt-4
   .col-md-4

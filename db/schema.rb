@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305160253) do
+ActiveRecord::Schema.define(version: 20170305223523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170305160253) do
     t.datetime "accepted_at"
     t.datetime "rejected_at"
     t.integer  "moderator_id"
+    t.integer  "orders_count",       default: 0,         null: false
     t.index ["account_id"], name: "index_companies_on_account_id", unique: true, using: :btree
     t.index ["user_id", "inn"], name: "index_companies_on_user_id_and_inn", unique: true, using: :btree
     t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
@@ -142,10 +143,12 @@ ActiveRecord::Schema.define(version: 20170305160253) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.integer  "user_id",                                          null: false
+    t.integer  "order_id",                                         null: false
     t.index ["buy_transaction_id"], name: "index_openbill_lockings_on_buy_transaction_id", using: :btree
     t.index ["buyer_id"], name: "index_openbill_lockings_on_buyer_id", using: :btree
     t.index ["good_id"], name: "index_openbill_lockings_on_good_id", using: :btree
     t.index ["locking_transaction_id"], name: "index_openbill_lockings_on_locking_transaction_id", using: :btree
+    t.index ["order_id"], name: "index_openbill_lockings_on_order_id", using: :btree
     t.index ["reverse_transaction_id"], name: "index_openbill_lockings_on_reverse_transaction_id", using: :btree
     t.index ["seller_id"], name: "index_openbill_lockings_on_seller_id", using: :btree
     t.index ["user_id"], name: "index_openbill_lockings_on_user_id", using: :btree
@@ -175,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170305160253) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
+    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -186,18 +190,18 @@ ActiveRecord::Schema.define(version: 20170305160253) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
-    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "company_id", null: false
-    t.integer  "good_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",                           null: false
+    t.integer  "company_id",                        null: false
+    t.integer  "good_id",                           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "workflow_state", default: "actual", null: false
     t.index ["company_id"], name: "index_orders_on_company_id", using: :btree
     t.index ["good_id"], name: "index_orders_on_good_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -234,6 +238,8 @@ ActiveRecord::Schema.define(version: 20170305160253) do
     t.string   "unlock_token"
     t.string   "role",                            default: "user", null: false
     t.integer  "shown_banners",                   default: [],     null: false, array: true
+    t.integer  "companies_count",                 default: 0,      null: false
+    t.integer  "orders_count",                    default: 0,      null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
@@ -254,6 +260,7 @@ ActiveRecord::Schema.define(version: 20170305160253) do
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "buy_transaction_id"
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "locking_transaction_id"
   add_foreign_key "openbill_lockings", "openbill_transactions", column: "reverse_transaction_id"
+  add_foreign_key "openbill_lockings", "orders"
   add_foreign_key "openbill_lockings", "users"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "from_account_id", name: "openbill_policies_from_account_id_fkey"
   add_foreign_key "openbill_policies", "openbill_accounts", column: "to_account_id", name: "openbill_policies_to_account_id_fkey"

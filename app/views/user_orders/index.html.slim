@@ -1,0 +1,10 @@
+h2 Заказы (#{orders.total_count})
+
+- if orders.total_count > 0
+  .pull-right= paginate orders
+  .clearfix
+  = render 'user_orders/list', orders: orders
+  .pull-right= paginate orders
+
+- else
+  .alert.alert-info Заказы отсутствуют

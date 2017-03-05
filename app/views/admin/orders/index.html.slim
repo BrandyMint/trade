@@ -1,0 +1,5 @@
+h2 Заказы #{Order.count}
+.pull-right= paginate orders
+.clearfix
+= render 'admin/orders/list', orders: orders
+.pull-right= paginate orders

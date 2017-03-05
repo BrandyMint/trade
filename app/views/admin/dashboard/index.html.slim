@@ -27,6 +27,6 @@ h3.mt-4 Последние транзакции
 
 .mt-4
   - if transactions.any?
-    = render 'transactions', transactions: transactions
+    = render 'admin/transactions/list', transactions: transactions
   - else
     .alert.alert-info Транзкций еще небыло

@@ -6,6 +6,7 @@ class OpenbillLocking < ApplicationRecord
   belongs_to :buyer, class_name: 'Company'
   belongs_to :good
   belongs_to :user
+  belongs_to :order
 
   belongs_to :locking_transaction, class_name: 'OpenbillTransaction'
   belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'

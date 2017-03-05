@@ -2,8 +2,7 @@ class ErrorsController < ApplicationController
   layout 'simple'
 
   def show
-    code = params[:code] || 404
-    title = I18n.t :title, scope: [:error_pages, code]
-    render locals: { code: code, title: title }
+    code = params[:code] || 'unknown'
+    render locals: { code: code }
   end
 end

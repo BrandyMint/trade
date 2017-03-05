@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BillingTet < ActiveSupport::TestCase
   test "fixture" do
-    assert openbill_accounts(:one)
+    assert openbill_accounts(:full)
   end
 
   test "income and outcome" do
@@ -39,11 +39,13 @@ class BillingTet < ActiveSupport::TestCase
       order_number: '123',
       payer: '123'
     )
-    locking = Billing.lock_amount(
+
+    order = Order.create(
       user: users(:one),
       company: companies(:one),
       good: goods(:two)
     )
+    locking = Billing.lock_amount(order)
 
     assert_equal companies(:one).account.reload.amount, 0
     assert locking.is_a? OpenbillLocking
@@ -65,11 +67,12 @@ class BillingTet < ActiveSupport::TestCase
       order_number: '1234',
       payer: '123'
     )
-    locking = Billing.lock_amount(
+    order = Order.create(
       user: users(:one),
       company: companies(:one),
       good: goods(:two)
     )
+    locking = Billing.lock_amount(order)
 
     assert_equal companies(:one).account.reload.amount, 0
     assert locking.is_a? OpenbillLocking

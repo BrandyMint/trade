@@ -1,4 +1,5 @@
 #= require dropzone
+#
 Dropzone.autoDiscover = false
 
 Dropzone.prototype.defaultOptions.dictDefaultMessage = "Переместите сюда файлы для загрузки"

@@ -20,9 +20,10 @@ table.table.table-condensed.table-striped
         td= link_to t.seller, admin_company_path(t.seller)   
         td= link_to t.good, good_path(t.good)
         td.text-nowrap= humanized_money_with_symbol t.amount
-        td= t.workflow_state     
+        td
+          .badge.badge-info= locking_workflow_state_text t.workflow_state     
         td 
-          - if t.locked?
-            = link_to 'Заврешить покупку (отдать средства продавцу)', accept_admin_locking_path(t), class: 'btn btn-success btn-sm', method: :patch
-            = link_to 'Отклонить покупку (вернуть средства покупателю)', reject_admin_locking_path(t), class: 'btn btn-warning btn-sm', method: :patch
+          /- if t.locked?
+            /= link_to 'Заврешить покупку (отдать средства продавцу)', accept_admin_locking_path(t), class: 'btn btn-success btn-sm', method: :patch
+            /= link_to 'Отклонить покупку (вернуть средства покупателю)', reject_admin_locking_path(t), class: 'btn btn-warning btn-sm', method: :patch
 

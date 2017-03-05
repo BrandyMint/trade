@@ -14,6 +14,10 @@ module RescueErrors
 
   protected
 
+  def rescue_not_found(exception)
+    render 'errors/show', locals: { code: 404 }
+  end
+
   def rescue_system_error(exception)
     Bugsnag.notify exception
     render 'system_error',

@@ -3,12 +3,13 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-danger.fixed-top
     = link_to admin_root_url, class: 'navbar-brand' do
       = fa_icon :bank, text: application_title
     ul.navbar-nav.mr-auto.mt-2.mt-md-0
-      = navbar_link_to 'Сайт', root_path, active: false
+      -#= navbar_link_to 'Сайт', root_path, active: false
       -# = navbar_link_to 'Товары и услуги', root_path, count: Good.count
       = navbar_link_to 'Организации', admin_companies_path, count: Company.count
-      = navbar_link_to 'Блокировки', admin_lockings_path, count: OpenbillLocking.count
+      = navbar_link_to 'Пользователи', admin_users_path, count: User.count
+      = navbar_link_to 'Заказы', admin_orders_path, count: Order.count
+      = navbar_link_to 'Транзакциии', admin_transactions_path, count: OpenbillTransaction.count
       = navbar_link_to 'Уведомления', admin_banners_path, count: Banner.active.count
     
     - if current_user.present?
       = render 'user_dropdown'
-

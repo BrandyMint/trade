@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   has_many :companies
   has_many :goods, through: :companies
+  has_many :orders
+  has_many :income_orders, through: :goods, source: :good
+
+  scope :users, -> { with_role  :user }
 
   validates :name,                    presence: true
   validates :phone,                   presence: true, phone: true, uniqueness: true

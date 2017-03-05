@@ -1,4 +1,16 @@
 module GoodsHelper
+  def good_buy_link(good)
+    link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
+  end
+
+  def good_prepayment_icon(good)
+    if good.prepayment_required?
+      content_tag :span, data: { toggle: :tooltip }, title: 'Требуется предоплата' do
+        fa_icon 'times-rectangle'
+      end
+    end
+  end
+
   def good_workflow_states_collection
     %w(draft published).map do |state|
       [good_workflow_state_text(state), state]

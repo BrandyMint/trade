@@ -3,15 +3,25 @@
 one:
   company: one
   category: one
-  state_cd: 1
+  workflow_state: published
   title: MyString
   details: MyText
-  price: 9.99
+  price: 10_000
+  prepayment_required: true
 
 two:
   company: two
   category: two
-  state_cd: 1
+  workflow_state: published
   title: MyString
   details: MyText
-  price: 9.99
+  price: 20_000
+  prepayment_required: false
+
+without_price:
+  company: two
+  category: two
+  workflow_state: published
+  title: MyString
+  details: MyText
+  prepayment_required: false

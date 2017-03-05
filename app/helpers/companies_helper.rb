@@ -12,7 +12,7 @@ module CompaniesHelper
   end
 
   def company_link(company)
-    link_to company_path(company), class: 'company-link', data: { toggle: :popover, trigger: :hover, content: company_popover_content(company) } do
+    link_to company_path(company), class: 'company-link' do
       company_icon company, company.name
     end
   end
@@ -25,16 +25,16 @@ module CompaniesHelper
     end
   end
 
-  def companies_to_buy(user)
-    user.companies.with_accepted_state.includes(:account).map do |c|
-      title = "#{c.name}: #{humanized_money_with_symbol(c.amount)}"
-      [title, c.id]
-    end
-  end
-
   def company_icon(company, text=nil)
-    icon = company.verified? ? 'check-circle-o' : 'dot-circle-o' # :briefcase
-    fa_icon icon, text: text
+    if company.verified?
+      content_tag :span, data: { toggle: :tooltip }, title: company_popover_content(company) do
+        fa_icon :trophy, text: text
+      end
+    else
+      content_tag :span, data: { toggle: :tooltip }, title: company_popover_content(company) do
+        fa_icon :briefcase, text: text
+      end
+    end
   end
 
   def company_management(company)
@@ -88,5 +88,11 @@ module CompaniesHelper
     end
 
     title.html_safe
+  end
+
+  def admin_company_link(company)
+    link_to admin_company_path(company) do
+      company_icon company, company.name
+    end
   end
 end

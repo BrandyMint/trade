@@ -1,0 +1,25 @@
+h1 Заказ ##{order.id}
+
+.badge.badge-info= order_workflow_state_text order.workflow_state
+
+.row
+  .col-md-4
+    .card
+      .card-block
+        h4.card-title Покупатель
+        p.cart-text
+          = company_link order.company
+        p.cart_text
+          = humanized_money_with_symbol order.company.amount
+  .col-md-4
+    .card
+      .card-block
+        h4.card-title Продавец
+        p.cart-text
+          = company_link order.good.company
+        p.cart_text
+          = humanized_money_with_symbol order.good.company.amount
+  .col-md-4
+    = render 'goods/short', good: order.good
+
+= render 'admin/lockings/short', order: order if order.locking

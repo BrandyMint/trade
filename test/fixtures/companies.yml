@@ -6,7 +6,7 @@ one:
   form: INDIVIDUAL
   inn: MyString
   ogrn: MyString
-  account: one
+  account: empty
 
 two:
   user: two
@@ -17,5 +17,5 @@ two:
   email: danil@brandymint.ru
   phone: +79033891228
   form: LEGAL
-  account: two
+  account: full
   workflow_state: awaiting_review

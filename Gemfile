@@ -108,6 +108,7 @@ end
 gem 'nprogress-rails'
 
 group :development, :test do
+  gem 'rails-controller-testing'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rspec-expectations'
@@ -153,6 +154,3 @@ group :development do
   gem 'guard-minitest'
   gem 'guard-ctags-bundler'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

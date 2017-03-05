@@ -1,0 +1,6 @@
+h2 На счету ваших организаций не достаточно средств
+= render 'goods/short', good: @good
+br
+
+.mt-4
+  = link_to 'Пополнить счет', new_user_transaction_path, class: 'btn btn-outline-primary'

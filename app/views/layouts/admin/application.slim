@@ -11,3 +11,4 @@ html
     main#content.container
       = render 'layouts/messages'
       = yield
+    = render 'test_users' if can_supersignin?
