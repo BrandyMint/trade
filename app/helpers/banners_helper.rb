@@ -7,7 +7,7 @@ module BannersHelper
     if current_user.present?
       current_user.shown_banners
     else
-      session[:shown_banners] || []
+      session_shown_banners
     end
   end
 

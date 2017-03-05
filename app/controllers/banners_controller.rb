@@ -5,10 +5,9 @@ class BannersController < ApplicationController
     if current_user.present?
       current_user.shown_banner banner.id
     else
-      list = session[:shown_banner] ||= []
-      session[:shown_banner] = list.uniq
+      add_shown_banner banner.id
     end
 
-    render text: 'ok'
+    render plain: 'ok'
   end
 end

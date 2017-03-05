@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   include RescueErrors
   include MoneyRails::ActionViewExtension
+  include BannersSupport
 
   self.responder = ApplicationResponder
 

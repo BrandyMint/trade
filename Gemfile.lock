@@ -378,6 +378,9 @@ GEM
     redis (3.3.3)
     redis-namespace (1.5.3)
       redis (~> 3.0, >= 3.0.4)
+    redis-session-store (0.9.1)
+      actionpack (>= 3, < 5.1)
+      redis (~> 3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-expectations (3.5.0)
@@ -533,6 +536,7 @@ DEPENDENCIES
   ransack!
   redis (~> 3.0)
   redis-namespace
+  redis-session-store
   responders
   rspec-expectations
   rspec-mocks
