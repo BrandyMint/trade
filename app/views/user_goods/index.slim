@@ -1,11 +1,18 @@
 .pull-right.mt-2
   = link_to 'Добавить предложение', new_good_path, class: 'btn btn-sm btn-outline-success'
-h2.mb-3 Ваши предложения (#{goods.total_count})
 
-= render 'goods_filter'
+- if current_user.goods.any?
 
-- if goods.any?
+  h2.mb-3 Ваши предложения (#{goods.total_count})
+
+  = render 'goods_filter', search_form: search_form, goods_ransack: goods_ransack
+
   .mt-4
-    = render 'user_goods/list', goods: goods
+    - if goods.any?
+      .pull-right= paginate goods
+      = render 'user_goods/list', goods: goods
+      .pull-right= paginate goods
+    - else
+      .alert.alert-info Не найдено товаров по этому запросу
 - else
   .alert.alert-info Вы пока не разместили ни одного торгового предложения

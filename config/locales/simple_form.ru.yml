@@ -106,3 +106,9 @@ ru:
         name: Ваше имя и фамилия
         password: Пароль
         password_confirmation: Подтверждение пароля
+    include_blanks:
+      user_goods_search_form:
+        category_id_eq: 'Любая категория'
+      q:
+        category_id_eq: 'Любая категория'
+

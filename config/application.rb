@@ -19,6 +19,7 @@ module Trade
     config.i18n.default_locale = :ru
 
     config.autoload_paths += Dir[
+      "#{Rails.root}/app/form_objects",
       "#{Rails.root}/app/errors",
       "#{Rails.root}/app/inputs",
       "#{Rails.root}/app/services",

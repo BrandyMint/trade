@@ -1,4 +1,27 @@
-- if current_company
-  .alert.alert-info
-    | Торговые предложения компании #{current_company}
-    = close_button
+/= search_form_for goods_ransack, url: user_goods_path, :builder => SimpleForm::FormBuilder do |f|
+  /= f.search_field :title_cont
+
+.mb-3= link_to 'Фильтр', '#goodsFilter', data: { toggle: :collapse }, 'aria-expanded': false, 'aria-controls': 'collapseExample'
+#goodsFilter.collapse class=(search_form.empty? ? '' : 'show')
+  = simple_form_for search_form, as: :q, url: user_goods_path, method: :get do |f|
+    .row
+      .col-md-6
+        = f.input :title_cont, as: :search, label: 'Название товара'
+      .col-md-6
+        = f.input :category_id_eq, collection: categories_collection, label: 'Категория', include_blank: 'Любая'
+    .row
+      .col-md-4
+        = f.input :company_id_eq, collection: user_companies_collection(current_user), label: 'Организация-продавец', include_blank: 'Любая'
+      .col-md-4
+        = f.input :workflow_state_eq, collection: good_workflow_states_collection, label: 'Статус', include_blank: 'Любой'
+      .col-md-4
+        = f.input :prepayment_required_eq, collection: [['Предоплата', true], ['Без предоплаты', false]], label: 'Предоплата', include_blank: 'Любой'
+
+    .row
+      .col-md-6
+        = f.submit 'Найти', class: 'btn btn-primary'
+      .col-md-6
+        .pull-right
+          - unless search_form.empty?
+            = link_to 'Сбросить', user_goods_path, class: 'btn btn-outline-secondary'
+  hr
