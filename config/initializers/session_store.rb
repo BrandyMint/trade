@@ -6,7 +6,7 @@ Rails.application.config.session_store :redis_session_store, {
   key: 'op_session',
   serializer: :hybrid,
   redis: {
-    expire_after: 120.minutes,
+    expire_after: 4.weeks,
     key_prefix: 'online_prodaja:session:',
     url: 'redis://localhost:6379/1',
   }
