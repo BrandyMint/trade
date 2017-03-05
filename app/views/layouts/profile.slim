@@ -15,3 +15,4 @@ html
         .col-md-9
           = yield
     = render 'layouts/footer'
+    = render 'chatra' if Rails.env.production?

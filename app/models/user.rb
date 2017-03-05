@@ -3,8 +3,10 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :companies
+  has_many :accounts, through: :companies
   has_many :goods, through: :companies
   has_many :orders
+
   has_many :income_orders, through: :goods, source: :good
 
   scope :users, -> { with_role  :user }
@@ -35,5 +37,10 @@ class User < ApplicationRecord
 
   def to_label
     to_s
+  end
+
+  def transactions
+    ids = companies.pluck(:account_id)
+    OpenbillTransaction.where(from_account_id: ids).or(OpenbillTransaction.where(to_account_id: ids))
   end
 end

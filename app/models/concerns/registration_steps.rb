@@ -2,7 +2,6 @@ module RegistrationSteps
   InfoStep = 1
   DocumentsStep = 2
   ModerationStep = 3
-  DoneStep = 4
 
   STEPS = {
     InfoStep => 'Указание сведений',
@@ -14,7 +13,7 @@ module RegistrationSteps
     @registration_step ||=
       if persisted?
         if awaiting_review? || accepted? || rejected?
-          DoneStep
+          ModerationStep
         else
           DocumentsStep
         end

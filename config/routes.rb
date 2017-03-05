@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_orders
+  resources :user_transactions
   resources :user_goods
   resources :user_companies, only: [:index]
 

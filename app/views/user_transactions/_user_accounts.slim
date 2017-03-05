@@ -1,0 +1,10 @@
+h2 Баланс счетов
+table.table.table-condensed
+  - companies.each do |c|
+    tr
+      td= company_link c
+      td
+        strong= humanized_money_with_symbol c.amount
+      td
+        = link_to 'Пополнить', '#', class: 'btn btn-sm btn-success'
+        span.ml-1= link_to 'Снять', '#', class: 'btn btn-sm btn-success'

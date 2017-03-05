@@ -1,2 +1,13 @@
-h1 UserTransactions#index
-p Find me in app/views/user_transactions/index.html.slim
+- if companies.any?
+  = render 'user_accounts', companies: companies
+
+h2 Транзакции (#{transactions.total_count})
+
+- if transactions.total_count > 0
+  .pull-right= paginate transactions
+  .clearfix
+  = render 'user_transactions/list', transactions: transactions
+  .pull-right= paginate transactions
+
+- else
+  .alert.alert-info Транзакции отсуствуют

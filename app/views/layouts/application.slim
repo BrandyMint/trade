@@ -12,3 +12,5 @@ html
       = render 'layouts/banners'
       = yield
     = render 'layouts/footer'
+
+    = render 'chatra' if Rails.env.production?

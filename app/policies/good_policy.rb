@@ -6,8 +6,7 @@ class GoodPolicy < ApplicationPolicy
   end
 
   def show?
-    true
-    # record.company.accepted?
+    record.published? || record.user == user
   end
 
   def new?

@@ -6,6 +6,7 @@ ul.navbar-nav.float-xs-right
       = dropdown_link_to 'Мои заказы', user_orders_path
       = dropdown_link_to 'Мои предложения', user_goods_path
       = dropdown_link_to 'Мои организации', user_companies_path
+      = dropdown_link_to 'Финансы', user_transactions_path
       = dropdown_link_to 'Личные данные', edit_user_path(current_user)
       - if current_user.is_admin?
         - if current_namespace == :admin

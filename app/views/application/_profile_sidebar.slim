@@ -2,5 +2,6 @@ ul.list-group
   = link_to title_with_count('Мои заказы', current_user.orders.count), user_orders_path, class: active_class('list-group-item', %w(user_orders orders).include?(controller_name))
   = link_to title_with_count('Мои предложения', current_user.goods.count), user_goods_path, class: active_class('list-group-item', %w(user_goods goods).include?(controller_name))
   = link_to title_with_count('Мои организации', current_user.companies.count), user_companies_path, class: active_class('list-group-item', controller_name == 'user_companies')
+  = link_to 'Финансы', user_transactions_path, class: active_class('list-group-item', controller_name == 'user_transactions')
   = link_to 'Личные данные', edit_user_path(current_user.id), class: active_class('list-group-item', controller_name == 'users')
   = link_to 'Безопасность', edit_password_path, class: active_class('list-group-item', controller_name == 'passwords')
