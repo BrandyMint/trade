@@ -8,9 +8,6 @@ defaults: &defaults
   mailer:
     from: noreply@online-prodaja.club
 
-  active_job:
-    queue_name_prefix: trade_
-
 development:
   <<: *defaults
   app:

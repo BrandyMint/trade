@@ -525,6 +525,7 @@ DEPENDENCIES
   rails-i18n!
   ranked-model
   ransack!
+  redis (~> 3.0)
   responders
   rspec-expectations
   rspec-mocks

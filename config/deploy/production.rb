@@ -1,4 +1,4 @@
-server 'online-prodaja.club', user: 'www', roles: %w{app db web}
+server 'online-prodaja.club', user: 'www', roles: %w{app db web sidekiq}
 
 # server-based syntax
 # ======================

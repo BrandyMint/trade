@@ -52,4 +52,5 @@ namespace :deploy do
   end
 
   after :finishing, 'notify_bugsnag'
+  after :publishing, :restart
 end
