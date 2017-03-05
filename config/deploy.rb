@@ -44,5 +44,12 @@ namespace :deploy do
     end
   end
 
+  desc 'Restart application'
+  task :restart do
+    on roles(:sidekiq), in: :sequence, wait: 5 do
+      execute "/etc/init.d/sidekiq-#{fetch(:application)} restart"
+    end
+  end
+
   after :finishing, 'notify_bugsnag'
 end
