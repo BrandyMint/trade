@@ -13,6 +13,8 @@ module Trade
     # -- all .rb files in that directory are automatically loaded.
     config.app_generators.scaffold_controller :responders_controller
 
+    config.time_zone = 'Moscow'
+
     config.responders.flash_keys = [ :success, :warning ]
     config.i18n.default_locale = :ru
 
