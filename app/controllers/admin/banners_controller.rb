@@ -7,7 +7,7 @@ class Admin::BannersController < Admin::ApplicationController
   end
 
   def new
-    @banner = Banner.new
+    @banner = Banner.new is_active: true
     respond_with @banner
   end
 

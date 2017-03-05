@@ -1,5 +1,7 @@
+= user_goods_breadcrumbs @good
+
 .pull-right
-  = link_to 'На страницу товара', good_path(@good), class: 'btn btn-sm btn-outline-secondary' if @good.persisted?
+  = link_to 'На страницу товара', good_path(@good), class: 'btn btn-sm btn-outline-primary' if @good.persisted?
   br
   = good_workflow_state @good.workflow_state
 

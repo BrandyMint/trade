@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304222022) do
+ActiveRecord::Schema.define(version: 20170305160253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,14 +66,15 @@ ActiveRecord::Schema.define(version: 20170304222022) do
   end
 
   create_table "company_documents", force: :cascade do |t|
-    t.integer  "company_id",   null: false
-    t.string   "file",         null: false
-    t.string   "state",        null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "category",     null: false
-    t.bigint   "file_size",    null: false
-    t.string   "content_type", null: false
+    t.integer  "company_id",        null: false
+    t.string   "file",              null: false
+    t.string   "state",             null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "category",          null: false
+    t.bigint   "file_size",         null: false
+    t.string   "content_type",      null: false
+    t.string   "original_filename"
     t.index ["company_id", "category"], name: "index_company_documents_on_company_id_and_category", using: :btree
     t.index ["company_id"], name: "index_company_documents_on_company_id", using: :btree
   end
@@ -174,7 +175,6 @@ ActiveRecord::Schema.define(version: 20170304222022) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
-    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 20170304222022) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
+    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin

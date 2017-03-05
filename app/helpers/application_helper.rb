@@ -79,7 +79,7 @@ module ApplicationHelper
 
   def application_title
     if current_namespace == :admin
-      "#{Settings.app.name}: админка"
+      "Админка"
     else
       Settings.app.name
     end

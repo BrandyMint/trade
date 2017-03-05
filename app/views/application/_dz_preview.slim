@@ -4,3 +4,5 @@
     = image_tag image.preview.url
   .dz-details
     .dz-size= number_to_human_size image.size
+  = link_to 'Удалить', company_company_document_path(dz_preview.company_id, dz_preview), method: :delete, class: 'dz-remove'
+  -# a.dz-remove data-dz-remove=true data-document-id=dz_preview.id href='#' Удалить

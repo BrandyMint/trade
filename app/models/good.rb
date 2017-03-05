@@ -31,6 +31,8 @@ class Good < ApplicationRecord
   validates :company, presence: true
   validates :category, presence: true
 
+  validate :prepay_with_price
+
   workflow do
     state :draft do
       event :publish, :transitions_to => :published
@@ -53,5 +55,13 @@ class Good < ApplicationRecord
 
   def to_s
     title
+  end
+
+  private
+
+  def prepay_with_price
+    if prepayment_required? && price.blank?
+      errors.add :price, 'У предложений с предоплатой должна быть цена'
+    end
   end
 end

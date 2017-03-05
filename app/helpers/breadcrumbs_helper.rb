@@ -6,4 +6,13 @@ module BreadcrumbsHelper
     ]
     render 'breadcrumbs', breadcrumbs: current_breadcrumbs
   end
+
+  def user_goods_breadcrumbs(good)
+    good_title = good.persisted? ? good : 'Новое'
+    current_breadcrumbs = [
+      { title: 'Мои предложения', url: user_goods_path },
+      { title: good_title, active: true }
+    ]
+    render 'breadcrumbs', breadcrumbs: current_breadcrumbs
+  end
 end

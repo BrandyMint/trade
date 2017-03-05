@@ -1,5 +1,8 @@
-= simple_form_for search_form, url: admin_companies_path, method: :get, html: { class: 'form-inline' } do |f|
-  = f.input :q, placeholder: 'Наименование компании или ИНН', label: false, hint: false, as: :search, input_html: { class: 'mr-3' }, required: false
-  = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
-  - if search_form.q.present?
-    = link_to 'Сбросить поиск', admin_companies_path, class: 'btn btn-success-outline'
+= simple_form_for search_form, url: admin_companies_path, method: :get do |f|
+  .row
+    .col-md-9
+      = f.input :q, placeholder: 'Наименование компании или ИНН', label: false, hint: false, as: :search, input_html: { class: 'mr-3' }, required: false
+    .col-md-3
+      = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+      - if search_form.q.present?
+        = link_to 'Сбросить поиск', admin_companies_path, class: 'btn btn-success-outline'

@@ -1,24 +1,32 @@
-.row
+.row.mt-4
   .col-md-4
-    = card 'Заблокировано средств' do
-      = humanized_money_with_symbol OpenbillAccount.system_locked.amount
-  .col-md-4
-    = card 'Зачислено средств' do
-      = humanized_money_with_symbol OpenbillAccount.system_income.amount
-  .col-md-4
-    = card 'Куплено товаров' do
+    .mb-3= card 'Куплено товаров' do
       p На сумму: #{humanized_money_with_symbol OpenbillLocking.total(:accepted)}
       p Покупок: #{OpenbillLocking.with_accepted_state.count}
 
-.row.mt-4
-  .col-md-4
-    = card 'Товаров создано за неделю' do
-      = Good.where('created_at >= ?', 7.days.ago).count
+    .mb-3= card 'Товаров создано за неделю' do
+      = link_to t(:goods_count, count: goods_at_week_count, scope: :helpers), admin_goods_path
   .col-md-4
     = card 'Компаний зарегистрировано за неделю' do
-      = Company.where('created_at >= ?', 7.days.ago).count
+      dl
+        dt Всего
+        dl= link_to t(:companies_count, count: Company.count, scope: :helpers), admin_companies_path
+        dt Зарегистрировано за неделю
+        dl= t(:companies_count, count: companies_at_week_count, scope: :helpers)
+        dt Ожидают проверки
+        dl= link_to t(:companies_count, count: Company.where(workflow_state: :awaiting_review).count, scope: :helpers), admin_companies_path(q: { workflow_state_eq: :awaiting_review })
+  .col-md-4
+    = card 'Финансы' do
+      dl
+        dt Заблокировано средств
+        dl= humanized_money_with_symbol OpenbillAccount.system_locked.amount
+        dt Зачислено средств
+        dl= humanized_money_with_symbol OpenbillAccount.system_income.amount
 
-h3 Транзакции
+h3.mt-4 Последние транзакции
 
 .mt-4
-  = render 'transactions', transactions: OpenbillTransaction.ordered.includes(:to_account, :from_account)
+  - if transactions.any?
+    = render 'transactions', transactions: transactions
+  - else
+    .alert.alert-info Транзкций еще небыло

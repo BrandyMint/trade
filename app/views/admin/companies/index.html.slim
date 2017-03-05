@@ -1,9 +1,5 @@
-.row
-  .col-md-8
-    h1.mb-4 Организации (#{companies.total_count} из #{Company.count})
-  .col-md-4
-    .pull-right
-      = render 'search_form', search_form: search_form
+h1.mb-4 Организации (#{companies.total_count} из #{Company.count})
+= render 'search_form', search_form: search_form
 
 - unless search_form.q.present?
   .mb-4

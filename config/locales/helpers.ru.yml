@@ -28,4 +28,9 @@ ru:
       few: '%{count} предложения'
       many: '%{count} предложений'
       other: '%{count} предложений'
-
+    companies_count:
+      zero: 'Нет компаний'
+      one: '%{count} компания'
+      few: '%{count} компании'
+      many: '%{count} компаний'
+      other: '%{count} компаний'

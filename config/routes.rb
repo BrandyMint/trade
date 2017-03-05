@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     member do
       put :done
     end
-    resources :company_documents
+    resources :company_documents do
+      collection do
+        delete :delete_by_name
+      end
+    end
   end
 
   resources :user_goods
@@ -41,6 +45,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :transactions
     resources :banners
+    resources :goods
     resources :lockings do
       member do
         patch :accept

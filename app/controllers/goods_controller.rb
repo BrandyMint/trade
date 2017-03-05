@@ -37,7 +37,7 @@ class GoodsController < ApplicationController
 
     @good.draft! if params[:draft] && !@good.draft?
     @good.publish! if params[:publish] && !@good.published?
-    respond_with @good, location: -> { good_path @good }
+    respond_with @good, location: -> { good_path @good }, layout: 'profile'
   end
 
   def show

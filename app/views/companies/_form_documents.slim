@@ -4,7 +4,7 @@
       h4= doc.title
 
     .col-md-8
-      = simple_form_for [company, CompanyDocument.new], multiple: true, html: { class: 'dropzone', data: { dropzone: true }} do |f|
+      = simple_form_for [company, CompanyDocument.new], multiple: true, html: { class: 'dropzone', data: { dropzone: true, company_id: company.id }} do |f|
         = hidden_field_tag :category, doc.key
         .fallback= file_field_tag 'file', multiple: true
 
