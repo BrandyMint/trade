@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170306072423) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
+    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -189,7 +190,6 @@ ActiveRecord::Schema.define(version: 20170306072423) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
-    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin
