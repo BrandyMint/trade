@@ -1,19 +1,19 @@
-hr
-p Автопользователи:
-- user_without_company = User.users.where(companies_count:0).order(:id).first
-- user_without_money = User.users.where('companies_count>0').includes(companies: [:account]).first
-- user_with_money = OpenbillCategory.companies.openbill_accounts.where('amount_cents > 10000000').first.try(:company).try(:user)
-- superadmin = User.with_role(:superadmin).first
-- manager = User.with_role(:manager).first
+.alert.alert-warning
+  p Автопользователи:
+  - user_without_company = User.users.where(companies_count:0).order(:id).first
+  - user_without_money = User.users.where('companies_count>0').includes(companies: [:account]).first
+  - user_with_money = OpenbillCategory.companies.openbill_accounts.where('amount_cents > 10000000').first.try(:company).try(:user)
+  - superadmin = User.with_role(:superadmin).first
+  - manager = User.with_role(:manager).first
 
-ul
-  - if user_without_company.present?
-    li= link_to "Без компаний: #{user_without_company}", supersignin_path(user_without_company)
-  - if user_without_money.present?
-    li= link_to "С компаниями, но без денег: #{user_without_money}", supersignin_path(user_without_money)
-  - if user_with_money.present?
-    li= link_to "С деньгами: #{user_with_money}", supersignin_path(user_with_money)
-  - if manager.present?
-    li= link_to "Manager: #{manager}", supersignin_path(manager)
-  - if superadmin.present?
-    li= link_to "Superadmin: #{superadmin}", supersignin_path(superadmin)
+  ul
+    - if user_without_company.present?
+      li= link_to "Без компаний: #{user_without_company}", supersignin_path(user_without_company)
+    - if user_without_money.present?
+      li= link_to "С компаниями, но без денег: #{user_without_money}", supersignin_path(user_without_money)
+    - if user_with_money.present?
+      li= link_to "С деньгами: #{user_with_money}", supersignin_path(user_with_money)
+    - if manager.present?
+      li= link_to "Manager: #{manager}", supersignin_path(manager)
+    - if superadmin.present?
+      li= link_to "Superadmin: #{superadmin}", supersignin_path(superadmin)

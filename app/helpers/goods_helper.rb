@@ -1,6 +1,11 @@
 module GoodsHelper
+
+  def prepayment_collection
+    [['Обязательна', true], ['Не требуется', false]]
+  end
+
   def good_buy_link(good)
-    link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-sm btn-success'
+    link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-outline-success'
   end
 
   def good_prepayment_icon(good)

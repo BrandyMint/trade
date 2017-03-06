@@ -89,10 +89,4 @@ module CompaniesHelper
 
     title.html_safe
   end
-
-  def admin_company_link(company)
-    link_to admin_company_path(company) do
-      company_icon company, company.name
-    end
-  end
 end

@@ -11,7 +11,7 @@
         .col-md-6
           = f.input :price, input_html: { data: { amount: :input } }
         .col-md-6
-          = f.input :prepayment_required, as: :radio_buttons
+          = f.input :prepayment_required, collection: prepayment_collection, include_blank: false
       .row
         .col-md-12
           .lead.mb-4 data-amount=:string -
