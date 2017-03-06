@@ -1,0 +1,9 @@
+= simple_form_for search_form, as: :q, url: admin_users_path, method: :get do |f|
+  .row
+    .col-md-9
+      = f.input :name_or_email_or_phone_cont, placeholder: 'Имя, email, телефон', label: false, hint: false, as: :search, input_html: { class: 'mr-3' }, required: false
+    .col-md-3
+      = f.button :submit, value: 'Найти', class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+      - unless search_form.empty?
+        = link_to 'Сбросить поиск', admin_users_path, class: 'btn btn-success-outline'
+

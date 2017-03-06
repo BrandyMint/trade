@@ -22,6 +22,8 @@ ru:
       banner:
         create: Создать уведомление
         update: Изменить уведомление
+      admin_users_search_form:
+        create: Найти
     goods_count:
       zero: 'Нет торговых предложений'
       one: '%{count} предложение'

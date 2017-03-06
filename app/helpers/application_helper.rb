@@ -3,6 +3,10 @@ module ApplicationHelper
     '»'
   end
 
+  def tel_to(tel)
+    link_to tel, "tel:#{tel}"
+  end
+
   def close_button(url=nil)
     url ||= url_for
     buffer = '×'

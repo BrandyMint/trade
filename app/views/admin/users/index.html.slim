@@ -1,0 +1,9 @@
+h1 Пользователи
+
+.mb-4= render 'search_form', search_form: search_form
+
+.pull-right= paginate users
+.clearfix
+= render 'admin/users/list', users: users
+.pull-right= paginate users
+

@@ -1,0 +1,15 @@
+- if users.any?
+  table.table.table-striped
+    - users.each do |user|
+      tr
+        td
+          = user.name
+        td
+          = mail_to user.email, user.email
+        td
+          = tel_to user.phone
+        td
+          = link_to admin_companies_path(q: { user_id_eq: user.id }) do
+            = t :companies_count, count: user.companies_count, scope: [:helpers]
+- else
+  .alert.alert-info Не найдно пользователей по этому запросу
