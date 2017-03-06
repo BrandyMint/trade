@@ -2,5 +2,6 @@ test:
   adapter: postgresql
   encoding: unicode
   host: 192.168.170.200
+  username: teamcity
   database: trade_test_<%= ENV['AGENT_NAME'] %>
 #     url: <%= ENV['DATABASE_URL'] %>
