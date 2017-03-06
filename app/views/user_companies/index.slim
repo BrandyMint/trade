@@ -21,7 +21,9 @@
             .mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-secondary'
         td.text-nowrap
           = humanized_money_with_symbol c.amount
+          .mt-2= render 'companies_amount_actions', company: c
         td
           = link_to t(:goods_count, scope: [:helpers], count: c.goods.published.count), user_goods_path(company_id: c.id)
+
 - else
   .alert.alert-info У Вас пока не зарегистрировано ни одной организации.

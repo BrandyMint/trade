@@ -6,5 +6,5 @@ table.table.table-condensed
       td
         strong= humanized_money_with_symbol c.amount
       td
-        = link_to 'Пополнить', '#', class: 'btn btn-sm btn-success'
-        span.ml-1= link_to 'Снять', '#', class: 'btn btn-sm btn-success'
+        .pull-right
+          = render 'companies_amount_actions', company: c.id

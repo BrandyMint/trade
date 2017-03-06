@@ -1,10 +1,14 @@
                                   Prefix Verb   URI Pattern                                                       Controller#Action
                                     root GET    /                                                                 welcome#index
+                             supersignin GET    /supersignin/:id(.:format)                                        user_sessions#supersignin
                              sidekiq_web        /sidekiq                                                          Sidekiq::Web
                        letter_opener_web        /letter_opener                                                    LetterOpenerWeb::Engine
                                   signin GET    /signin(.:format)                                                 user_sessions#new
                                   signup GET    /signup(.:format)                                                 users#new
                                  signout DELETE /signout(.:format)                                                user_sessions#destroy
+                       user_transactions GET    /user_transactions(.:format)                                      user_transactions#index
+                    new_user_transaction GET    /user_transactions/new(.:format)                                  user_transactions#new
+                        user_transaction GET    /user_transactions/:id(.:format)                                  user_transactions#show
                            user_sessions POST   /user_sessions(.:format)                                          user_sessions#create
                                    users POST   /users(.:format)                                                  users#create
                                 new_user GET    /users/new(.:format)                                              users#new
@@ -32,6 +36,22 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /companies/:id(.:format)                                          companies#update
                                          PUT    /companies/:id(.:format)                                          companies#update
                                          DELETE /companies/:id(.:format)                                          companies#destroy
+                             user_orders GET    /user_orders(.:format)                                            user_orders#index
+                                         POST   /user_orders(.:format)                                            user_orders#create
+                          new_user_order GET    /user_orders/new(.:format)                                        user_orders#new
+                         edit_user_order GET    /user_orders/:id/edit(.:format)                                   user_orders#edit
+                              user_order GET    /user_orders/:id(.:format)                                        user_orders#show
+                                         PATCH  /user_orders/:id(.:format)                                        user_orders#update
+                                         PUT    /user_orders/:id(.:format)                                        user_orders#update
+                                         DELETE /user_orders/:id(.:format)                                        user_orders#destroy
+                                         GET    /user_transactions(.:format)                                      user_transactions#index
+                                         POST   /user_transactions(.:format)                                      user_transactions#create
+                                         GET    /user_transactions/new(.:format)                                  user_transactions#new
+                   edit_user_transaction GET    /user_transactions/:id/edit(.:format)                             user_transactions#edit
+                                         GET    /user_transactions/:id(.:format)                                  user_transactions#show
+                                         PATCH  /user_transactions/:id(.:format)                                  user_transactions#update
+                                         PUT    /user_transactions/:id(.:format)                                  user_transactions#update
+                                         DELETE /user_transactions/:id(.:format)                                  user_transactions#destroy
                               user_goods GET    /user_goods(.:format)                                             user_goods#index
                                          POST   /user_goods(.:format)                                             user_goods#create
                            new_user_good GET    /user_goods/new(.:format)                                         user_goods#new
@@ -40,6 +60,8 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /user_goods/:id(.:format)                                         user_goods#update
                                          PUT    /user_goods/:id(.:format)                                         user_goods#update
                                          DELETE /user_goods/:id(.:format)                                         user_goods#destroy
+                     income_user_company GET    /user_companies/:id/income(.:format)                              user_companies#income
+                    outcome_user_company GET    /user_companies/:id/outcome(.:format)                             user_companies#outcome
                           user_companies GET    /user_companies(.:format)                                         user_companies#index
                                   banner DELETE /banners/:id(.:format)                                            banners#destroy
                                   orders GET    /orders(.:format)                                                 orders#index
@@ -70,6 +92,14 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /admin/transactions/:id(.:format)                                 admin/transactions#update
                                          PUT    /admin/transactions/:id(.:format)                                 admin/transactions#update
                                          DELETE /admin/transactions/:id(.:format)                                 admin/transactions#destroy
+                             admin_users GET    /admin/users(.:format)                                            admin/users#index
+                                         POST   /admin/users(.:format)                                            admin/users#create
+                          new_admin_user GET    /admin/users/new(.:format)                                        admin/users#new
+                         edit_admin_user GET    /admin/users/:id/edit(.:format)                                   admin/users#edit
+                              admin_user GET    /admin/users/:id(.:format)                                        admin/users#show
+                                         PATCH  /admin/users/:id(.:format)                                        admin/users#update
+                                         PUT    /admin/users/:id(.:format)                                        admin/users#update
+                                         DELETE /admin/users/:id(.:format)                                        admin/users#destroy
                            admin_banners GET    /admin/banners(.:format)                                          admin/banners#index
                                          POST   /admin/banners(.:format)                                          admin/banners#create
                         new_admin_banner GET    /admin/banners/new(.:format)                                      admin/banners#new
@@ -86,8 +116,16 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /admin/goods/:id(.:format)                                        admin/goods#update
                                          PUT    /admin/goods/:id(.:format)                                        admin/goods#update
                                          DELETE /admin/goods/:id(.:format)                                        admin/goods#destroy
-                    accept_admin_locking PATCH  /admin/lockings/:id/accept(.:format)                              admin/lockings#accept
-                    reject_admin_locking PATCH  /admin/lockings/:id/reject(.:format)                              admin/lockings#reject
+                    complete_admin_order PATCH  /admin/orders/:id/complete(.:format)                              admin/orders#complete
+                      cancel_admin_order PATCH  /admin/orders/:id/cancel(.:format)                                admin/orders#cancel
+                            admin_orders GET    /admin/orders(.:format)                                           admin/orders#index
+                                         POST   /admin/orders(.:format)                                           admin/orders#create
+                         new_admin_order GET    /admin/orders/new(.:format)                                       admin/orders#new
+                        edit_admin_order GET    /admin/orders/:id/edit(.:format)                                  admin/orders#edit
+                             admin_order GET    /admin/orders/:id(.:format)                                       admin/orders#show
+                                         PATCH  /admin/orders/:id(.:format)                                       admin/orders#update
+                                         PUT    /admin/orders/:id(.:format)                                       admin/orders#update
+                                         DELETE /admin/orders/:id(.:format)                                       admin/orders#destroy
                           admin_lockings GET    /admin/lockings(.:format)                                         admin/lockings#index
                                          POST   /admin/lockings(.:format)                                         admin/lockings#create
                        new_admin_locking GET    /admin/lockings/new(.:format)                                     admin/lockings#new
@@ -97,11 +135,11 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PUT    /admin/lockings/:id(.:format)                                     admin/lockings#update
                                          DELETE /admin/lockings/:id(.:format)                                     admin/lockings#destroy
                        signin_admin_user POST   /admin/users/:id/signin(.:format)                                 admin/users#signin
-                             admin_users GET    /admin/users(.:format)                                            admin/users#index
+                                         GET    /admin/users(.:format)                                            admin/users#index
                                          POST   /admin/users(.:format)                                            admin/users#create
-                          new_admin_user GET    /admin/users/new(.:format)                                        admin/users#new
-                         edit_admin_user GET    /admin/users/:id/edit(.:format)                                   admin/users#edit
-                              admin_user GET    /admin/users/:id(.:format)                                        admin/users#show
+                                         GET    /admin/users/new(.:format)                                        admin/users#new
+                                         GET    /admin/users/:id/edit(.:format)                                   admin/users#edit
+                                         GET    /admin/users/:id(.:format)                                        admin/users#show
                                          PATCH  /admin/users/:id(.:format)                                        admin/users#update
                                          PUT    /admin/users/:id(.:format)                                        admin/users#update
                                          DELETE /admin/users/:id(.:format)                                        admin/users#destroy
@@ -124,6 +162,11 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /admin/companies/:id(.:format)                                    admin/companies#update
                                          PUT    /admin/companies/:id(.:format)                                    admin/companies#update
                                          DELETE /admin/companies/:id(.:format)                                    admin/companies#destroy
+                                   error GET    /error(.:format)                                                  errors#show
+                                         GET    /404(.:format)                                                    errors#show {:code=>"404"}
+                                         GET    /422(.:format)                                                    errors#show {:code=>"422"}
+                                         GET    /500(.:format)                                                    errors#show {:code=>"500"}
+                                         GET    /*anything(.:format)                                              errors#show {:code=>404}
 
 Routes for LetterOpenerWeb::Engine:
 clear_letters DELETE /clear(.:format)                 letter_opener_web/letters#clear

@@ -15,7 +15,7 @@ module RescueErrors
   protected
 
   def rescue_not_found(exception)
-    render 'errors/show', locals: { code: 404 }
+    render 'errors/show', locals: { code: 404 }, layout: 'simple'
   end
 
   def rescue_system_error(exception)

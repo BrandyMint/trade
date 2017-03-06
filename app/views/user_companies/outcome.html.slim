@@ -1,0 +1,11 @@
+h2 Вывод средств
+
+.row
+  .col-md-6
+    p 
+      | Организиция 
+      strong= company
+  .col-md-6
+    p 
+      | Текущий баланс 
+      strong= humanized_money_with_symbol company.amount

@@ -1,5 +1,5 @@
 class UserTransactionsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   layout 'profile'
 
@@ -16,7 +16,6 @@ class UserTransactionsController < ApplicationController
 
     render locals: { transaction: transaction }
   end
-
   private
 
   def transactions_index

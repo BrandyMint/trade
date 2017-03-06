@@ -38,7 +38,12 @@ Rails.application.routes.draw do
   resources :user_orders
   resources :user_transactions
   resources :user_goods
-  resources :user_companies, only: [:index]
+  resources :user_companies, only: [:index] do
+    member do
+      get :income
+      get :outcome
+    end
+  end
 
   resources :banners, only: [:destroy]
 
