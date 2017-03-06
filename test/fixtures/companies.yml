@@ -4,6 +4,14 @@ one:
   user: one
   name: MyString
   form: INDIVIDUAL
+  inn: 12312321
+  ogrn: 12321321321
+  account: one
+
+empty:
+  user: one
+  name: MyString
+  form: INDIVIDUAL
   inn: MyString
   ogrn: MyString
   account: empty

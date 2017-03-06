@@ -2,18 +2,14 @@ require 'test_helper'
 
 class UserTransactionsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get user_transactions_index_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get user_transactions_new_url
+    login users(:one)
+    get user_transactions_path
     assert_response :success
   end
 
   test "should get show" do
-    get user_transactions_show_url
+    login users(:one)
+    get user_transaction_path(openbill_transactions(:one))
     assert_response :success
   end
-
 end

@@ -16,6 +16,7 @@ class UserTransactionsController < ApplicationController
 
     render locals: { transaction: transaction }
   end
+
   private
 
   def transactions_index

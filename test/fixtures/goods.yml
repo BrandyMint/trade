@@ -6,7 +6,7 @@ one:
   workflow_state: published
   title: MyString
   details: MyText
-  price: 10_000
+  price: 10_001
   prepayment_required: true
 
 two:
@@ -15,7 +15,7 @@ two:
   workflow_state: published
   title: MyString
   details: MyText
-  price: 20_000
+  price: 20_002
   prepayment_required: false
 
 without_price:

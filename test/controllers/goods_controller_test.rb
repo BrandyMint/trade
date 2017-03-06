@@ -7,10 +7,10 @@ class GoodsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create new" do
+  test "should create one" do
     login users(:one)
     assert_difference -> { Good.count } do
-      post goods_path, params: { good: { title: '123', category_id: categories(:one).id, company_id: companies(:one).id } }
+      post goods_path, params: { good: { title: '123', prepayment_required: false, category_id: categories(:one).id, company_id: companies(:one).id } }
     end
     assert_response :redirect
   end

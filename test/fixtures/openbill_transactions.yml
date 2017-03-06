@@ -1,0 +1,9 @@
+one:
+  user: one
+  username: test
+  from_account: full
+  to_account: one
+  amount_cents: 100000
+  amount_currency: rub
+  details: test
+  key: one

@@ -59,6 +59,8 @@ class BillingTet < ActiveSupport::TestCase
   end
 
   test "buy amount" do
+    saved_amount = goods(:two).company.account.amount
+
     Billing.income_to_company(
       company: companies(:one),
       amount: goods(:two).amount,
@@ -67,7 +69,7 @@ class BillingTet < ActiveSupport::TestCase
       order_number: '1234',
       payer: '123'
     )
-    order = Order.create(
+    order = Order.create!(
       user: users(:one),
       company: companies(:one),
       good: goods(:two)
@@ -83,6 +85,6 @@ class BillingTet < ActiveSupport::TestCase
     )
 
     assert_equal companies(:one).account.reload.amount, 0
-    assert_equal goods(:two).company.account.reload.amount, locking.amount
+    assert_equal goods(:two).company.account.reload.amount, locking.amount + saved_amount
   end
 end
