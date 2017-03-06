@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   extend Enumerize
+  include PhoneNormalizer
   authenticates_with_sorcery!
 
   has_many :companies
@@ -11,11 +12,14 @@ class User < ApplicationRecord
 
   scope :users, -> { with_role  :user }
 
+  before_validation :clean_phone
+  before_save :clean_phone
   validates :name,                    presence: true
   validates :phone,                   presence: true, phone: true, uniqueness: true
-  validates :password,                presence: true, confirmation: true, length: { minimum: 3}
   validates :email,                   presence: true, uniqueness: true, email: true
-  validates :password_confirmation,   presence: true
+
+  validates :password_confirmation,   presence: true, if: :new_record?
+  validates :password,                presence: true, confirmation: true, length: { minimum: 3}, if: :new_record?
 
   enumerize :role,
     in: %w(user manager superadmin),
@@ -42,5 +46,11 @@ class User < ApplicationRecord
   def transactions
     ids = companies.pluck(:account_id)
     OpenbillTransaction.where(from_account_id: ids).or(OpenbillTransaction.where(to_account_id: ids))
+  end
+
+  private
+
+  def clean_phone
+    self.phone = normalize_phone self.phone if self.phone.present?
   end
 end

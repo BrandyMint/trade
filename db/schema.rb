@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305223523) do
+ActiveRecord::Schema.define(version: 20170306072423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,7 +178,6 @@ ActiveRecord::Schema.define(version: 20170305223523) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
-    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -190,6 +189,7 @@ ActiveRecord::Schema.define(version: 20170305223523) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
+    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20170305223523) do
     t.integer  "orders_count",                    default: 0,      null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
+    t.index ["phone"], name: "index_users_on_phone", unique: true, using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", using: :btree
