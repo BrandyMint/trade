@@ -4,6 +4,7 @@
       tr
         td
           = user.name
+          .mt-2= login_as_link user
         td
           = mail_to user.email, user.email
         td

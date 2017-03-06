@@ -64,11 +64,7 @@ Rails.application.routes.draw do
       end
     end
     resources :lockings
-    resources :users do
-      member do
-        post :signin
-      end
-    end
+    resources :users
     resources :companies do
       member do
         patch :start_review

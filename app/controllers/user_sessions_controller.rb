@@ -9,6 +9,7 @@ class UserSessionsController < ApplicationController
     if can_supersignin?
       user = User.find params[:id]
       auto_login user
+      flash[:info] = "Вы вошли под именем #{user}"
       if user.is_admin?
         redirect_to admin_root_path
       else

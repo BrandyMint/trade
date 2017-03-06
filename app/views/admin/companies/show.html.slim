@@ -28,7 +28,7 @@
       h3.card-header 
         | Пользователь
         .pull-right
-          = link_to 'Войти как', signin_admin_user_path(@company.user), method: :post, class: 'btn btn-outline-danger btn-sm'
+          = login_as_link @company.user
       .card-block
         p.card-text
           dl
