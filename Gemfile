@@ -106,8 +106,9 @@ end
 # Use jquery as the JavaScript library
 gem 'nprogress-rails'
 
-grou :test do
-  gem 'therubyracer', platforms: :ruby
+group :test do
+  gem 'mini_racer', platforms: :ruby
+  #gem 'therubyracer', platforms: :ruby
 end
 
 group :development, :test do

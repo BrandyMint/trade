@@ -251,6 +251,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
+    libv8 (5.3.332.38.3)
     lightbox2-rails (2.8.2.1)
       railties (>= 3.1)
     listen (3.0.8)
@@ -267,6 +268,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_magick (4.6.0)
     mini_portile2 (2.1.0)
+    mini_racer (0.1.8)
+      libv8 (~> 5.3)
     minitest (5.10.1)
     monetize (1.6.0)
       money (~> 6.8)
@@ -514,6 +517,7 @@ DEPENDENCIES
   lightbox2-rails
   listen (~> 3.0.5)
   mini_magick
+  mini_racer
   money
   money-rails
   nprogress-rails
