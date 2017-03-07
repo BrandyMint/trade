@@ -1,7 +1,10 @@
-h2 Заказы (#{orders.total_count})
+- total_orders_count = income_orders_count + outcome_orders_count
+h2.mb-2 Заказы (#{total_orders_count})
+hr
 
-- if orders.total_count > 0
+- if total_orders_count > 0
   .pull-right= paginate orders
+  = render 'user_orders/tabs', type: type, income_orders_count: income_orders_count, outcome_orders_count: outcome_orders_count
   .clearfix
   = render 'user_orders/list', orders: orders
   .pull-right= paginate orders

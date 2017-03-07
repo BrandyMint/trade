@@ -1,0 +1,9 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to title_with_count('Входящие', income_orders_count),
+      user_orders_path(type: :income),
+      class: active_class('nav-link', type == 'income')
+  li.nav-item
+    = link_to title_with_count('Исходящие', outcome_orders_count),
+      user_orders_path(type: :outcome),
+      class: active_class('nav-link', type == 'outcome')

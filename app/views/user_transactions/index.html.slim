@@ -3,8 +3,10 @@
 
 
 - if counts[:total] > 0
-  h2 Транзакции (#{counts[:total]})
-  .pull-right= paginate transactions
+  .mb-4.mt-4
+    .pull-right= paginate transactions
+    h2 Транзакции (#{counts[:total]})
+  hr
   = render 'user_transactions/tabs', counts: counts, type: type
   .clearfix
   = render 'user_transactions/list', transactions: transactions

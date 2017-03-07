@@ -1,25 +1,28 @@
-table.table.table-condensed.table-striped
-  thead
-    tr
-      th Дата
-      th Состояние
-      th Покупатель
-      th Продавец
-      th Товар
-      th Стоимость
-  tbody
-    - orders.each do |o|
+- if orders.any?
+  table.table.table-condensed.table-striped
+    thead
       tr
-        td
-          .text-nowrap
-            = link_to order_path(o) do
-              = l o.created_at, format: :short
-        td
-          = order_workflow_state_text o.workflow_state
-          - if o.locking.present?
-            br
-            .badge.badge-info= locking_workflow_state_text o.locking.workflow_state
-        td= company_link o.company
-        td= company_link o.good.company
-        td= link_to o.good, good_path(o.good)
-        td= humanized_price o.good.amount
+        th Дата
+        th Состояние
+        th Покупатель
+        th Продавец
+        th Товар
+        th Стоимость
+    tbody
+      - orders.each do |o|
+        tr
+          td
+            .text-nowrap
+              = link_to order_path(o) do
+                = l o.created_at, format: :short
+          td
+            = order_workflow_state_text o.workflow_state
+            - if o.locking.present?
+              br
+              .badge.badge-info= locking_workflow_state_text o.locking.workflow_state
+          td= company_link o.company
+          td= company_link o.good.company
+          td= link_to o.good, good_path(o.good)
+          td= humanized_price o.good.amount
+- else
+  .mt-2.alert.alert-info Нет заказов по такому условию

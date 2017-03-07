@@ -1,9 +1,9 @@
-.pull-right.mt-2.mb-2
-  = link_to 'Добавить предложение', new_good_path, class: 'btn btn-outline-success'
-.clearfix
-
 - if current_user.goods.any?
+  .pull-right
+    = link_to 'Добавить предложение', new_good_path, class: 'btn btn-outline-success'
   h2.mb-3 Ваши предложения (#{goods.total_count})
+  hr
+
 
   = render 'goods_filter', search_form: search_form
 
@@ -15,4 +15,5 @@
     - else
       .alert.alert-info Не найдено товаров по этому запросу
 - else
+  .mt-2= link_to 'Добавить предложение', new_good_path, class: 'btn btn-outline-success'
   .alert.alert-info Вы пока не разместили ни одного торгового предложения
