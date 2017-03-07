@@ -13,6 +13,7 @@
 #= require bootstrap-sprockets
 #= require rubles/lib/rubles
 #= require amount
+#= require dadata
 
 DOM.set("lang", "ru")
 
