@@ -10,6 +10,8 @@ class OpenbillTransaction < OpenbillRecord
 
   monetize :amount_cents, as: :amount
 
+  after_create :notify
+
   def income?(account = nil)
     account ||= company.account
     to_account_id == account.id
@@ -41,5 +43,12 @@ class OpenbillTransaction < OpenbillRecord
     reverse_transaction.save!
 
     reverse_transaction
+  end
+
+  private
+
+  def notify
+    TransactionMailer.income(self, to_account.company.user).deliver_later! if to_account.company.present?
+    TransactionMailer.outcome(self, from_account.company.user).deliver_later! if from_account.company.present?
   end
 end

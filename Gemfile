@@ -38,6 +38,7 @@ gem 'counter_culture'
 gem 'money'
 gem 'money-rails'
 
+gem 'actionmailer-text'
 gem 'sidekiq'
 
 # gem 'openbill-ruby', github: 'openbill-service/openbill-ruby'

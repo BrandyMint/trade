@@ -7,14 +7,15 @@ class Good < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :company, counter_cache: true
+  has_one :user, through: :company
   belongs_to :category
 
   has_many :orders
 
   counter_culture :category,
-    column_name: proc {|good| good.published? ? 'goods_count' : nil },
+    column_name: proc {|good| good.is_available? ? 'goods_count' : nil },
     column_names: {
-      ['goods.workflow_state = ?', :published] => :goods_count
+      ['goods.workflow_state = ? and is_company_verified', :published] => :goods_count
     },
     touch: true
 
@@ -26,8 +27,10 @@ class Good < ApplicationRecord
     using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
   scope :published, -> { where workflow_state: :published }
-  scope :view_order, -> { order 'id desc' }
+  scope :view_order, -> { order 'goods.id desc' }
   scope :active, -> { where workflow_state: [:published, :draft] }
+  scope :company_verified, -> { where is_company_verified: true }
+  scope :available, -> { published.company_verified }
 
   validates :title, presence: true, uniqueness: { scope: :company_id }
   validates :company, presence: true
@@ -48,6 +51,10 @@ class Good < ApplicationRecord
       event :draft, :transitions_to => :trash
       event :published, :transitions_to => :trash
     end
+  end
+
+  def is_available?
+    is_company_verified? && published?
   end
 
   def amount

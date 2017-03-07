@@ -3,6 +3,7 @@ defaults: &defaults
     name: 'Online-Prodaja.Club'
 
     host: online-prodaja.club
+    asset_host: http://online-prodaja.club
     # Можно и не устанавливать
     # tld_length: 1
   mailer:
@@ -14,6 +15,7 @@ development:
     name: 'Online-Prodaja.Club'
 
     host: 3000.brandymint.ru
+    asset_host: http://3000.brandymint.ru
 
 production:
   <<: *defaults

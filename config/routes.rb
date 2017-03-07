@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   resources :goods
   resources :password_resets, only: [:new, :create, :edit]
 
+  get 'unsubscribe/:token', to: 'welcome#unsubscribe', as: :unsubscribe
+
   namespace :admin do
     root 'dashboard#index'
     resources :transactions

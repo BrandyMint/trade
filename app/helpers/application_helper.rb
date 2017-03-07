@@ -82,11 +82,7 @@ module ApplicationHelper
   end
 
   def application_title
-    if current_namespace == :admin
-      "Админка"
-    else
-      Settings.app.name
-    end
+    Settings.app.name
   end
 
   def destroy_button(resource)

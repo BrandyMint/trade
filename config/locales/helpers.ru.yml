@@ -24,6 +24,8 @@ ru:
         update: Изменить уведомление
       admin_users_search_form:
         create: Найти
+      user_goods_search_form:
+        create: Найти
     goods_count:
       zero: 'Нет торговых предложений'
       one: '%{count} предложение'

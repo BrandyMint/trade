@@ -21,6 +21,9 @@ module CompanyModerationWorkflow
       state :rejected do
         event :review, :transitions_to => :being_reviewed
       end
+      on_transition do |from, to, triggering_event, *event_args|
+        update_goods_verification to.to_sym == :accepted
+      end
     end
 
     # validates :reject_message, presence: true, if: :new_rejected?
@@ -64,6 +67,7 @@ module CompanyModerationWorkflow
       accepted_at: Time.zone.now,
       moderator: moderator
     )
+    CompanyMailer.accepted_email(self).deliver_later!
   end
 
   def reject(moderator, reject_message)
@@ -72,5 +76,6 @@ module CompanyModerationWorkflow
       moderator: moderator,
       reject_message: reject_message
     )
+    CompanyMailer.rejected_email(self).deliver_later!
   end
 end

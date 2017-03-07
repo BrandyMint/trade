@@ -1,6 +1,3 @@
-/= search_form_for goods_ransack, url: user_goods_path, :builder => SimpleForm::FormBuilder do |f|
-  /= f.search_field :title_cont
-
 .mb-3= link_to 'Показать фильтр', '#goodsFilter', data: { toggle: :collapse }, 'aria-expanded': false, 'aria-controls': 'collapseExample'
 #goodsFilter.collapse class=(search_form.empty? ? '' : 'show')
   = simple_form_for search_form, as: :q, url: user_goods_path, method: :get do |f|

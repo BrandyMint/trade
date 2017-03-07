@@ -1,0 +1,23 @@
+ru:
+  user_mailer:
+    reset_password_email:
+      subject: 'Восстановление доступа'
+  transaction_mailer:
+    outcome:
+      subject: Списание средств
+    income:
+      subject: Поступление средств
+  order_mailer:
+    created:
+      subject: 'Поступил новый заказ'
+    complete:
+      subject: 'Заказ завершен'
+    cancel:
+      subject: 'Заказ отклонен'
+  company_mailer:
+    accepted_email:
+      title: Поздравляем!
+      subject: 'Организация прошла верификацию'
+    rejected_email:
+      title: Упс..
+      subject: 'Организация НЕ прошла верификацию'

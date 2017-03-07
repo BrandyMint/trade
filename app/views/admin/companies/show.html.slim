@@ -9,6 +9,11 @@
     = render 'admin/companies/moderation', company: @company
   .col-md-6
     .card.mb-4
+      h2.card-header Товары
+      .card-block
+        p Всего: #{link_to t(:goods_count, scope: :helpers, count: @company.goods.count), admin_goods_path(q: { company_id_eq: @company.id})}
+        p Опубликовано: #{ link_to t(:goods_count, scope: :helpers, count: @company.goods.published.count), admin_goods_path(q: {company_id_eq: @company.id, workflow_state_eq: :published})}
+    .card.mb-4
       h3.card-header Баланс
       .card-block
         h4.card-title На счету #{humanized_money_with_symbol @company.account.amount}

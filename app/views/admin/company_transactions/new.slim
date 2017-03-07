@@ -15,10 +15,11 @@ hr
       .lead data-amount=:string -
       .mt-4
         = f.input :order_number
-        = f.input :payer
+        - if transaction.income?
+          = f.input :payer
       .mt-4
         = f.input :details, as: :text
 
       .mt-4
-        = f.button :submit, value: 'Зачислить', class: 'btn btn-lg btn-primary'
+        = f.button :submit, value: transaction.income? ? 'Зачислить' : 'Списать', class: 'btn btn-lg btn-primary'
         = f.input :type, as: :hidden

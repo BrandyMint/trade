@@ -1,8 +1,8 @@
 .jumbotron
-  = simple_form_for search_form, url: goods_path, method: :get do |f|
+  = simple_form_for search_form, as: :q, url: goods_path, method: :get do |f|
     .row
       .col-md-11
-        = f.input :q, label: false, hint: false, as: :search, input_html: { autofocus: :autofocus, class: 'mr-3' }
+        = f.input :title_cont, label: false, hint: false, as: :search, input_html: { autofocus: :autofocus, class: 'mr-3' }
       .col-md-1
         .pull-right
-          = f.button :submit, class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }
+          = f.button :submit, value: 'Найти', class: 'btn btn-primary', data: { disabled_with: 'Отправляем..' }

@@ -4,7 +4,11 @@ class UserGoodsSearchForm
 
   ATTRS = %w{title_cont company_id_eq workflow_state_eq category_id_eq prepayment_required_eq}
 
-  attr_accessor *ATTRS
+  attr_accessor(*ATTRS)
+
+  def category
+    Category.find_by_id company_id_eq if company_id_eq.present?
+  end
 
   def empty?
     serializable_hash.values.map(&:presence).compact.empty?

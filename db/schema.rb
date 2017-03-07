@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306072423) do
+ActiveRecord::Schema.define(version: 20170307124522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170306072423) do
     t.string   "image"
     t.boolean  "prepayment_required", default: true,    null: false
     t.string   "workflow_state",      default: "draft", null: false
+    t.boolean  "is_company_verified", default: false,   null: false
     t.index ["category_id"], name: "index_goods_on_category_id", using: :btree
     t.index ["company_id"], name: "index_goods_on_company_id", using: :btree
   end

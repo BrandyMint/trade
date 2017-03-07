@@ -1,11 +1,11 @@
 .pull-right.mt-2.mb-2
   = link_to 'Добавить предложение', new_good_path, class: 'btn btn-outline-success'
 .clearfix
-- if current_user.goods.any?
 
+- if current_user.goods.any?
   h2.mb-3 Ваши предложения (#{goods.total_count})
 
-  = render 'goods_filter', search_form: search_form, goods_ransack: goods_ransack
+  = render 'goods_filter', search_form: search_form
 
   .mt-4
     - if goods.any?

@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
       if user.is_admin?
         redirect_to admin_root_path
       else
-        redirect_to :back
+        redirect_back_or_to root_path
       end
     else
       flash[:danger] = 'Ай-яй'

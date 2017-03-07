@@ -86,7 +86,16 @@ class Company < ApplicationRecord
     "#{name} (#{state_text})"
   end
 
+  def update_goods
+    update_goods_verification verified?
+  end
+
   private
+
+  def update_goods_verification(flag)
+    goods.update_all is_company_verified: flag
+    Good.counter_culture_fix_counts
+  end
 
   def create_account
     self.account ||= OpenbillAccount.create! category: OpenbillCategory.companies

@@ -1,8 +1,10 @@
 class WelcomeController < ApplicationController
-  include SearchFormConcern
   include GoodsScope
 
   def index
-    render 'goods/index', locals: { goods: goods_index }
+    render 'goods/index', locals: {
+      goods: goods_index,
+      search_form: search_form
+    }
   end
 end

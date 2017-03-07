@@ -11,22 +11,4 @@ h1 Торговые предложения
 .mt-4
   = render 'goods/search_form', search_form: search_form
 
-.mt-4
-  .row
-    .col-md-12
-  .row
-    .col-md-3.bd-sidebar
-      = render 'categories', category: current_category
-    .col-md-9
-      .pull-left
-        - if current_category.present?
-          h2.mb-4= current_category
-        - else
-          h2.mb-4 Все торговые предложения
-
-      .pull-right= paginate goods
-      .clearfix
-      = render 'goods/list', goods: goods
-  .row
-    .col-md-12
-      .pull-right= paginate goods
+= render 'goods/list_with_categories', search_form: search_form, goods: goods

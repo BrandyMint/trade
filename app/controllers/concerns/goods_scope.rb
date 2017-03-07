@@ -1,16 +1,21 @@
 module GoodsScope
+  protected
+
   def goods_scope
-    Good.published
+    Good.available
   end
 
   def goods_index
+    goods_ransack.result(distinct: true).page(params[:page])
+  end
+
+  def search_form
+    UserGoodsSearchForm.new params.fetch(:q, {}).permit!
+  end
+
+  def goods_ransack
     scope = goods_scope.includes(:company, :category).view_order
 
-    scope = scope.where(company_id: params[:company_id]) if params[:company_id].present?
-    scope = scope.where(category_id: params[:category_id]) if params[:category_id].present?
-
-    scope = scope.search_by_title search_form.q if search_form.q.present?
-
-    scope.page params[:page]
+    scope = scope.ransack search_form.serializable_hash
   end
 end
