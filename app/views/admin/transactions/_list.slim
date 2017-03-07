@@ -18,7 +18,7 @@ table.table.table-condensed.table-striped
           - else
             = t.from_account
         td.text-nowrap
-          = link_to transaction_amount(t), admin_transaction_path(t)
+          = link_to transaction_amount(t.amount), admin_transaction_path(t)
         td
           - if t.to_account.company.present?
             = admin_company_link t.to_account.company

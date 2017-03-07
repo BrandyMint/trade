@@ -1,4 +1,7 @@
 .alert.alert-warning
+  - if Rails.env.development?
+    .mt-3= link_to 'letter_opener', '/letter_opener'
+  hr
   p Автопользователи:
   - user_without_company = User.users.where(companies_count:0).order(:id).first
   - user_without_money = User.users.where('companies_count>0').includes(companies: [:account]).first

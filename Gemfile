@@ -68,6 +68,7 @@ gem 'enumerize'
 gem 'simple-navigation', git: 'git://github.com/andi/simple-navigation.git'
 gem 'simple-navigation-bootstrap'
 
+gem 'gon'
 gem 'font-awesome-rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 

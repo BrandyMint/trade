@@ -15,13 +15,14 @@ module RescueErrors
   protected
 
   def rescue_not_found(exception)
-    render 'errors/show', locals: { code: 404 }, layout: 'simple'
+    render 'errors/show', locals: { code: 404 }, layout: 'simple', format: :html
   end
 
   def rescue_system_error(exception)
     Bugsnag.notify exception
     render 'system_error',
       status: 500,
+      format: :html,
       layout: 'simple'
   end
 
@@ -30,6 +31,7 @@ module RescueErrors
     render 'require_login',
       status: 403,
       locals: { user_session: UserSession.new },
+      format: :html,
       layout: 'simple'
   end
 
@@ -44,6 +46,7 @@ module RescueErrors
         message: 'Вам запрещен доступ к этому действию или ресурсу',
         allow_signup: false
       },
+      format: :html,
       layout: 'simple'
   end
 
@@ -67,56 +70,6 @@ module RescueErrors
   end
 
   def rescue_unknown_format
-    render status: 406, text: "Unknown Format: #{request.headers['HTTP_ACCEPT']}"
+    render status: 406, text: "Unknown Format: #{request.headers['HTTP_ACCEPT']}", format: :plain
   end
-
-  #def rescue_error(exception)
-    #page = if exception.is_a? HumanizedError
-             #ErrorPage.build_from_humanized exception
-           #else
-             #ErrorPage.build_from_error exception
-           #end
-    #save_history_path(:exception) if respond_to? :save_history_path
-    #render(
-      #'humanized_error',
-      #layout:  'errors',
-      #formats: 'html',
-      #status:  400,
-      #locals:  { current_page: page }
-    #)
-  #end
-
-  ## Для activeAdmin
-  #def access_denied(exception)
-    #redirect_to admin_root_path, alert: exception.message
-  #end
-
-  ## Этот метод автоматически вызывается из authority при получении Authority::SecurityViolation
-  #def authority_forbidden(exception = nil, layout: nil)
-    #Authority.logger.warn exception.message if exception.present?
-
-    #page = ErrorPage.build :authority_forbidden
-    #layout ||= exception.present? ? 'errors' : 'system'
-    #render(
-      #'authority_forbidden',
-      #status: 403,
-      #locals: { current_page: page, back_url: request.referer.presence || system_root_path },
-      #layout: layout,
-      #formats: 'html'
-    #)
-  #end
-
-  #def rescue_not_found(exception = nil, layout: nil)
-    #page = ErrorPage.build :not_found
-
-    #layout ||= exception.present? ? 'errors' : 'system'
-
-    #render(
-      #'not_found',
-      #status: 404,
-      #locals: { current_page: page },
-      #layout: layout,
-      #formats: 'html'
-    #)
-  #end
 end

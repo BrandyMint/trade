@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
 
   respond_to :html
 
+  before_action :setup_gon
+
   helper_method :current_namespace
   helper_method :can_supersignin?
   protect_from_forgery with: :exception
@@ -27,5 +29,9 @@ class ApplicationController < ActionController::Base
   # Вызфывает Sorcery из require_login
   def not_authenticated
     raise RequireLogin
+  end
+
+  def setup_gon
+    gon.document_types = DocumentUploader::EXTENSION_WHITE_LIST.map{ |e| ".#{e}"}.join(',')
   end
 end

@@ -5,7 +5,13 @@ class UserTransactionsController < ApplicationController
 
   def index
     render locals: {
-      transactions: transactions_index,
+      counts: {
+        total: all_transactions.count,
+        income: income_transactions.count,
+        outcome: outcome_transactions.count
+      },
+      transactions: transactions,
+      type: type,
       companies: current_user.companies.order('id desc')
     }
   end
@@ -19,7 +25,30 @@ class UserTransactionsController < ApplicationController
 
   private
 
-  def transactions_index
-    current_user.transactions.order('id desc').page params[:page]
+  def type
+    params[:type]
+  end
+
+  def transactions
+    if type == 'income'
+      scope = income_transactions
+    elsif type == 'outcome'
+      scope = outcome_transactions
+    else
+      scope = all_transactions
+    end
+    scope.order('id desc').page params[:page]
+  end
+
+  def all_transactions
+    current_user.transactions
+  end
+
+  def income_transactions
+    all_transactions.where(to_account_id: current_user.account_ids)
+  end
+
+  def outcome_transactions
+    all_transactions.where(from_account_id: current_user.account_ids)
   end
 end

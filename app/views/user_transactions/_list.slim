@@ -1,29 +1,29 @@
-table.table.table-condensed.table-striped
-  thead
-    tr
-      th Дата
-      th Со счета
-      th Сумма
-      th На счет
-      th -
-      th Комментарий
-  tbody
-    - transactions.each do |t|
-      tr
-        td.text-nowrap
-            = l t.created_at, format: :short
-        td
-          - if t.from_account.company.present?
-            = company_link t.from_account.company
-          - else
-            = t.from_account
-        td.text-nowrap
-          = transaction_amount(t)
-        td
-          - if t.to_account.company.present?
-            = company_link t.to_account.company
-          - else
-            = t.to_account
-        td= t.company.present? ? t.opposite_account.details : ''
-        td.text-muted= t.details
+- if transactions.any?
 
+  table.table.table-condensed.table-striped
+    thead
+      tr
+        th Дата
+        th Сумма
+        th Счет
+        th Комментарий
+    tbody
+      - transactions.each do |t|
+        - t = AccountTransaction.new current_user.account_ids, t
+        tr
+          td.text-nowrap= l t.created_at, format: :short
+          td.text-nowrap= transaction_amount t.amount
+          td
+            - if t.account.company.present?
+              = company_link t.account.company
+            - else
+              = t.account
+          td.text-muted
+            - if t.opposite_account.company.present?
+              = company_link t.opposite_account.company
+            - else
+              = t.opposite_account
+            br
+            = t.details
+- else
+  .alert.alert-info Отсутсвуют

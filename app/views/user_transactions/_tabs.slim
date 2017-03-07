@@ -1,0 +1,13 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to title_with_count('Все', counts[:total]),
+      user_transactions_path,
+      class: active_class('nav-link', type.blank?)
+  li.nav-item
+    = link_to title_with_count('Входящие', counts[:income]),
+      user_transactions_path(type: :income),
+      class: active_class('nav-link', type == 'income')
+  li.nav-item
+    = link_to title_with_count('Исходящие', counts[:outcome]),
+      user_transactions_path(type: :outcome),
+      class: active_class('nav-link', type == 'outcome')

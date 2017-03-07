@@ -1,10 +1,7 @@
+doctype html
 html
   head
-    title= application_title
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-    = render 'layouts/dadata'
-    = csrf_meta_tags
+    = render 'layouts/head'
   body
     nav.navbar.navbar-light.bg-faded.navbar-simple
       .container.flex-centered

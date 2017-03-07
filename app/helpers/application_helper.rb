@@ -17,11 +17,11 @@ module ApplicationHelper
     link_to category, goods_path(category_id: category), class: 'category-link'
   end
 
-  def transaction_amount(t)
-    if t.company.present? && t.outcome?
-      content_tag :span, humanized_money_with_symbol(-t.amount), class: 'text-danger'
+  def transaction_amount(amount)
+    if amount < 0
+      content_tag :span, humanized_money_with_symbol(amount), class: 'text-danger'
     else
-      content_tag :span, humanized_money_with_symbol(t.amount), class: 'text-success'
+      content_tag :span, humanized_money_with_symbol(amount), class: 'text-success'
     end
   end
 

@@ -34,24 +34,24 @@ removedFileHandler = (file) ->
 
   # return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;        
 
+$ ->
+  $('[data-dropzone]').dropzone
+    acceptedFiles: gon.document_types,
+    addRemoveLinks: true
+    removedfile: removedFileHandler
+    init: ->
+      @on '!addedfile', (file) ->
+        debugger
+        removeButton = Dropzone.createElement '<button class="dz-remove" data-dz-remove data-docoument-id=1>Удалить</button>'
+        debugger
 
-$('[data-dropzone]').dropzone
-  acceptedFiles: ".jpeg,.jpg,.png,.gif,.tiff"
-  addRemoveLinks: true
-  removedfile: removedFileHandler
-  init: ->
-    @on '!addedfile', (file) ->
-      debugger
-      removeButton = Dropzone.createElement '<button class="dz-remove" data-dz-remove data-docoument-id=1>Удалить</button>'
-      debugger
+        _this = @
 
-      _this = @
+        removeButton.addEventListener "click", (e) ->
+          e.preventDefault()
+          e.stopPropagation()
 
-      removeButton.addEventListener "click", (e) ->
-        e.preventDefault()
-        e.stopPropagation()
-
-        _this.removeFile(file)
-#
-      file.previewElement.appendChild(removeButton)
+          _this.removeFile(file)
+  #
+        file.previewElement.appendChild(removeButton)
 

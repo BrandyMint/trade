@@ -1,10 +1,11 @@
 - if companies.any?
   = render 'user_accounts', companies: companies
 
-h2 Транзакции (#{transactions.total_count})
 
-- if transactions.total_count > 0
+- if counts[:total] > 0
+  h2 Транзакции (#{counts[:total]})
   .pull-right= paginate transactions
+  = render 'user_transactions/tabs', counts: counts, type: type
   .clearfix
   = render 'user_transactions/list', transactions: transactions
   .pull-right= paginate transactions

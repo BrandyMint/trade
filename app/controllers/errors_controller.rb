@@ -3,6 +3,6 @@ class ErrorsController < ApplicationController
 
   def show
     code = params[:code] || 'unknown'
-    render locals: { code: code }
+    render locals: { code: code }, format: :html
   end
 end

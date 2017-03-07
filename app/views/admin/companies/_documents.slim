@@ -1,8 +1,7 @@
-.card.mb-4
-  h3.card-header Документы
-  .card-block
-    - DocumentTypes.each_with_index do |doc|
-      h4.card-title= doc.title
-      p.card-text.mb-3
-        = render partial: 'document', collection: @company.documents.with_category(doc.key)
-      hr
+- DocumentTypes.each_with_index do |doc|
+  h4.mt-4.mb-3= doc.title
+  - documents = @company.documents.with_category(doc.key)
+  - if documents.any?
+    = render partial: 'document', collection: @company.documents.with_category(doc.key)
+  - else
+    .alert.alert-warning Отсутсвуют

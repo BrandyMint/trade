@@ -1,2 +1,8 @@
-a href=document.file.url data-lightbox="image-1"
-  = image_tag document.file.preview.url, class: 'img-fuild'
+.card style='width: 20rem'
+  a.card-img-top href=document.file.url data-lightbox="image-1"
+    = image_tag document.file.preview.url, class: 'img-fuild'
+  .card-block
+    .card-title
+      = link_to document.original_filename, document.file.url, target: '_blank'
+    .card-text
+      = number_to_human_size document.file_size
