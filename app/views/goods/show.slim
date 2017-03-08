@@ -5,7 +5,8 @@ p
   = company_link @good.company
 hr
 .pull-right
-  .mb-3= good_buy_link @good
+  - if policy(@good).orderable?
+    .mb-3= good_buy_link @good
   - if logged_in?
     = render 'user_goods/button_actions', good: @good
 

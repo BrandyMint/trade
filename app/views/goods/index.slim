@@ -5,7 +5,10 @@
     = link_to 'Разместить торговое предложение', new_user_path, class: 'btn btn-outline-success'
 
 
-h1 Торговые предложения
+- if search_form.category.present?
+  h1= "Категория: #{search_form.category}"
+- else
+  h1 Все торговые предложения
 
 .clearfix
 .mt-4

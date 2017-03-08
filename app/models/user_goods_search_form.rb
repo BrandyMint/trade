@@ -7,7 +7,7 @@ class UserGoodsSearchForm
   attr_accessor(*ATTRS)
 
   def category
-    Category.find_by_id company_id_eq if company_id_eq.present?
+    Category.find category_id_eq if category_id_eq.present?
   end
 
   def empty?

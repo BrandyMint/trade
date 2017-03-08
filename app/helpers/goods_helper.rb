@@ -5,13 +5,19 @@ module GoodsHelper
   end
 
   def good_buy_link(good)
-    link_to 'Купить', new_order_path(order: { good_id: good.id }), class: 'btn btn-outline-success'
+    link_to new_order_path(order: { good_id: good.id }), class: 'btn btn-outline-success' do
+      fa_icon 'cart-arrow-down', text: 'Купить'
+    end
   end
 
   def good_prepayment_icon(good)
     if good.prepayment_required?
       content_tag :span, data: { toggle: :tooltip }, title: 'Требуется предоплата' do
-        fa_icon 'times-rectangle'
+        fa_icon 'hand-o-up'
+      end
+    else
+      content_tag :span, data: { toggle: :tooltip }, title: 'Без предоплаты' do
+        fa_icon 'hand-o-left'
       end
     end
   end

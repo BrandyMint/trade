@@ -5,12 +5,6 @@
     .col-md-3.bd-sidebar
       = render 'categories', category: search_form.category
     .col-md-9
-      .pull-left
-        - if search_form.present?
-          h2.mb-4= search_form.category
-        - else
-          h2.mb-4 Все торговые предложения
-
       .pull-right= paginate goods
       .clearfix
       = render 'goods/list', goods: goods

@@ -23,7 +23,7 @@
       = f.button :submit, 'Сохранить в черновике', name: :draft, class: 'btn btn-outline-primary'
       - if @good.persisted?
         .mt-3
-          = link_to 'В архив', good_path(@good), method: :destroy, data: { confirm: 'Уверены?' }, class: 'btn btn-sm btn-outline-danger'
+          = link_to 'В архив', good_path(@good), method: :destroy, data: { confirm: 'Уверены?' }, class: 'btn btn-outline-danger'
     .col-md-4
       .pull-right
         = f.button :submit, 'Опубликовать', name: :publish, class: 'btn btn-success'

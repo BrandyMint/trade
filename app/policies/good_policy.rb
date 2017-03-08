@@ -5,8 +5,12 @@ class GoodPolicy < ApplicationPolicy
     end
   end
 
+  def orderable?
+    record.is_available?
+  end
+
   def show?
-    record.published? || record.user == user
+    orderable? || owner?
   end
 
   def new?
@@ -18,10 +22,14 @@ class GoodPolicy < ApplicationPolicy
   end
 
   def update?
-    user.present? && user.goods.include?(record)
+    owner?
   end
 
   def destroy?
     update?
+  end
+
+  def owner?
+    user.present? && record.user == user
   end
 end
