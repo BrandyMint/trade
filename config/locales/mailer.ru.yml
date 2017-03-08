@@ -1,7 +1,7 @@
 ru:
   user_mailer:
     reset_password_email:
-      subject: 'Восстановление доступа'
+      subject: 'Восстановление доступа (пароля)'
   transaction_mailer:
     outcome:
       subject: Списание средств

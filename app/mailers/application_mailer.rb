@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
   # К сожалению он портит chartset и bit encoding устанавливает в 7
-  # include ActionMailer::Text
+  # include ActionMailer::Textgiri
   include ActionView::Helpers::AssetUrlHelper
   include MoneyRails::ActionViewExtension
 
@@ -24,16 +24,21 @@ class ApplicationMailer < ActionMailer::Base
     @bg_image_url = image_url '/mail/bg.gif'
   end
 
-  def t(key, options = {})
-    I18n.t key, options.merge(scope: [mailer_name, action_name])
+  def t(key, interpolations = {})
+    # По примеру default_i18n_subject
+    mailer_scope = self.class.mailer_name.tr('/', '.')
+    I18n.t(key, interpolations.reverse_merge(scope: [mailer_scope, action_name], default: action_name.humanize))
   end
 
   def action_mail(user)
     @user = user
     @unsubscribe_url = unsubscribe_url user.id unless instance_variable_defined?('@unsubscribe_url')
 
-    @subject = t :subject
-    @title = t :title, default: @subject
-    mail to: @user.email, subject: @subject
+    @title = t :title, default: default_i18n_subject
+    mail to: @user.email
+    #do |format|
+      #format.text { render }
+      #format.html { render }
+    #end
   end
 end

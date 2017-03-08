@@ -1,6 +1,7 @@
 .alert.alert-warning
   - if Rails.env.development?
     .mt-3= link_to 'letter_opener', '/letter_opener'
+    .mt-3= link_to 'preview mailers', '/rails/mailers'
   hr
   p Автопользователи:
   - user_without_company = User.users.where(companies_count:0).order(:id).first
