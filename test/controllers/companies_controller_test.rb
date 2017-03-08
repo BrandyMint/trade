@@ -34,13 +34,13 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should edit company' do
     login users(:one)
-    get edit_company_path companies(:one)
+    get edit_company_path companies(:one_draft)
     assert_response :success
   end
 
   test 'should update company' do
     login users(:one)
-    patch company_path(companies(:one)), params: { company: { title: '123' } }
+    patch company_path(companies(:one_draft)), params: { company: { title: '123' } }
     assert_response :success
   end
 end

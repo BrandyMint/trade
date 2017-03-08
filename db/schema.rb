@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307124522) do
+ActiveRecord::Schema.define(version: 20170308185822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,7 +179,6 @@ ActiveRecord::Schema.define(version: 20170307124522) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
-    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -191,6 +190,7 @@ ActiveRecord::Schema.define(version: 20170307124522) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
+    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin
@@ -208,12 +208,41 @@ ActiveRecord::Schema.define(version: 20170307124522) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
+  create_table "outcome_orders", force: :cascade do |t|
+    t.integer  "user_id",          null: false
+    t.integer  "company_id",       null: false
+    t.decimal  "amount",           null: false
+    t.string   "workflow_state",   null: false
+    t.integer  "manager_id",       null: false
+    t.uuid     "transaction_uuid"
+    t.integer  "requisite_id",     null: false
+    t.string   "reject_message"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["company_id"], name: "index_outcome_orders_on_company_id", using: :btree
+    t.index ["manager_id"], name: "index_outcome_orders_on_manager_id", using: :btree
+    t.index ["requisite_id"], name: "index_outcome_orders_on_requisite_id", using: :btree
+    t.index ["user_id"], name: "index_outcome_orders_on_user_id", using: :btree
+  end
+
   create_table "passport_images", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "image",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_passport_images_on_user_id", using: :btree
+  end
+
+  create_table "requisites", force: :cascade do |t|
+    t.string   "bik",            null: false
+    t.string   "inn",            null: false
+    t.string   "pulichatel",     null: false
+    t.string   "kpp",            null: false
+    t.decimal  "amount",         null: false
+    t.string   "account_number"
+    t.string   "details"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -276,5 +305,10 @@ ActiveRecord::Schema.define(version: 20170307124522) do
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "goods"
   add_foreign_key "orders", "users"
+  add_foreign_key "outcome_orders", "companies"
+  add_foreign_key "outcome_orders", "openbill_transactions", column: "transaction_uuid"
+  add_foreign_key "outcome_orders", "requisites"
+  add_foreign_key "outcome_orders", "users"
+  add_foreign_key "outcome_orders", "users", column: "manager_id"
   add_foreign_key "passport_images", "users"
 end

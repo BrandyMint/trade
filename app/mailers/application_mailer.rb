@@ -1,5 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  include ActionMailer::Text
+  # К сожалению он портит chartset и bit encoding устанавливает в 7
+  # include ActionMailer::Text
   include ActionView::Helpers::AssetUrlHelper
   include MoneyRails::ActionViewExtension
 

@@ -18,6 +18,9 @@ module Trade
     config.responders.flash_keys = [ :success, :warning ]
     config.i18n.default_locale = :ru
 
+    config.active_record.schema_format = :sql
+
+
     config.autoload_paths += Dir[
       "#{Rails.root}/app/form_objects",
       "#{Rails.root}/app/inputs",

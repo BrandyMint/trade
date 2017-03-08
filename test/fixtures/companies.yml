@@ -10,6 +10,14 @@ one:
   workflow_state: accepted
   accepted_at: <%= Time.now %>
 
+one_draft:
+  user: one
+  name: MyString
+  form: INDIVIDUAL
+  inn: 12312322
+  ogrn: 12321321322
+  account: one_draft
+
 empty:
   user: one
   name: MyString

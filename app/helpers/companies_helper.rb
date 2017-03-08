@@ -23,6 +23,8 @@ module CompaniesHelper
     else
       "Организация верификацию еще не прошла"
     end
+  rescue
+    binding.pry
   end
 
   def company_icon(company, text=nil)

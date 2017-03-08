@@ -20,7 +20,7 @@ class OrderMailer < ApplicationMailer
 
   def setup_assigns order
     @order = order
-    @url = order_url @order
+    @url = order_url order
     @link = link_to "##{order.number}", @url
   end
 end

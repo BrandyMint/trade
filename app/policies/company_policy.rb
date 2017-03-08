@@ -5,11 +5,19 @@ class CompanyPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    owner? || manager? || record.verified?
+  end
+
   def edit?
-    record.user_id == user.id && !record.accepted?
+    owner? && !record.accepted? && !record.being_reviewed?
   end
 
   def update?
     edit?
+  end
+
+  def owner?
+    record.user_id == user.try(:id)
   end
 end
