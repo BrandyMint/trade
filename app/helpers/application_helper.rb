@@ -3,6 +3,10 @@ module ApplicationHelper
     '»'
   end
 
+  def humanized_amount_hint(amount)
+    content_tag :div, '', class: 'lead amount-hint', data: { amount_hint: amount.to_f }
+  end
+
   def tel_to(tel)
     link_to tel, "tel:#{tel}"
   end

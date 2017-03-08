@@ -20,6 +20,7 @@ module Trade
 
     config.autoload_paths += Dir[
       "#{Rails.root}/app/form_objects",
+      "#{Rails.root}/app/inputs",
       "#{Rails.root}/app/errors",
       "#{Rails.root}/app/inputs",
       "#{Rails.root}/app/services",

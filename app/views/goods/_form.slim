@@ -1,30 +1,30 @@
 = simple_form_for @good do |f|
   = f.error_notification
-  .row
+  = f.input :title, autofocus: true
+  .row.mb-1
+    .col-md-6
+      = f.input :price, input_html: { data: { amount: :input } }
+    .col-md-6
+      = f.input :prepayment_required, collection: prepayment_collection, include_blank: false
+  .row.mb-5
+    .col-md-12
+      .mb-4= humanized_amount_hint f.object.price
+  .row.mb-5
     .col-md-4
       = render 'dropzone', f: f
     .col-md-8
-      = f.association :company, include_blank: false, collection: user_companies_collection(current_user)
       = f.association :category,  include_blank: false, collection: categories_collection
-
-      .row
-        .col-md-6
-          = f.input :price, input_html: { data: { amount: :input } }
-        .col-md-6
-          = f.input :prepayment_required, collection: prepayment_collection, include_blank: false
-      .row
-        .col-md-12
-          .lead.mb-4 data-amount=:string -
-      = f.input :title
-      hr
+      = f.association :company, include_blank: false, collection: user_companies_collection(current_user)
+  .row.mt-4.mb-5
+    .col-md-12
       = f.input :details
-  .row.mt-4
-    .col-md-9
+  .row.mt-5
+    .col-md-8
       = f.button :submit, 'Сохранить в черновике', name: :draft, class: 'btn btn-outline-primary'
       - if @good.persisted?
         .mt-3
           = link_to 'В архив', good_path(@good), method: :destroy, data: { confirm: 'Уверены?' }, class: 'btn btn-sm btn-outline-danger'
-    .col-md-3
+    .col-md-4
       .pull-right
         = f.button :submit, 'Опубликовать', name: :publish, class: 'btn btn-success'
       .clearfix

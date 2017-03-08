@@ -10,7 +10,7 @@
 #= require better-popover-plugin
 #= require better-form-validation
 #= require better-form-validation/i18n/better-form-validation.ru
-#= require bootstrap-sprockets
+#= require bootstrap
 #= require rubles/lib/rubles
 #= require amount
 #= require dadata

@@ -7,6 +7,20 @@
  */
 
 @import 'lightbox';
+$spacer: 1em;
+$enable-rounded: false;
+$enable-shadows: true;
+$enable-gradients: false;
+$custom-file-text: (
+  placeholder: (
+    en: "Choose file...",
+    ru: "Выберите файл.."
+  ),
+  button-label: (
+    en: "Browse",
+    ru: "Выбрать"
+  )
+);
 @import 'bootstrap';
 // @import "lightbox-bootstrap";
 @import 'font-awesome';
