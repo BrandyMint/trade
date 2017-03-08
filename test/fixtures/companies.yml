@@ -7,6 +7,8 @@ one:
   inn: 12312321
   ogrn: 12321321321
   account: one
+  workflow_state: accepted
+  accepted_at: <%= Time.now %>
 
 empty:
   user: one

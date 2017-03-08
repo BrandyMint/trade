@@ -21,7 +21,8 @@ class GoodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get good' do
-    get good_path goods(:one)
+    good = goods(:one)
+    get good_path good
     assert_response :success
   end
 

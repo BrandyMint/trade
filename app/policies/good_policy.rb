@@ -10,7 +10,7 @@ class GoodPolicy < ApplicationPolicy
   end
 
   def show?
-    orderable? || owner?
+    owner? || orderable?
   end
 
   def new?

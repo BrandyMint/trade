@@ -8,6 +8,7 @@ one:
   details: MyText
   price: 10_001
   prepayment_required: true
+  is_company_verified: true
 
 two:
   company: two
