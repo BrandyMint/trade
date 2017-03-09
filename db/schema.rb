@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308185822) do
+ActiveRecord::Schema.define(version: 20170309073541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20170308185822) do
   create_table "openbill_transactions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "operation_id"
     t.uuid     "owner_id"
+    t.integer  "user_id",                                                                   null: false
     t.string   "username",               limit: 255,                                        null: false
     t.date     "date",                               default: -> { "('now'::text)::date" }, null: false
     t.datetime "created_at",                         default: -> { "now()" }
@@ -190,7 +191,6 @@ ActiveRecord::Schema.define(version: 20170308185822) do
     t.text     "details",                                                                   null: false
     t.hstore   "meta",                               default: {},                           null: false
     t.uuid     "reverse_transaction_id"
-    t.integer  "user_id",                                                                   null: false
     t.index ["created_at"], name: "index_transactions_on_created_at", using: :btree
     t.index ["key"], name: "index_transactions_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_transactions_on_meta", using: :gin
@@ -223,6 +223,18 @@ ActiveRecord::Schema.define(version: 20170308185822) do
     t.index ["manager_id"], name: "index_outcome_orders_on_manager_id", using: :btree
     t.index ["requisite_id"], name: "index_outcome_orders_on_requisite_id", using: :btree
     t.index ["user_id"], name: "index_outcome_orders_on_user_id", using: :btree
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title",                      null: false
+    t.integer  "row_order",                  null: false
+    t.boolean  "is_active",  default: false, null: false
+    t.text     "text",                       null: false
+    t.string   "slug",                       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["row_order"], name: "index_pages_on_row_order", using: :btree
+    t.index ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
   end
 
   create_table "passport_images", force: :cascade do |t|

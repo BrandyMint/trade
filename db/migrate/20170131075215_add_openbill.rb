@@ -1,7 +1,6 @@
 class AddOpenbill < ActiveRecord::Migration[5.0]
   def up
     openbill_up
-    remove_column :openbill_accounts, :key
   end
 
   def down

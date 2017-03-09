@@ -18,7 +18,7 @@ CREATE                TABLE OPENBILL_ACCOUNTS (
   owner_id            UUID,
   id                  UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   category_id         uuid not null,
-  key                 character varying(256) not null,
+  key                 character varying(256) not null default uuid_generate_v4(),
   amount_cents        numeric not null default 0,
   amount_currency     char(3) not null default 'RUB',
   details             text,

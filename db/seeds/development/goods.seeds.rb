@@ -13,8 +13,8 @@ after :categories, 'development:companies' do
       company.goods.create!(
         title: Vydumschik::Lorem.word,
         price: Random.rand(10000)*1000, category: categories.sample,
-        details: Vydumschik::Lorem.sentence,
-        remote_image_url: images.sample
+        details: Vydumschik::Lorem.sentence
+        # remote_image_url: images.sample
       )
     end
   end
