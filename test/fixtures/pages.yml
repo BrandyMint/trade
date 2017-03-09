@@ -2,12 +2,14 @@
 
 one:
   title: MyString
-  row_order_position: 1
-  is_active: false
+  slug: page1
+  is_active: true
   text: MyText
+  row_order: 1
 
 two:
   title: MyString
-  row_order_position: 1
+  slug: page2
   is_active: false
   text: MyText
+  row_order: 2

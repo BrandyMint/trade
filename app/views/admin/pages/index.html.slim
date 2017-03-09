@@ -7,7 +7,7 @@ h1.mb-4 Текстовые страницы
     - @pages.each do |page|
       tr
         td= page.title
-        td= link_to page.slug, page_path(page), target: '_blank'
+        td= link_to page_path(page), page_path(page), target: '_blank'
         td
           = page_active_flag page.is_active
         td
