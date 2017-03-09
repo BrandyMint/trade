@@ -5,10 +5,14 @@ footer#footer.bg-faded
       .col-md-6.text-muted
         = link_to application_title, root_url, data: { toggle: :tooltip }, title: AppVersion
         |  © ООО Альянс. #{Date.today.year}
-      .col-md-6
-        .text-muted.pull-right
+        .mt-4.text-muted
           | Сделано в 
           = link_to 'BrandyMint', 'http://brandymint.ru', target: '_blank'
+      .col-md-6
+        ul
+          - Page.for_view.each do |page|
+            li= link_to page.title, page_path(page)
+      .col-md-4
 = render 'test_users' if can_supersignin?
 - if Rails.env.production?
   = render 'metrika'

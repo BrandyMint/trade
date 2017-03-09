@@ -70,6 +70,6 @@ module RescueErrors
   end
 
   def rescue_unknown_format
-    render status: 406, text: "Unknown Format: #{request.headers['HTTP_ACCEPT']}", format: :plain
+    render status: 406, plain: "Unknown Format: #{request.headers['HTTP_ACCEPT']}", format: :html
   end
 end

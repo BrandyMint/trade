@@ -673,7 +673,6 @@ CREATE TABLE openbill_transactions (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     operation_id uuid,
     owner_id uuid,
-    user_id integer NOT NULL,
     username character varying(255) NOT NULL,
     date date DEFAULT ('now'::text)::date NOT NULL,
     created_at timestamp without time zone DEFAULT now(),
@@ -685,6 +684,7 @@ CREATE TABLE openbill_transactions (
     details text NOT NULL,
     meta hstore DEFAULT ''::hstore NOT NULL,
     reverse_transaction_id uuid,
+    user_id integer NOT NULL,
     CONSTRAINT different_accounts CHECK ((to_account_id <> from_account_id)),
     CONSTRAINT positive CHECK ((amount_cents > (0)::numeric))
 );
@@ -760,6 +760,41 @@ CREATE SEQUENCE outcome_orders_id_seq
 --
 
 ALTER SEQUENCE outcome_orders_id_seq OWNED BY outcome_orders.id;
+
+
+--
+-- Name: pages; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE pages (
+    id integer NOT NULL,
+    title character varying NOT NULL,
+    row_order integer NOT NULL,
+    is_active boolean DEFAULT false NOT NULL,
+    text text NOT NULL,
+    slug character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pages_id_seq OWNED BY pages.id;
 
 
 --
@@ -956,6 +991,13 @@ ALTER TABLE ONLY outcome_orders ALTER COLUMN id SET DEFAULT nextval('outcome_ord
 
 
 --
+-- Name: pages id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regclass);
+
+
+--
 -- Name: passport_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1094,6 +1136,14 @@ ALTER TABLE ONLY orders
 
 ALTER TABLE ONLY outcome_orders
     ADD CONSTRAINT outcome_orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages
+    ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
 
 
 --
@@ -1336,6 +1386,20 @@ CREATE INDEX index_outcome_orders_on_requisite_id ON outcome_orders USING btree 
 --
 
 CREATE INDEX index_outcome_orders_on_user_id ON outcome_orders USING btree (user_id);
+
+
+--
+-- Name: index_pages_on_row_order; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pages_on_row_order ON pages USING btree (row_order);
+
+
+--
+-- Name: index_pages_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pages_on_slug ON pages USING btree (slug);
 
 
 --
@@ -1794,6 +1858,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170306072423'),
 ('20170307124522'),
 ('20170308185608'),
-('20170308185822');
+('20170308185822'),
+('20170309073541');
 
 

@@ -35,6 +35,21 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :custom_checkbox, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    # b.use :label, class: 'control-label' # col-sm-3
+
+    b.optional :label
+    b.wrapper tag: 'label', class: 'custom-control custom-checkbox' do |ba| # col-sm-9
+      ba.use :input, class: 'custom-control-input'
+      ba.wrapper tag: :span, class: 'custom-control-indicator' do
+      end
+      #b.use :label, tag: :span, class: 'custom-control-description'
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      # ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+
+
   config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-danger' do |b|
     b.use :html5
     b.use :placeholder
@@ -198,7 +213,6 @@ SimpleForm.setup do |config|
     end
   end
 
-
   # Wrappers for forms and inputs using the Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com)
   # to learn about the different styles for forms and inputs,
@@ -209,7 +223,7 @@ SimpleForm.setup do |config|
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
     file: :custom_file,
-    boolean: :vertical_boolean,
+    boolean: :horizontal_boolean,
     datetime: :multi_select,
     date: :multi_select,
     time: :multi_select

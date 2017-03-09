@@ -10,6 +10,7 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-danger.fixed-top
       = navbar_link_to 'Заказы', admin_orders_path, count: Order.count
       = navbar_link_to 'Транзакциии', admin_transactions_path, count: OpenbillTransaction.count
       = navbar_link_to 'Уведомления', admin_banners_path, count: Banner.active.count
+      = navbar_link_to 'Страницы', admin_pages_path, count: Page.active.count
     
     - if current_user.present?
       = render 'user_dropdown'

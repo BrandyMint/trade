@@ -4,6 +4,7 @@ Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 require 'admin_constraint'
 
 Rails.application.routes.draw do
+
   root 'welcome#index'
 
   get 'supersignin/:id', to: 'user_sessions#supersignin', as: :supersignin
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update, :new, :edit]
 
   resource :password, only: [:edit, :update]
+
+  resources :pages, only: [:show]
 
   resources :companies do
     member do
@@ -57,6 +60,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :transactions
     resources :users
+    resources :pages
     resources :banners
     resources :goods
     resources :orders do

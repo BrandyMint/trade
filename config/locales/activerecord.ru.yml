@@ -37,6 +37,11 @@ ru:
         name: Полное имя
         phone: Телефон
         email: Email
+      page:
+        title: Название пункты меню
+        slug: Ссылка
+        text: Содержимое
+        is_active: Показывать стратицу в меню?
       company:
         created_at: Запись создана
         name: Полное наименование

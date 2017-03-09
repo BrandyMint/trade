@@ -58,13 +58,17 @@ gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 gem 'workflow'
 gem 'settingslogic'
 
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 
 # Специально для draper
 # gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 # gem 'draper'
 
-gem 'ranked-model'
+gem 'ranked-model', github: 'mixonic/ranked-model'
 gem 'enumerize'
+
+gem 'friendly_id'
 
 gem 'simple-navigation', git: 'git://github.com/andi/simple-navigation.git'
 gem 'simple-navigation-bootstrap'

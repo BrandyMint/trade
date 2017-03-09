@@ -1,0 +1,17 @@
+= simple_form_for [:admin, page] do |f|
+  = f.error_notification
+  .row
+    .col-md-6
+      = f.input :title, autofocus: f.object.new_record?
+    .col-md-6
+      = f.input :slug, required: false
+  .row.mb-1
+    .col-md-12
+      = f.input :text, autofocus: f.object.persisted?, input_html: { rows: 30, data: { editor: true } }
+  .row.mt-5
+    .col-md-8
+      = f.input :is_active
+    .col-md-4
+      .pull-right
+        = f.button :submit, 'Сохранить', class: 'btn btn-success'
+      .clearfix

@@ -51,6 +51,13 @@ GIT
       rails (>= 3.1)
 
 GIT
+  remote: https://github.com/mixonic/ranked-model.git
+  revision: 5fd725bb07a331e0fb10ba3f1b0bee15dad8a47f
+  specs:
+    ranked-model (0.4.0)
+      activerecord (>= 3.1.12)
+
+GIT
   remote: https://github.com/svenfuchs/rails-i18n.git
   revision: b2ee1bb54ed1e6ff714e4a9d95cc17c3d24d538c
   branch: master
@@ -198,6 +205,8 @@ GEM
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gon (6.1.0)
@@ -383,8 +392,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
-    ranked-model (0.4.0)
-      activerecord (>= 3.1.12)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
@@ -455,6 +462,10 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.6)
+    tinymce-rails (4.5.5)
+      railties (>= 3.1.1)
+    tinymce-rails-langs (4.20160310)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -510,6 +521,7 @@ DEPENDENCIES
   faker-russian
   file_validators
   font-awesome-rails
+  friendly_id
   gon
   gravatarify
   guard
@@ -549,7 +561,7 @@ DEPENDENCIES
   rails-assets-tether (>= 1.1.0)!
   rails-controller-testing
   rails-i18n!
-  ranked-model
+  ranked-model!
   ransack!
   redis (~> 3.0)
   redis-namespace
@@ -569,6 +581,8 @@ DEPENDENCIES
   sorcery
   spring
   spring-watcher-listen (~> 2.0.0)
+  tinymce-rails
+  tinymce-rails-langs
   turbolinks (~> 5)
   uglifier (>= 1.3.0)
   validates

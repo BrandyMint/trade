@@ -1,0 +1,18 @@
+.pull-right
+  = link_to 'Добавить', new_admin_page_path, class: 'btn btn-outline-success'
+h1.mb-4 Текстовые страницы
+
+- if @pages.any?
+  table.table.table-condensed
+    - @pages.each do |page|
+      tr
+        td= page.title
+        td= link_to page.slug, page_path(page), target: '_blank'
+        td
+          = page_active_flag page.is_active
+        td
+          .pull-right
+            = link_to 'Изменить', edit_admin_page_path(page), class: 'btn btn-outline-primary'
+            span.ml-2= link_to 'Удалить', admin_page_path(page), class: 'btn btn-outline-danger', data: { confirm: 'Уверены?' }, method: :delete
+- else
+  .alert.alert-info Пока нет ни одной

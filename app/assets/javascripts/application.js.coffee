@@ -11,6 +11,7 @@
 #= require better-form-validation
 #= require better-form-validation/i18n/better-form-validation.ru
 #= require bootstrap
+#= require tinymce-jquery
 #= require rubles/lib/rubles
 #= require amount
 #= require dadata
@@ -19,6 +20,13 @@ DOM.set("lang", "ru")
 
 document.addEventListener "turbolinks:load", ->
   # Lightbox.enable();
+
+  tinyMCE.init
+    selector: '[data-editor]'
+    plugins: ['table', 'link']
+    menubar: false
+    toolbar: ['table | styleselect | bold italic | undo redo | link']
+
 
   $("[data-toggle='tooltip']").tooltip()
   $("[data-toggle='popover']").popover()

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  row_order_position: 1
+  is_active: false
+  text: MyText
+
+two:
+  title: MyString
+  row_order_position: 1
+  is_active: false
+  text: MyText

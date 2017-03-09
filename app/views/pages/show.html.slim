@@ -1,0 +1,4 @@
+- if policy(@page).edit?
+  .pull-right
+    = link_to 'Изменить', edit_admin_page_path(@page), class: 'btn btn-outline-warning'
+= @page.text.html_safe
