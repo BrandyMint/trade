@@ -6,14 +6,14 @@ class PagePolicy < ApplicationPolicy
   end
 
   def show?
-    manager? || record.is_active
+    is_admin? || record.is_active
   end
 
   def edit?
-    manager?
+    is_admin?
   end
 
   def update?
-    manager?
+    is_admin?
   end
 end

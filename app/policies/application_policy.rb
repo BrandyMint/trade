@@ -38,6 +38,10 @@ class ApplicationPolicy
     false
   end
 
+  def is_admin?
+    user.present? && user.is_admin?
+  end
+
   def manager?
     user.present? && user.manager?
   end
