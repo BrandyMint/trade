@@ -1,0 +1,2 @@
+module OutcomeOrdersHelper
+end

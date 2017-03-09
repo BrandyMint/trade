@@ -1,0 +1,40 @@
+h2 Вывод средств
+
+.row
+  .col-md-6
+    p 
+      | Организиция 
+      strong= company
+  .col-md-6
+    p 
+      | Текущий баланс 
+      strong= humanized_money_with_symbol company.amount
+
+- @outcome_order.build_requisite unless @outcome_order.requisite
+= simple_form_for [company, @outcome_order] do |f|
+  = f.error_notification
+  .row
+    .col-md-6
+      = f.input :amount, autofocus: true, input_html: { data: { amount: :input } }
+
+  = f.simple_fields_for :requisite do |ff|
+    .row
+      .col-md-12
+        = ff.input :poluchatel
+
+    .row
+      .col-md-6
+        = ff.input :bik
+      .col-md-6
+        = ff.input :account_number
+
+    .row
+      .col-md-6
+        = ff.input :inn
+      .col-md-6
+        = ff.input :kpp
+
+  .row.mt-5
+    .col-md-12
+      = f.button :submit, 'Отправить запрос', name: :draft, class: 'btn btn-outline-primary'
+

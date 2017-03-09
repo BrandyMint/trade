@@ -733,14 +733,15 @@ CREATE TABLE outcome_orders (
     id integer NOT NULL,
     user_id integer NOT NULL,
     company_id integer NOT NULL,
-    amount numeric NOT NULL,
     workflow_state character varying NOT NULL,
     manager_id integer NOT NULL,
     transaction_uuid uuid,
     requisite_id integer NOT NULL,
     reject_message character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    amount_cents integer NOT NULL,
+    amount_currency character varying DEFAULT 'RUB'::character varying NOT NULL
 );
 
 
@@ -838,11 +839,10 @@ CREATE TABLE requisites (
     id integer NOT NULL,
     bik character varying NOT NULL,
     inn character varying NOT NULL,
-    pulichatel character varying NOT NULL,
+    poluchatel character varying NOT NULL,
     kpp character varying NOT NULL,
-    amount numeric NOT NULL,
     account_number character varying,
-    details character varying,
+    details text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1867,6 +1867,10 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170307124522'),
 ('20170308185608'),
 ('20170308185822'),
-('20170309073541');
+('20170309073541'),
+('20170309202621'),
+('20170309203039'),
+('20170309203237'),
+('20170309203907');
 
 

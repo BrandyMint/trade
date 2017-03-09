@@ -30,6 +30,15 @@ ru:
         other: Пользователи
 
     attributes:
+      outcome_order:
+        amount: Сумма
+      requisite:
+        inn: ИНН получателя
+        bik: БИК
+        kpp: КПП
+        account_number: Номер счета зачисления
+        poluchatel: Наименование получателя
+
       openbill_account:
         category: Категория
       user:
@@ -62,6 +71,17 @@ ru:
         blank: не должно быть пустым
         taken: В базе уже есть запись с таким значением
       models:
+        requisite:
+          attributes:
+            bik:
+              bik: Неверный БИК
+            kpp:
+              kpp: Неверный КПП
+            inn:
+              unknown_region: Неверный регион
+              numbers_only: состоит только из чисел
+              invalid_pp: Не зарегистрированная причина выдачи
+              invalid_length: должен быть длинной 10 ил 12 символов
         company:
           attributes:
             inn:

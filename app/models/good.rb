@@ -35,6 +35,7 @@ class Good < ApplicationRecord
   validates :title, presence: true, uniqueness: { scope: :company_id }
   validates :company, presence: true
   validates :category, presence: true
+  validates :price, numericality: { greater_than: 0 }
 
   validate :prepay_with_price
 

@@ -11,7 +11,7 @@ class UserCompaniesController < ApplicationController
   end
 
   def outcome
-    render locals: { company: company }
+    redirect_to new_company_outcome_order_path(company.id)
   end
 
   private

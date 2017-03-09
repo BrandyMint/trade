@@ -23,11 +23,13 @@ Rails.application.routes.draw do
   resources :user_sessions, only: [:create]
   resources :users, only: [:create, :update, :new, :edit]
 
+
   resource :password, only: [:edit, :update]
 
   resources :pages, only: [:show]
 
   resources :companies do
+    resources :outcome_orders, shallow: true
     member do
       put :done
     end

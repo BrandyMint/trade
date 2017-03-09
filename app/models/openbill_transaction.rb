@@ -9,6 +9,7 @@ class OpenbillTransaction < OpenbillRecord
   scope :ordered, -> { order created_at: :desc }
 
   monetize :amount_cents, as: :amount
+  validates :amount, money: { greater_than: 0 }
 
   after_create :notify
 

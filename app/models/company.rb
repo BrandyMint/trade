@@ -25,7 +25,7 @@ class Company < ApplicationRecord
 
   has_many :goods
   has_many :documents, class_name: 'CompanyDocument'
-
+  has_many :outcome_orders
   has_many :buyer_lockings, class_name: 'OpenbillLocking', inverse_of: :buyer, foreign_key: :buyer_id
   has_many :seller_lockings, class_name: 'OpenbillLocking', inverse_of: :seller, foreign_key: :seller_id
 
