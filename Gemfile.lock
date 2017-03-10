@@ -532,6 +532,7 @@ DEPENDENCIES
   guard
   guard-ctags-bundler
   guard-minitest
+  has_scope
   hashie
   inherited_resources!
   jbuilder (~> 2.5)

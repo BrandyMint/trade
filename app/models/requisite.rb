@@ -1,4 +1,5 @@
 class Requisite < ApplicationRecord
+  FIELDS = %w(bik inn kpp poluchatel account_number ks_format)
   validates :bik, presence: true, bik_format: true
   validates :inn, presence: true, inn_format: true
   validates :poluchatel, presence: true

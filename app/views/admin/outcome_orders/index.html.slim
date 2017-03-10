@@ -1,0 +1,10 @@
+h2.mb-3 Заявки на вывод средств
+
+
+- if @outcome_orders.any?
+  .pull-right= paginate @outcome_orders
+  -#= render 'tabs'
+  = render 'admin/outcome_orders/list', outcome_orders: @outcome_orders
+  .pull-right= paginate @outcome_orders
+- else
+  .alert.alert-info.mt-2 Отсутсвуют

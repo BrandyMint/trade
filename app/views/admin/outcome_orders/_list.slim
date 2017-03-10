@@ -1,0 +1,11 @@
+table.table.table-condensed
+  - outcome_orders.each do |o|
+    tr
+      td= o.id
+      td= admin_company_link o.company
+      td
+        strong= humanized_money_with_symbol o.amount
+      td
+        dl
+          - Requisite::FIELDS.each do |f|
+            dt= f

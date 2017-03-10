@@ -9,6 +9,8 @@ class OutcomeOrder < ApplicationRecord
 
   has_one :account, through: :company
 
+  scope :drafts, -> { where workflow_state: :draft }
+
   monetize :amount_cents, as: :amount
 
   validates :amount, presence: true

@@ -94,6 +94,7 @@ gem 'validates'
 
 gem 'pg_search'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'has_scope'
 gem 'responders'
 gem 'mini_magick'
 gem 'carrierwave'
