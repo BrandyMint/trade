@@ -15,6 +15,7 @@
 #= require rubles/lib/rubles
 #= require amount
 #= require dadata
+#= require custom_dropzone
 
 DOM.set("lang", "ru")
 

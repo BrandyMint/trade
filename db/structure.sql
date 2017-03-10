@@ -734,7 +734,7 @@ CREATE TABLE outcome_orders (
     user_id integer NOT NULL,
     company_id integer NOT NULL,
     workflow_state character varying NOT NULL,
-    manager_id integer NOT NULL,
+    manager_id integer,
     transaction_uuid uuid,
     requisite_id integer NOT NULL,
     reject_message character varying,
@@ -840,11 +840,12 @@ CREATE TABLE requisites (
     bik character varying NOT NULL,
     inn character varying NOT NULL,
     poluchatel character varying NOT NULL,
-    kpp character varying NOT NULL,
+    kpp character varying,
     account_number character varying,
     details text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ks_number character varying
 );
 
 
@@ -1871,6 +1872,9 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170309202621'),
 ('20170309203039'),
 ('20170309203237'),
-('20170309203907');
+('20170309203907'),
+('20170310045129'),
+('20170310045420'),
+('20170310052150');
 
 

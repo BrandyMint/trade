@@ -1,0 +1,31 @@
+- if current_user.outcome_orders.any?
+  .pull-right
+    = link_to 'Заявка на вывод', new_company_outcome_order_path(company), class: 'btn btn-outline-success'
+h2 Заявки на вывод средств
+
+
+- if @outcome_orders.any?
+  table.table.table-condensed
+    - @outcome_orders.each do |oo|
+      tr
+        td
+          = oo.requisite.poluchatel
+          .mt-2.mb-2
+            strong= humanized_money_with_symbol oo.amount
+          = outcome_order_state oo.workflow_state
+        td
+          dl
+            dt ИНН
+            dd= oo.requisite.inn
+            - if oo.requisite.kpp.present?
+              dt КПП
+              dd= oo.requisite.kpp
+
+            dt БИК
+            dd= oo.requisite.bik
+            dt Расчетный счет
+            dd= oo.requisite.account_number
+            dt Корр.счет
+            dd= oo.requisite.ks_number
+- else
+  .alert.alert Отсутсвуют заявки на вывод

@@ -1,4 +1,6 @@
 class OutcomeOrder < ApplicationRecord
+  include Workflow
+
   belongs_to :user
   belongs_to :company
   belongs_to :requisite
@@ -16,6 +18,30 @@ class OutcomeOrder < ApplicationRecord
   validate :account_amount
 
   accepts_nested_attributes_for :requisite
+
+  workflow do
+    state :draft do
+      event :accept, :transitions_to => :accepted
+      event :reject, :transitions_to => :rejected
+    end
+    state :accepted
+    state :rejected
+  end
+
+  # workflow не успевает устеновить state
+  # validates :reject_message, presence: true, if: :rejected?
+
+  def accept(moderator)
+    update_attributes!(
+      moderator: moderator
+    )
+  end
+
+  def reject(moderator)
+    update_attributes!(
+      moderator: moderator
+    )
+  end
 
   private
 

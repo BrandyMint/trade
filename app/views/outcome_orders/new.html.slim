@@ -1,3 +1,7 @@
+- if current_user.outcome_orders.any?
+  .pull-right
+    = link_to 'Заявки организации', company_outcome_orders_path(company), class: 'btn btn-outline-primary'
+
 h2 Вывод средств
 
 .row
@@ -24,15 +28,19 @@ h2 Вывод средств
 
     .row
       .col-md-6
-        = ff.input :bik
-      .col-md-6
-        = ff.input :account_number
-
-    .row
-      .col-md-6
         = ff.input :inn
       .col-md-6
         = ff.input :kpp
+
+    .row
+      .col-md-6
+        = ff.input :bik
+      .col-md-6
+        = ff.input :ks_number
+
+    .row
+      .col-md-6
+        = ff.input :account_number
 
   .row.mt-5
     .col-md-12

@@ -64,6 +64,8 @@ ru:
         row_order_position: Позиция, начиная с 0
       search_form:
         q: Товар или услуга для поиска
+      requisite:
+        kpp: Если у получателя есть КПП
       company:
         inn: ИНН
         ogrn: ОГРН

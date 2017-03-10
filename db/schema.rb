@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309073541) do
+ActiveRecord::Schema.define(version: 20170310045420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,16 +111,18 @@ ActiveRecord::Schema.define(version: 20170309073541) do
 
   create_table "openbill_accounts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "owner_id"
-    t.uuid     "category_id",                                           null: false
-    t.decimal  "amount_cents",                 default: "0.0",          null: false
-    t.string   "amount_currency",    limit: 3, default: "RUB",          null: false
+    t.uuid     "category_id",                                                          null: false
+    t.string   "key",                limit: 256, default: -> { "uuid_generate_v4()" }, null: false
+    t.decimal  "amount_cents",                   default: "0.0",                       null: false
+    t.string   "amount_currency",    limit: 3,   default: "RUB",                       null: false
     t.text     "details"
-    t.integer  "transactions_count",           default: 0,              null: false
-    t.hstore   "meta",                         default: {},             null: false
-    t.datetime "created_at",                   default: -> { "now()" }
-    t.datetime "updated_at",                   default: -> { "now()" }
+    t.integer  "transactions_count",             default: 0,                           null: false
+    t.hstore   "meta",                           default: {},                          null: false
+    t.datetime "created_at",                     default: -> { "now()" }
+    t.datetime "updated_at",                     default: -> { "now()" }
     t.index ["created_at"], name: "index_accounts_on_created_at", using: :btree
     t.index ["id"], name: "index_accounts_on_id", unique: true, using: :btree
+    t.index ["key"], name: "index_accounts_on_key", unique: true, using: :btree
     t.index ["meta"], name: "index_accounts_on_meta", using: :gin
   end
 
@@ -209,16 +211,17 @@ ActiveRecord::Schema.define(version: 20170309073541) do
   end
 
   create_table "outcome_orders", force: :cascade do |t|
-    t.integer  "user_id",          null: false
-    t.integer  "company_id",       null: false
-    t.decimal  "amount",           null: false
-    t.string   "workflow_state",   null: false
-    t.integer  "manager_id",       null: false
+    t.integer  "user_id",                          null: false
+    t.integer  "company_id",                       null: false
+    t.string   "workflow_state",                   null: false
+    t.integer  "manager_id",                       null: false
     t.uuid     "transaction_uuid"
-    t.integer  "requisite_id",     null: false
+    t.integer  "requisite_id",                     null: false
     t.string   "reject_message"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "amount_cents",                     null: false
+    t.string   "amount_currency",  default: "RUB", null: false
     t.index ["company_id"], name: "index_outcome_orders_on_company_id", using: :btree
     t.index ["manager_id"], name: "index_outcome_orders_on_manager_id", using: :btree
     t.index ["requisite_id"], name: "index_outcome_orders_on_requisite_id", using: :btree
@@ -248,13 +251,13 @@ ActiveRecord::Schema.define(version: 20170309073541) do
   create_table "requisites", force: :cascade do |t|
     t.string   "bik",            null: false
     t.string   "inn",            null: false
-    t.string   "pulichatel",     null: false
-    t.string   "kpp",            null: false
-    t.decimal  "amount",         null: false
+    t.string   "poluchatel",     null: false
+    t.string   "kpp"
     t.string   "account_number"
-    t.string   "details"
+    t.text     "details"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "ks_number"
   end
 
   create_table "users", force: :cascade do |t|

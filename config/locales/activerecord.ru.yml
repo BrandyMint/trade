@@ -35,8 +35,9 @@ ru:
       requisite:
         inn: ИНН получателя
         bik: БИК
-        kpp: КПП
-        account_number: Номер счета зачисления
+        kpp: КПП получателя
+        account_number: Расчетный счет
+        ks_number: Корреспонденский счет
         poluchatel: Наименование получателя
 
       openbill_account:

@@ -4,6 +4,9 @@ class ImageUploader < BaseUploader
   EXTENSION_WHITE_LIST = %w(jpg jpeg gif png).freeze
   TIMEOUT_SECONDS = 1
 
+  PREVIEW_WIDTH = 128
+  PREVIEW_HEIGHT = PREVIEW_WIDTH
+
   version :medium do
     process resize_to_fill: [280, 280]
   end
@@ -14,7 +17,7 @@ class ImageUploader < BaseUploader
 
   # У dropzone так
   version :preview do
-    process resize_to_fill: [128, 128]
+    process resize_to_fill: [PREVIEW_WIDTH, PREVIEW_HEIGHT]
   end
 
   def extension_white_list

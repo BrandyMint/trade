@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :accounts, through: :companies
   has_many :goods, through: :companies
   has_many :orders
+  has_many :outcome_orders
 
   has_many :income_orders, through: :goods, source: :good
 

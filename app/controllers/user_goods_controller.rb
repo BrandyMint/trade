@@ -4,7 +4,7 @@ class UserGoodsController < ApplicationController
 
   respond_to :html
 
-  before_filter :require_login
+  before_action :require_login
 
   layout 'profile'
 
