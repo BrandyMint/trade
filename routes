@@ -102,6 +102,10 @@ delete_by_name_company_company_documents DELETE /companies/:company_id/company_d
                                          PATCH  /admin/transactions/:id(.:format)                                 admin/transactions#update
                                          PUT    /admin/transactions/:id(.:format)                                 admin/transactions#update
                                          DELETE /admin/transactions/:id(.:format)                                 admin/transactions#destroy
+              accept_admin_outcome_order PATCH  /admin/outcome_orders/:id/accept(.:format)                        admin/outcome_orders#accept
+              reject_admin_outcome_order PATCH  /admin/outcome_orders/:id/reject(.:format)                        admin/outcome_orders#reject
+                    admin_outcome_orders GET    /admin/outcome_orders(.:format)                                   admin/outcome_orders#index
+                     admin_outcome_order GET    /admin/outcome_orders/:id(.:format)                               admin/outcome_orders#show
                              admin_users GET    /admin/users(.:format)                                            admin/users#index
                                          POST   /admin/users(.:format)                                            admin/users#create
                           new_admin_user GET    /admin/users/new(.:format)                                        admin/users#new

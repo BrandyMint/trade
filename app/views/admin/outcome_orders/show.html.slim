@@ -1,0 +1,30 @@
+h2.mb-3 Заявка на вывод средств ##{@outcome_order.id}
+
+.row
+  .col-md-6
+    dl
+      dt Организация
+      dd= admin_company_link @outcome_order.company
+      dt На счету компании
+      dd= humanized_money_with_symbol @outcome_order.company.amount
+      dt Сумма вывода
+      dd= humanized_money_with_symbol @outcome_order.amount
+
+    - if @outcome_order.draft?
+      - if @outcome_order.anough_amount?
+        .alert.alert-success Средств достаточно
+      - else
+        .alert.alert-danger Средств не достаточно
+
+      = link_to 'Списать', new_admin_company_transaction_path(@outcome_order.company, admin_transaction_form: { type: :outcome }), class: 'btn btn-outline-success'
+      hr
+      /= simple_form_for [:admin, @outcome_order], url: reject_admin_outcome_order_path do |f|
+        /= f.input :reject_message, required: true
+        /= f.submit 'Отменить снятие средств', class: 'btn btn-danger'
+
+    - else
+      = outcome_order_state @outcome_order.workflow_state
+  .col-md-6
+    - Requisite::FIELDS.each do |f|
+      dt= Requisite.human_attribute_name f
+      dd= @outcome_order.requisite.send f

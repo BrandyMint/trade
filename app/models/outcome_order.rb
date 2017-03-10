@@ -45,10 +45,14 @@ class OutcomeOrder < ApplicationRecord
     )
   end
 
+  def anough_amount?
+    amount <= account.amount
+  end
+
   private
 
   def account_amount
-    return unless amount > account.amount
+    return unless anough_amount?
     errors.add :amount, "Суммы на счете не достаточно (#{account.amount.format} < #{amount.format})"
   end
 end

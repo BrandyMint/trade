@@ -1,13 +1,12 @@
 table.table.table-condensed
   - outcome_orders.each do |o|
     tr
-      td= o.id
+      td
+        = link_to admin_outcome_order_path(o) do
+          = "##{o.id}"
       td= admin_company_link o.company
       td
         strong= humanized_money_with_symbol o.amount
       td= outcome_order_state o.workflow_state
       td
-        dl
-          - Requisite::FIELDS.each do |f|
-            dt= Requisite.human_attribute_name f
-            dd= o.requisite.send f
+        = link_to 'Детальнее', admin_outcome_order_path(o), class: 'btn btn-sm btn-outline-primary'
