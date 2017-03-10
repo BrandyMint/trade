@@ -16,6 +16,7 @@ class GoodsController < ApplicationController
 
   def create
     @good = Good.create permitted_params
+
     respond_with @good, location: -> { good_path @good }
   end
 

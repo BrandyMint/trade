@@ -571,6 +571,7 @@ CREATE TABLE openbill_accounts (
     owner_id uuid,
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     category_id uuid NOT NULL,
+    key character varying(256) DEFAULT uuid_generate_v4() NOT NULL,
     amount_cents numeric DEFAULT 0 NOT NULL,
     amount_currency character(3) DEFAULT 'RUB'::bpchar NOT NULL,
     details text,
@@ -673,6 +674,7 @@ CREATE TABLE openbill_transactions (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     operation_id uuid,
     owner_id uuid,
+    user_id integer NOT NULL,
     username character varying(255) NOT NULL,
     date date DEFAULT ('now'::text)::date NOT NULL,
     created_at timestamp without time zone DEFAULT now(),
@@ -684,7 +686,6 @@ CREATE TABLE openbill_transactions (
     details text NOT NULL,
     meta hstore DEFAULT ''::hstore NOT NULL,
     reverse_transaction_id uuid,
-    user_id integer NOT NULL,
     CONSTRAINT different_accounts CHECK ((to_account_id <> from_account_id)),
     CONSTRAINT positive CHECK ((amount_cents > (0)::numeric))
 );
@@ -838,9 +839,9 @@ CREATE TABLE requisites (
     id integer NOT NULL,
     bik character varying NOT NULL,
     inn character varying NOT NULL,
-    poluchatel character varying NOT NULL,
     kpp character varying,
     account_number character varying,
+    poluchatel character varying NOT NULL,
     details text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -1191,6 +1192,13 @@ CREATE INDEX index_accounts_on_created_at ON openbill_accounts USING btree (crea
 --
 
 CREATE UNIQUE INDEX index_accounts_on_id ON openbill_accounts USING btree (id);
+
+
+--
+-- Name: index_accounts_on_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_accounts_on_key ON openbill_accounts USING btree (key);
 
 
 --
@@ -1862,7 +1870,6 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170308185822'),
 ('20170309073541'),
 ('20170309202621'),
-('20170309203039'),
 ('20170309203237'),
 ('20170309203907'),
 ('20170310045129'),
