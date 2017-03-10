@@ -1,4 +1,4 @@
-class Admin::OutcomeOrdersController < ApplicationController
+class Admin::OutcomeOrdersController < Admin::ApplicationController
   inherit_resources
   defaults :route_prefix => 'admin'
   has_scope :page, :default => 1

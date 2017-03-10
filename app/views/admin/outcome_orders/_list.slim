@@ -5,7 +5,9 @@ table.table.table-condensed
       td= admin_company_link o.company
       td
         strong= humanized_money_with_symbol o.amount
+      td= outcome_order_state o.workflow_state
       td
         dl
           - Requisite::FIELDS.each do |f|
-            dt= f
+            dt= Requisite.human_attribute_name f
+            dd= o.requisite.send f
