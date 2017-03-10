@@ -8,6 +8,7 @@ nav.navbar.navbar-toggleable-md.navbar-inverse.bg-danger.fixed-top
       = navbar_link_to 'Организации', admin_companies_path, count: Company.count
       = navbar_link_to 'Пользователи', admin_users_path, count: User.count
       = navbar_link_to 'Заказы', admin_orders_path, count: Order.count
+      = navbar_link_to 'Заявки на вывод', admin_outcome_orders_path, count: OutcomeOrder.draft.count
       = navbar_link_to 'Транзакциии', admin_transactions_path, count: OpenbillTransaction.count
       = navbar_link_to 'Уведомления', admin_banners_path, count: Banner.active.count
       = navbar_link_to 'Страницы', admin_pages_path, count: Page.active.count

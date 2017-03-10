@@ -61,6 +61,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index'
     resources :transactions
+    resources :outcome_orders, only: [:index, :show] do
+      member do
+        patch :accept
+        patch :reject
+      end
+    end
     resources :users
     resources :pages
     resources :banners
