@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  FORMS = %w(LEGAL INDIVIDUAL)
+  FORMS = %w(LEGAL INDIVIDUAL PERSON)
 
   include PgSearch
   extend Enumerize
@@ -57,16 +57,26 @@ class Company < ApplicationRecord
     accepted?
   end
 
+  def document_types
+    if legal?
+      DocumentTypes::Legal
+    elsif individual?
+      DocumentTypes::Individual
+    elsif person?
+      DocumentTypes::Person
+    end
+  end
+
+  def document_categories
+    document_types.map(&:key)
+  end
+
   def inn_kpp
     [inn, kpp].compact.join(' / ')
   end
 
   def locked_amount
     Money.new buyer_lockings.with_locked_state.sum(:amount_cents)
-  end
-
-  def document_categories
-    DocumentTypes.map(&:key)
   end
 
   def all_documents_loaded?

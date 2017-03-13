@@ -8,7 +8,7 @@ class CompanyDocument < ApplicationRecord
   mount_uploader :file, DocumentUploader
 
   enumerize :category,
-    in: DocumentTypes.map(&:key),
+    in: DocumentTypes::All,
     predicates: true,
     scope: true
 end

@@ -1,4 +1,4 @@
-- DocumentTypes.each_with_index do |doc|
+- @company.document_types.each_with_index do |doc|
   h4.mt-4.mb-3= doc.title
   - documents = @company.documents.with_category(doc.key)
   - if documents.any?
