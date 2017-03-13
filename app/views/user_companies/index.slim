@@ -18,8 +18,8 @@
           small.text-muted= company_reg_info c
           br
           small.text-muted= c.address
-          - if c.draft?
-            .mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-secondary'
+          - if policy(c).edit?
+            .mt-4= link_to 'Продолжить регистрацию', edit_company_path(c), class: 'btn btn-sm btn-outline-primary'
         td.text-nowrap
           = humanized_money_with_symbol c.amount
           .mt-2= render 'companies_amount_actions', company: c

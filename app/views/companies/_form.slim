@@ -16,3 +16,8 @@
       .lead Данные находятся на проверке у менеджера
     - elsif company.draft?
       .lead Укажите основные сведения и загрузите документы
+    - elsif company.rejected?
+      .lead
+        p 
+          | Организация не прошла проверку. Причина: 
+          = company.reject_message

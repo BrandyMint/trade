@@ -3,5 +3,10 @@
 
 h1.mb-4 Регистрация организации
 
+- if @company.rejected?
+  .mb-2.alert.alert-danger
+    p Организация не прошла проверку: 
+    = @company.reject_message
+
 = render 'companies/form', company: @company, step: step
 
