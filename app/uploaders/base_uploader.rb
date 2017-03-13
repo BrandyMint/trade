@@ -2,7 +2,10 @@
 class BaseUploader < CarrierWave::Uploader::Base
   FALLBACK_IMAGE_PATH = '/images/fallback/product-none.png'.freeze
   FALLBACK_PRODUCT = 'public' + FALLBACK_IMAGE_PATH
-  MAX_FILE_SIZE = 5.megabytes
+
+  # В nginx прописано 20
+  MAX_FILE_SIZE_MB = 10
+  MAX_FILE_SIZE = MAX_FILE_SIZE_MB.megabytes
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

@@ -34,9 +34,10 @@ removedFileHandler = (file) ->
 
   # return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;        
 
-$ ->
+document.addEventListener "turbolinks:load", ->
   $('[data-dropzone]').dropzone
-    acceptedFiles: gon.document_types,
+    acceptedFiles: gon.documentTypes,
+    maxFilesize: gon.maxDocumentFileSize,
     addRemoveLinks: true
     removedfile: removedFileHandler
     init: ->

@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def setup_gon
-    gon.document_types = DocumentUploader::EXTENSION_WHITE_LIST.map{ |e| ".#{e}"}.join(',')
+    gon.documentTypes = DocumentUploader::EXTENSION_WHITE_LIST.map{ |e| ".#{e}"}.join(',')
+    gon.maxDocumentFileSize = BaseUploader::MAX_FILE_SIZE_MB
   end
 end
