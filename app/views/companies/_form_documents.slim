@@ -10,7 +10,12 @@
 
         .dz-message data-ds-message=true
           .dz-message-header Перетащите файлы сюда
-          .dz-message-details Принимаются разрешения: #{DocumentUploader::EXTENSION_WHITE_LIST.join(', ')}
+          .dz-message-details 
+            | Принимаются разрешения: 
+            strong= DocumentUploader::EXTENSION_WHITE_LIST.join(', ')
+            .mt-2
+              | Максимальный допустимый размер файла: 
+              strong= number_to_human_size DocumentUploader::MAX_FILE_SIZE
         = render partial: 'dz_preview', collection: company.documents.with_category(doc.key)
 
   .clearfix
