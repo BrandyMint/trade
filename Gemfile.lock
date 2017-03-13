@@ -65,6 +65,13 @@ GIT
       activerecord (>= 3.1.12)
 
 GIT
+  remote: https://github.com/planetio/capistrano-db-tasks.git
+  revision: 8862ae309eb5262174ee8c33e764cd8ccbb8931b
+  specs:
+    capistrano-db-tasks (0.4)
+      capistrano (>= 3.0.0)
+
+GIT
   remote: https://github.com/svenfuchs/rails-i18n.git
   revision: b2ee1bb54ed1e6ff714e4a9d95cc17c3d24d538c
   branch: master
@@ -510,6 +517,7 @@ DEPENDENCIES
   bootstrap-kaminari-views!
   bugsnag
   byebug
+  capistrano-db-tasks!
   capistrano-faster-assets
   capistrano-rails
   capistrano-rbenv

@@ -153,6 +153,7 @@ group :development do
   gem 'capistrano-secrets-yml', require: false
   gem 'capistrano-faster-assets', require: false
   gem 'capistrano-sidekiq', require: false
+  gem 'capistrano-db-tasks', require: false, github: 'planetio/capistrano-db-tasks'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
