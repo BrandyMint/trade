@@ -36,7 +36,7 @@ class Company < ApplicationRecord
   validates :form, presence: true, inclusion: FORMS
   validates :name, presence: true
 
-  validates :inn, presence: true, inn_format: true, uniqueness: { scope: :user_id }
+  validates :inn, presence: true, inn_format: { mild: true }, uniqueness: { scope: :user_id }
   validates :ogrn, presence: true, ogrn_format: true
   validates :kpp, presence: true, kpp_format: true, if: :legal?
 

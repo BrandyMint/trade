@@ -1,5 +1,6 @@
 class OutcomeOrder < ApplicationRecord
   include Workflow
+  MAX_OUTCOME_AMOUNT = 10_000_000
 
   belongs_to :user
   belongs_to :company
@@ -13,9 +14,8 @@ class OutcomeOrder < ApplicationRecord
 
   monetize :amount_cents, as: :amount
 
-  validates :amount, presence: true
   validates :requisite, presence: true
-  validates :amount, money: { greater_than: 0 }
+  validates :amount, presence: true, money: { greater_than: 0, less_than: MAX_OUTCOME_AMOUNT }
 
   validate :account_amount
 

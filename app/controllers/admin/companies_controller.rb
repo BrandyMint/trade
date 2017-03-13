@@ -17,24 +17,36 @@ class Admin::CompaniesController < Admin::ApplicationController
   def income
     @company = Company.find params[:id]
     respond_with @company
+  rescue ActiveRecord::RecordInvalid  => err
+    flash[:danger] = err.message
+    render 'show'
   end
 
   def start_review
     @company = Company.find params[:id]
     @company.review! current_user
     redirect_to admin_company_path @company
+  rescue ActiveRecord::RecordInvalid  => err
+    flash[:danger] = err.message
+    render 'show'
   end
 
   def reject
     @company = Company.find params[:id]
     @company.reject! current_user, params.require(:company)[:reject_message]
     redirect_to admin_company_path @company
+  rescue ActiveRecord::RecordInvalid  => err
+    flash[:danger] = err.message
+    render 'show'
   end
 
   def accept
     @company = Company.find params[:id]
     @company.accept! current_user
     redirect_to admin_company_path @company
+  rescue ActiveRecord::RecordInvalid  => err
+    flash[:danger] = err.message
+    render 'show'
   end
 
   private
