@@ -39,6 +39,7 @@ ru:
         account_number: Расчетный счет
         ks_number: Корреспонденский счет
         poluchatel: Наименование получателя
+        bank_name: Наименование банка
 
       openbill_account:
         category: Категория

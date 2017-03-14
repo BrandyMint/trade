@@ -28,6 +28,7 @@ class Company < ApplicationRecord
   has_many :outcome_orders
   has_many :buyer_lockings, class_name: 'OpenbillLocking', inverse_of: :buyer, foreign_key: :buyer_id
   has_many :seller_lockings, class_name: 'OpenbillLocking', inverse_of: :seller, foreign_key: :seller_id
+  has_many :requisites, through: :outcome_orders
 
   before_validation do
     self.phone = Phoner::Phone.parse(phone).to_s if phone.present?
@@ -52,6 +53,10 @@ class Company < ApplicationRecord
     default: FORMS.first
 
   delegate :amount, to: :account
+
+  def last_used_requisite
+    requisites.order('id desc').first
+  end
 
   def verified?
     accepted?
