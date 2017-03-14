@@ -3,21 +3,24 @@ class OutcomeOrder < ApplicationRecord
   MAX_OUTCOME_AMOUNT = 10_000_000
 
   belongs_to :user
+  belongs_to :moderator, class_name: 'User'
   belongs_to :company
   belongs_to :requisite
   # belongs_to :transaction, class_name: 'OpenbillTransaction', foreign_key: :transaction_uuid
   belongs_to :manager, class_name: 'User'
 
   has_one :account, through: :company
+  has_many :transactions, class_name: 'OpenbillTransaction'
 
   scope :drafts, -> { where workflow_state: :draft }
+  scope :ordered, -> { order 'id desc' }
 
   monetize :amount_cents, as: :amount
 
   validates :requisite, presence: true
   validates :amount, presence: true, money: { greater_than: 0, less_than: MAX_OUTCOME_AMOUNT }
 
-  validate :account_amount
+  validate :account_amount, on: :create
 
   accepts_nested_attributes_for :requisite
 

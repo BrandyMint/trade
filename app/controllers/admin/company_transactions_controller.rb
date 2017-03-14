@@ -28,13 +28,18 @@ class Admin::CompanyTransactionsController < Admin::ApplicationController
         )
         redirect_to admin_company_path(company), success: "Зачислено на счет #{form.amount_money} компании #{company}"
       else
-        Billing.outcome_from_company(
+        t = Billing.outcome_from_company(
+          outcome_order_id: form.outcome_order_id,
           user: current_user,
           company: company,
           amount: form.amount_money,
           details: form.details
         )
-        redirect_to admin_company_path(company), success: "Списано со счета #{form.amount_money} компании #{company}"
+        if t.outcome_order.present?
+          redirect_to admin_outcome_order_path(t.outcome_order_id), success: "Списано со счета #{form.amount_money} компании #{company}"
+        else
+          redirect_to admin_company_path(company), success: "Списано со счета #{form.amount_money} компании #{company}"
+        end
       end
     else
       render :new, locals: {

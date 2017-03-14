@@ -685,6 +685,7 @@ CREATE TABLE openbill_transactions (
     meta hstore DEFAULT ''::hstore NOT NULL,
     reverse_transaction_id uuid,
     user_id integer NOT NULL,
+    outcome_order_id integer,
     CONSTRAINT different_accounts CHECK ((to_account_id <> from_account_id)),
     CONSTRAINT positive CHECK ((amount_cents > (0)::numeric))
 );
@@ -740,7 +741,8 @@ CREATE TABLE outcome_orders (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     amount_cents integer NOT NULL,
-    amount_currency character varying DEFAULT 'RUB'::character varying NOT NULL
+    amount_currency character varying DEFAULT 'RUB'::character varying NOT NULL,
+    moderator_id integer
 );
 
 
@@ -1342,6 +1344,13 @@ CREATE UNIQUE INDEX index_openbill_policies_name ON openbill_policies USING btre
 
 
 --
+-- Name: index_openbill_transactions_on_outcome_order_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_openbill_transactions_on_outcome_order_id ON openbill_transactions USING btree (outcome_order_id);
+
+
+--
 -- Name: index_orders_on_company_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1374,6 +1383,13 @@ CREATE INDEX index_outcome_orders_on_company_id ON outcome_orders USING btree (c
 --
 
 CREATE INDEX index_outcome_orders_on_manager_id ON outcome_orders USING btree (manager_id);
+
+
+--
+-- Name: index_outcome_orders_on_moderator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_outcome_orders_on_moderator_id ON outcome_orders USING btree (moderator_id);
 
 
 --
@@ -1545,6 +1561,14 @@ CREATE TRIGGER restrict_transaction AFTER INSERT ON openbill_transactions FOR EA
 
 
 --
+-- Name: outcome_orders fk_rails_0aca2979ee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY outcome_orders
+    ADD CONSTRAINT fk_rails_0aca2979ee FOREIGN KEY (moderator_id) REFERENCES users(id);
+
+
+--
 -- Name: outcome_orders fk_rails_1ea503f8a5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1558,6 +1582,14 @@ ALTER TABLE ONLY outcome_orders
 
 ALTER TABLE ONLY companies
     ADD CONSTRAINT fk_rails_2b5993e415 FOREIGN KEY (moderator_id) REFERENCES users(id);
+
+
+--
+-- Name: openbill_transactions fk_rails_33032fd158; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY openbill_transactions
+    ADD CONSTRAINT fk_rails_33032fd158 FOREIGN KEY (outcome_order_id) REFERENCES outcome_orders(id);
 
 
 --
@@ -1869,6 +1901,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170310045129'),
 ('20170310045420'),
 ('20170310052150'),
-('20170313134957');
+('20170313134957'),
+('20170314105042'),
+('20170314111400');
 
 

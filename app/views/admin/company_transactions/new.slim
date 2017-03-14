@@ -7,9 +7,16 @@ hr
 .row
   .col-md-3
     = render 'company_info', company: company
-  .col-md-9
+  .col-md-3
+    - if transaction.outcome_order.present?
+      h3 Заявка на вывод ##{transaction.outcome_order.id}
+      dl
+        - requisite_fields.each do |field|
+          = show_field transaction.outcome_order.requisite, field
+  .col-md-6
     = simple_form_for transaction, url: admin_company_transactions_path(company) do |f|
       = f.error_notification
+      = f.input :outcome_order_id, as: :hidden
 
       = f.input :amount, as: :numeric, input_html: { class: 'form-control-lg', data: { amount: :input } }
       .mb-4= humanized_amount_hint f.object.amount

@@ -22,4 +22,8 @@ ru:
       locked: Заблокировано
       accepted: Средства переведены продавцу
       rejecetd: Средства возвращены покупателю
+    outcome_order_states:
+      draft: Ожидает исполнения
+      accepted: Исполнено
+      rejected: Отвергнуто
 

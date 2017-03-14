@@ -1,4 +1,5 @@
 class Admin::TransactionsController < Admin::ApplicationController
+
   def show
     @transaction = OpenbillTransaction.find params[:id]
     respond_with @transaction
@@ -11,6 +12,6 @@ class Admin::TransactionsController < Admin::ApplicationController
   private
 
   def transactions
-    OpenbillTransaction.order('id desc').page(params[:page])
+    OpenbillTransaction.order('created_at desc').page(params[:page])
   end
 end

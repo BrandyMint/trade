@@ -15,19 +15,28 @@ module Billing
     )
   end
 
-  def self.outcome_from_company(user:, company:, amount:, details:)
+  def self.outcome_from_company(user:, company:, amount:, details:, outcome_order_id: nil)
     account = company.account.reload
+    t = nil
     account.transaction do
       raise "На счету компании не достаточно средств" if account.amount < amount
-      OpenbillTransaction.create!(
+      if outcome_order_id
+        o = OutcomeOrder.find(outcome_order_id)
+        o.accept! user
+      end
+
+      t = OpenbillTransaction.create!(
         user: user,
         from_account: company.account,
         to_account: OpenbillAccount.system_income,
         amount: amount,
+        outcome_order_id: outcome_order_id,
         details: details,
         key: 'outcome-' + Time.now.to_s
       )
     end
+
+    t || raise('Нет транзакции')
   end
 
   # Блокируем на счету компании сумму достаточную для покупки товара

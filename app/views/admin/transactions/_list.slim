@@ -24,5 +24,8 @@ table.table.table-condensed.table-striped
             = admin_company_link t.to_account.company
           - else
             = t.to_account
+        td
+          - if t.outcome_order_id.present?
+            = link_to "Заявка ##{t.outcome_order_id}", admin_outcome_order_path(t.outcome_order_id)
         td= t.company.present? ? t.opposite_account.details : ''
         td.text-muted= t.details

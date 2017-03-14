@@ -11,12 +11,14 @@ h2.mb-3 Заявка на вывод средств ##{@outcome_order.id}
       dd= humanized_money_with_symbol @outcome_order.amount
 
     - if @outcome_order.draft?
-      - if @outcome_order.anough_amount?
+      - if @outcome_order.enough_amount?
         .alert.alert-success Средств достаточно
       - else
         .alert.alert-danger Средств не достаточно
 
-      = link_to 'Списать', new_admin_company_transaction_path(@outcome_order.company, admin_transaction_form: { type: :outcome }), class: 'btn btn-outline-success'
+      = link_to 'Списать', 
+        new_admin_company_transaction_path(@outcome_order.company, admin_transaction_form: { outcome_order_id: @outcome_order.id, type: :outcome, amount: @outcome_order.amount.to_f }), 
+        class: 'btn btn-outline-success'
       hr
       /= simple_form_for [:admin, @outcome_order], url: reject_admin_outcome_order_path do |f|
         /= f.input :reject_message, required: true
@@ -28,3 +30,9 @@ h2.mb-3 Заявка на вывод средств ##{@outcome_order.id}
     - Requisite::FIELDS.each do |f|
       dt= Requisite.human_attribute_name f
       dd= @outcome_order.requisite.send f
+
+
+.mt-2
+  - if @outcome_order.transactions.any?
+    h2.mb-2 Совершенные транзакции
+    = render 'admin/transactions/list', transactions: @outcome_order.transactions

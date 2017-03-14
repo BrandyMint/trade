@@ -3,6 +3,7 @@ class OpenbillTransaction < OpenbillRecord
   belongs_to :to_account, class_name: 'OpenbillAccount'
   belongs_to :reverse_transaction, class_name: 'OpenbillTransaction'
   belongs_to :user
+  belongs_to :outcome_order
 
   has_one :reversation_transaction, class_name: 'OpenbillTransaction'
 
@@ -10,6 +11,8 @@ class OpenbillTransaction < OpenbillRecord
 
   monetize :amount_cents, as: :amount
   validates :amount, money: { greater_than: 0 }
+
+  validate :outcome_order_amount, if: :outcome_order
 
   after_create :notify
 
@@ -47,6 +50,10 @@ class OpenbillTransaction < OpenbillRecord
   end
 
   private
+
+  def outcome_order_amount
+    errors.add :amount, 'Сумма вывода должна совпадать с заявкой' unless amount == outcome_order.amount
+  end
 
   def notify
     TransactionMailer.income(self, to_account.company.user).deliver_later! if to_account.company.present?
