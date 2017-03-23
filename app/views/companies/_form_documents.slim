@@ -2,6 +2,7 @@
   .row
     .col-md-4
       h4= doc.title
+      p.m-t-md= doc.details if doc.details.present?
 
     .col-md-8
       = simple_form_for [company, CompanyDocument.new], multiple: true, html: { class: 'dropzone', data: { dropzone: true, company_id: company.id }} do |f|

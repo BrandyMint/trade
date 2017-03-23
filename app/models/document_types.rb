@@ -14,12 +14,12 @@ module DocumentTypes
     OpenStruct.new(title: 'Приказ о назначении руководителя', key: DocumentTypesPrikaz),
     OpenStruct.new(title: 'ИНН', key: DocumentTypesInn),
     OpenStruct.new(title: 'ОГРН', key: DocumentTypesOgrn),
-    OpenStruct.new(title: 'Паспорт руководителя', key: DocumentTypesPassport)
+    OpenStruct.new(title: 'Паспорт руководителя', key: DocumentTypesPassport, details: 'Необходимо загрузить цветную скан копию всех значимых страниц паспорта руководителя (паспорт в развороте, с вашими данными и фото, плюс страница с пропиской)')
   ]
 
 
   Individual = [
-    OpenStruct.new(title: 'Паспорт', key: DocumentTypesPassport),
+    OpenStruct.new(title: 'Паспорт', key: DocumentTypesPassport, details: 'Необходимо загрузить цветную скан копию всех значимых страниц вашего паспорта (паспорт в развороте, с вашими данными и фото, плюс страница с пропиской)'),
     OpenStruct.new(title: 'ИНН', key: DocumentTypesInn),
     OpenStruct.new(title: 'ОГРНИП', key: DocumentTypesOgrnip)
   ]
