@@ -21,7 +21,7 @@ class OpenbillAccount < OpenbillRecord
   end
 
   def to_s
-    company.to_s.presence || details
+    company.to_s.presence || details.presence || id.to_s
   end
 
   private

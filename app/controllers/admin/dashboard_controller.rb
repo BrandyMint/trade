@@ -3,8 +3,8 @@ class Admin::DashboardController < Admin::ApplicationController
     render locals: {
       goods_at_week_count: Good.where('created_at >= ?', 7.days.ago).count,
       companies_at_week_count: Company.where('created_at >= ?', 7.days.ago).count,
-
-      transactions: transactions }
+      transactions: transactions
+    }
   end
 
   private
