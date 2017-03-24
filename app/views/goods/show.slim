@@ -24,7 +24,7 @@ h1
     h2= @good.title
     strong
       | Цена: 
-      = humanized_price @good.price
+      = good_price @good
     p.text-muted= simple_format @good.details
 
     p= good_prepayment_state @good

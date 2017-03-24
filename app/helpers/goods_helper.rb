@@ -1,4 +1,20 @@
 module GoodsHelper
+  def good_price(good)
+    if logged_in?
+      buffer = humanized_price(good.amount)
+      buffer << content_tag(:span, good_prepayment_icon(good), class: 'ml-2')
+      buffer.html_safe
+    else
+      content_tag :div, '? Цена скрыта',
+        class: 'badge badge-default',
+        data: { toggle: :popover, content: good_price_popover_content, html: true, delay: { show: 300, hide: 1000 }, trigger: :hover },
+        title: 'Цены доступны только для зарегистрированных'
+    end
+  end
+
+  def good_price_popover_content
+    link_to 'Зарегистрироваться', signup_path, class: 'btn btn-success'
+  end
 
   def prepayment_collection
     [['Обязательна', true], ['Не требуется', false]]

@@ -8,17 +8,14 @@
           - if policy(good).update?
             = link_to edit_good_path(good), class: 'ml-2' do
               = fa_icon :pencil
-          br
-          small.text-muted= category_link good.category
-          .mt-2
-            small.text-muted= simple_format good.details
-        td
-          = humanized_price good.amount
-          span.ml-2= good_prepayment_icon good
-          .pull-right
-            = good_buy_link good
-          .clearfix
           .mt-2
             small= company_link good.company
+            |  
+            small.text-muted= category_link good.category
+          .mt-1
+            small.text-muted= simple_format good.details
+        td
+          = good_price good
+          .mt-3= good_buy_link good
 - else
   .alert.alert-info Не найдно товаров по этому запросу
