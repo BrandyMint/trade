@@ -31,6 +31,8 @@ require "capistrano/rbenv"
 # require "capistrano/chruby"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
+# Add this line to Capfile, after require 'capistrano/rails/assets'
+require 'capistrano/faster_assets'
 require "capistrano/rails/migrations"
 require "capistrano/puma"
 # require 'capistrano/puma/workers' # if you want to control the workers (in cluster mode)
@@ -38,7 +40,6 @@ require "capistrano/puma"
 # require 'capistrano/puma/monit'   # if you need the monit tasks
 require 'capistrano/puma/nginx'
 require 'capistrano/secrets_yml'
-require 'capistrano/faster_assets'
 require 'capistrano/sidekiq'
 require 'capistrano-db-tasks'
 

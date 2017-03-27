@@ -5,9 +5,9 @@ module GoodsHelper
       buffer << content_tag(:span, good_prepayment_icon(good), class: 'ml-2')
       buffer.html_safe
     else
-      content_tag :div, '? Цена скрыта',
+      content_tag :div, 'цена',
         class: 'badge badge-default',
-        data: { toggle: :popover, content: good_price_popover_content, html: true, delay: { show: 300, hide: 1000 }, trigger: :hover },
+        data: { toggle: :popover, placement: :top, content: good_price_popover_content, html: true, delay: { show: 300, hide: 2000 }, trigger: :hover },
         title: 'Цены доступны только для зарегистрированных'
     end
   end
