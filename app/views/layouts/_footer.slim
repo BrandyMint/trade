@@ -6,6 +6,7 @@ footer#footer.bg-faded
         ul.list-unstyled
           - Page.for_view.each do |page|
             li= link_to page.title, page_path(page)
+        = render 'comodo'
       .col-md-6.text-muted.text-right
         div
           = link_to application_title, root_url, data: { toggle: :tooltip }, title: AppVersion
