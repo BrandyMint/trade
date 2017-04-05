@@ -69,7 +69,8 @@ module RescueErrors
     }
   end
 
-  def rescue_unknown_format
+  def rescue_unknown_format(exception)
+    Bugsnag.notify exception
     render status: 406, plain: "Unknown Format: #{request.headers['HTTP_ACCEPT']}", format: :html
   end
 end

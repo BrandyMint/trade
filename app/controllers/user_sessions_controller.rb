@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
 
   def supersignin
     if can_supersignin?
-      user = User.find params[:id]
+      user = User.find params[:user_id]
       auto_login user
       flash[:info] = "Вы вошли под именем #{user}"
       if user.is_admin?

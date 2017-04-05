@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get 'supersignin/:id', to: 'user_sessions#supersignin', as: :supersignin
+  post 'supersignin', to: 'user_sessions#supersignin', as: :supersignin
 
   mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
 

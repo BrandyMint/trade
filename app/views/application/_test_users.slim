@@ -12,12 +12,12 @@
 
   ul
     - if user_without_company.present?
-      li= link_to "Без компаний: #{user_without_company}", supersignin_path(user_without_company)
+      li= login_as_link user_without_company, "Без компаний: #{user_without_company}"
     - if user_without_money.present?
-      li= link_to "С компаниями, но без денег: #{user_without_money}", supersignin_path(user_without_money)
+      li= login_as_link user_without_money, "С компаниями, но без денег: #{user_without_money}"
     - if user_with_money.present?
-      li= link_to "С деньгами: #{user_with_money}", supersignin_path(user_with_money)
+      li= login_as_link user_with_money, "С деньгами: #{user_with_money}"
     - if manager.present?
-      li= link_to "Manager: #{manager}", supersignin_path(manager)
+      li= login_as_link manager, "Manager: #{manager}"
     - if superadmin.present?
-      li= link_to "Superadmin: #{superadmin}", supersignin_path(superadmin)
+      li= login_as_link superadmin, "Superadmin: #{superadmin}"

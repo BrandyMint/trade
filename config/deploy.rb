@@ -36,21 +36,16 @@ set :puma_init_active_record, true
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 desc 'Notify http://bugsnag.com'
+set :bugsnag_api_key, '0da75b4005a5275b96a760f0b503f263'
 
 namespace :deploy do
-  task :notify_bugsnag do
-    run_locally do
-      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=0da75b4005a5275b96a760f0b503f263'
-    end
-  end
+  #desc 'Restart application'
+  #task :restart do
+    #on roles(:sidekiq), in: :sequence, wait: 5 do
+      #execute "/etc/init.d/sidekiq-#{fetch(:application)} restart"
+    #end
+  #end
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:sidekiq), in: :sequence, wait: 5 do
-      execute "/etc/init.d/sidekiq-#{fetch(:application)} restart"
-    end
-  end
-
-  after :finishing, 'notify_bugsnag'
-  # after :publishing, :restart
+  #after :finishing, 'notify_bugsnag'
+  ## after :publishing, :restart
 end

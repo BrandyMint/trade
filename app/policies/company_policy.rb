@@ -6,7 +6,7 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def show?
-    owner? || manager? || record.verified?
+    owner? || is_admin? || record.verified?
   end
 
   def edit?

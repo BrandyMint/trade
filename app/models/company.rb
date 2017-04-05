@@ -17,7 +17,7 @@ class Company < ApplicationRecord
     against: { name: 'A', management_name: 'B', inn: 'B', ogrn: 'B', kpp: 'B', email: 'A', phone: 'A', management_post: 'C', address: 'D' },
     using: { tsearch: { negation: true, dictionary: 'russian', prefix: true } }
 
-  scope :active, -> { all }
+  scope :active, -> { with_accepted_state }
 
   belongs_to :user, counter_cache: true
   belongs_to :account, class_name: 'OpenbillAccount'
