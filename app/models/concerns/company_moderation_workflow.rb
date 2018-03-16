@@ -14,6 +14,10 @@ module CompanyModerationWorkflow
       state :being_reviewed do
         event :accept, :transitions_to => :accepted
         event :reject, :transitions_to => :rejected
+        event :rework, :transitions_to => :rework
+      end
+      state :rework do
+        event :submit, :transitions_to => :awaiting_review
       end
       state :accepted do
         event :review, :transitions_to => :being_reviewed

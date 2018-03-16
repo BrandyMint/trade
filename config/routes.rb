@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     resources :users
     resources :companies do
       member do
+        patch :rework
         patch :start_review
         patch :accept
         patch :reject

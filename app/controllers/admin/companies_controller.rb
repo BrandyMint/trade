@@ -22,6 +22,15 @@ class Admin::CompaniesController < Admin::ApplicationController
     render 'show'
   end
 
+  def rework
+    @company = Company.find params[:id]
+    @company.rework! current_user
+    redirect_to admin_company_path @company
+  rescue ActiveRecord::RecordInvalid  => err
+    flash[:danger] = err.message
+    render 'show'
+  end
+
   def start_review
     @company = Company.find params[:id]
     @company.review! current_user
